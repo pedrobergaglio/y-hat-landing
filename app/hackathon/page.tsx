@@ -517,21 +517,21 @@ export default function HackathonPage() {
                     {group.label}
                   </span>
                 </div>
-                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
                   {group.items.map((item) => {
-                    const logoH = isMain ? "h-20 md:h-28" : isPlatinum ? "h-12 md:h-16" : "h-10 md:h-12";
+                    const logoH = isMain ? "h-16 md:h-24" : isPlatinum ? "h-10 md:h-14" : "h-8 md:h-10";
+                    const padX = isMain ? "px-14 md:px-20" : isPlatinum ? "px-8 md:px-12" : "px-7 md:px-9";
                     return (
                       <div
                         key={item.name}
-                        style={{ flex: `1 1 ${cellMinWidth}`, minWidth: cellMinWidth }}
-                        className={`bg-[var(--hk-cream)] rounded-2xl flex flex-col items-center justify-center px-6 text-center ${cellPadY}`}
+                        className={`bg-[var(--hk-cream)] rounded-2xl inline-flex flex-col items-center justify-center text-center ${padX} ${cellPadY}`}
                       >
                         {"logo" in item && item.logo ? (
                           /* eslint-disable-next-line @next/next/no-img-element */
                           <img
                             src={item.logo}
                             alt={item.name}
-                            className={`${logoH} w-auto max-w-[80%] object-contain`}
+                            className={`${logoH} w-auto object-contain`}
                             style={"invert" in item && item.invert ? { filter: "brightness(0)" } : undefined}
                             loading="lazy"
                           />
