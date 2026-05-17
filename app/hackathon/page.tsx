@@ -78,29 +78,10 @@ function YHatMark({ className = "" }: { className?: string }) {
 /* ---------- page ---------- */
 
 export default function HackathonPage() {
-  const { meta, ticker, prize, about, phases, learn, tracks, schedule, sponsors, faq } = data;
+  const { meta, prize, about, phases, learn, tracks, schedule, sponsors, faq } = data;
 
   return (
     <main className="relative overflow-hidden">
-      {/* Top ticker */}
-      <div
-        className="relative overflow-hidden border-b border-[var(--hk-cream-line)] py-3 text-xs tracking-[0.25em] uppercase"
-        aria-hidden
-      >
-        <div className="hk-marquee">
-          {[...Array(2)].map((_, dup) => (
-            <div key={dup} className="flex shrink-0 items-center">
-              {ticker.map((t, i) => (
-                <span key={`${dup}-${i}`} className="flex items-center pr-10">
-                  <span className="opacity-90">{t}</span>
-                  <span className="ml-10 inline-block h-1.5 w-1.5 rounded-full bg-[var(--hk-cream)] opacity-60" />
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Nav */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[color:var(--hk-burgundy)]/85 border-b border-[var(--hk-cream-line)]">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -184,6 +165,16 @@ export default function HackathonPage() {
                   {meta.ctas.primary.label}
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>
+                <span
+                  className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[var(--hk-cream-soft)]"
+                  aria-label="Inscripciones abiertas"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--hk-cream)] opacity-60 animate-ping" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--hk-cream)]" />
+                  </span>
+                  Inscripciones abiertas
+                </span>
                 <a
                   href="#hackathon"
                   className="inline-flex items-center gap-2 text-sm text-[var(--hk-cream-soft)] hover:text-[var(--hk-cream)] transition"
@@ -233,9 +224,9 @@ export default function HackathonPage() {
               },
               {
                 icon: <Trophy className="h-4 w-4" />,
-                label: "Premio",
-                value: "USD 4.500",
-                hint: "+ USD 90k en créditos AWS",
+                label: "1° por track",
+                value: "USD 1.000",
+                hint: "+ USD 10k en créditos AWS",
               },
             ].map((f) => (
               <motion.div
