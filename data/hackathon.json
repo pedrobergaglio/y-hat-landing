@@ -132,7 +132,7 @@
   "sponsors": [
     {
       "tier": "main",
-      "label": "Main Sponsor",
+      "label": "Main",
       "items": [
         { "name": "Rappi", "logo": "/hackathon/sponsors/rappi.png" }
       ]

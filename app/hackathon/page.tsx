@@ -512,10 +512,10 @@ export default function HackathonPage() {
               : "text-base md:text-lg";
             return (
               <div key={group.tier}>
-                <div className="flex justify-center mb-5">
-                  <span className="text-xs tracking-[0.35em] uppercase text-[var(--hk-cream-dim)]">
+                <div className="flex justify-center mb-6">
+                  <h3 className="font-serif text-2xl md:text-3xl text-[var(--hk-cream)]">
                     {group.label}
-                  </span>
+                  </h3>
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
                   {group.items.map((item) => {
