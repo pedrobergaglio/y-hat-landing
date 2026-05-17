@@ -519,9 +519,11 @@ export default function HackathonPage() {
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
                   {group.items.map((item) => {
-                    const baseH = isMain ? "h-16 md:h-24" : isPlatinum ? "h-10 md:h-14" : "h-8 md:h-10";
-                    const boostH = isMain ? "h-20 md:h-28" : isPlatinum ? "h-14 md:h-20" : "h-12 md:h-16";
-                    const logoH = "boost" in item && item.boost ? boostH : baseH;
+                    // h: optional per-item height in px (desktop). Mobile clamps to 72%.
+                    // Defaults by tier if not specified. Override per item to tune visual size.
+                    const defaultH = isMain ? 96 : isPlatinum ? 56 : 48;
+                    const hPx = "h" in item && typeof item.h === "number" ? item.h : defaultH;
+                    const hMin = Math.round(hPx * 0.72);
                     const basePadX = isMain ? "px-14 md:px-20" : isPlatinum ? "px-8 md:px-12" : "px-7 md:px-9";
                     const tightPadX = isMain ? "px-8 md:px-10" : isPlatinum ? "px-4 md:px-6" : "px-3 md:px-5";
                     const padX = "tight" in item && item.tight ? tightPadX : basePadX;
@@ -535,8 +537,11 @@ export default function HackathonPage() {
                           <img
                             src={item.logo}
                             alt={item.name}
-                            className={`${logoH} w-auto object-contain`}
-                            style={"invert" in item && item.invert ? { filter: "brightness(0)" } : undefined}
+                            className="w-auto object-contain"
+                            style={{
+                              height: `clamp(${hMin}px, ${(hPx / 14.4).toFixed(2)}vw, ${hPx}px)`,
+                              ...("invert" in item && item.invert ? { filter: "brightness(0)" } : {}),
+                            }}
                             loading="lazy"
                           />
                         ) : (

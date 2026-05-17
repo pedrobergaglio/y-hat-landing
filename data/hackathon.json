@@ -149,26 +149,26 @@
       "tier": "platinum",
       "label": "Platinum",
       "items": [
-        { "name": "Picante",    "logo": "/hackathon/sponsors/picante.png" },
-        { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png", "invert": true },
-        { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png" },
-        { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png" },
-        { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png" },
-        { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png" },
-        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "boost": true, "tight": true }
+        { "name": "Picante",    "logo": "/hackathon/sponsors/picante.png", "h": 48 },
+        { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png", "invert": true, "h": 56 },
+        { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png", "h": 44 },
+        { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png", "h": 56 },
+        { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png", "h": 64 },
+        { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png", "h": 56 },
+        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "h": 64, "tight": true }
       ]
     },
     {
       "tier": "gold",
       "label": "Gold",
       "items": [
-        { "name": "LUCAI",        "logo": "/hackathon/sponsors/lucai.svg" },
-        { "name": "AWS",          "logo": "/hackathon/sponsors/aws.png", "boost": true },
-        { "name": "RedBull",      "logo": "/hackathon/sponsors/redbull.svg" },
-        { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png" },
-        { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png", "boost": true },
-        { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png" },
-        { "name": "CID",          "logo": "/hackathon/sponsors/cid.png" }
+        { "name": "LUCAI",        "logo": "/hackathon/sponsors/lucai.svg", "h": 44 },
+        { "name": "AWS",          "logo": "/hackathon/sponsors/aws.png", "h": 56 },
+        { "name": "RedBull",      "logo": "/hackathon/sponsors/redbull.svg", "h": 40 },
+        { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png", "h": 48 },
+        { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png", "h": 52 },
+        { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png", "h": 44 },
+        { "name": "CID",          "logo": "/hackathon/sponsors/cid.png", "h": 44 }
       ]
     }
   ],
