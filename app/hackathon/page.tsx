@@ -224,7 +224,7 @@ export default function HackathonPage() {
               },
               {
                 icon: <Trophy className="h-4 w-4" />,
-                label: "1° por track",
+                label: "1 premio por track",
                 value: "USD 1.000",
                 hint: "+ USD 10k en créditos AWS",
               },
