@@ -250,17 +250,18 @@ export default function HackathonPage() {
 
       {/* About + Phases */}
       <section id="hackathon" className="container mx-auto px-6 py-24 md:py-32">
-        <SectionHead
-          num="01"
-          title="El"
-          emphasis="hackathón"
-          sub="De una idea a una propuesta de negocio defendible, en tres días, con mentorías, talleres y networking real con la industria."
-        />
-
-        <div className="mt-16 grid lg:grid-cols-2 gap-16 items-start">
-          <div className="space-y-7 text-xl text-[var(--hk-cream-soft)] max-w-xl pt-6">
-            <p>{about.lead}</p>
-            <p>{about.mission}</p>
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div>
+            <SectionHead
+              num="01"
+              title="El"
+              emphasis="hackathón"
+              sub="De una idea a una propuesta de negocio defendible, en tres días, con mentorías, talleres y networking real con la industria."
+            />
+            <div className="mt-12 space-y-7 text-xl text-[var(--hk-cream-soft)] max-w-xl">
+              <p>{about.lead}</p>
+              <p>{about.mission}</p>
+            </div>
           </div>
 
           <ul className="space-y-px bg-[var(--hk-cream-line)] border border-[var(--hk-cream-line)] rounded-2xl overflow-hidden">
