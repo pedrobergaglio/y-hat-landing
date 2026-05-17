@@ -155,7 +155,7 @@
         { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png" },
         { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png" },
         { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png" },
-        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "boost": true }
+        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "boost": true, "tight": true }
       ]
     },
     {
