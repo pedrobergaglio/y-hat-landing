@@ -257,8 +257,8 @@ export default function HackathonPage() {
           sub="De una idea a una propuesta de negocio defendible, en tres días, con mentorías, talleres y networking real con la industria."
         />
 
-        <div className="mt-16 grid lg:grid-cols-2 gap-16">
-          <div className="space-y-6 text-lg text-[var(--hk-cream-soft)] max-w-xl">
+        <div className="mt-16 grid lg:grid-cols-2 gap-16 items-start">
+          <div className="space-y-7 text-xl text-[var(--hk-cream-soft)] max-w-xl pt-6">
             <p>{about.lead}</p>
             <p>{about.mission}</p>
           </div>
@@ -273,8 +273,8 @@ export default function HackathonPage() {
                   {p.num}
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl mb-1">{p.title}</h3>
-                  <p className="text-sm text-[var(--hk-cream-soft)] leading-relaxed">
+                  <h3 className="font-serif text-2xl mb-1">{p.title}</h3>
+                  <p className="text-base text-[var(--hk-cream-soft)] leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
