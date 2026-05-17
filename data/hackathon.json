@@ -149,10 +149,10 @@
       "tier": "platinum",
       "label": "Platinum",
       "items": [
-        { "name": "Picante" },
+        { "name": "Picante",    "logo": "/hackathon/sponsors/picante.png" },
         { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png", "invert": true },
         { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png" },
-        { "name": "Complif" },
+        { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png" },
         { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png" },
         { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png" },
         { "name": "Ministerio de Desarrollo Económico", "subtitle": "Gobierno de la Ciudad", "logo": "/hackathon/sponsors/ministerio.png" }
@@ -168,7 +168,7 @@
         { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png" },
         { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png" },
         { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png", "invert": true },
-        { "name": "CID" }
+        { "name": "CID",          "logo": "/hackathon/sponsors/cid.png" }
       ]
     }
   ],
