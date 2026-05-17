@@ -512,12 +512,9 @@ export default function HackathonPage() {
               : "text-base md:text-lg";
             return (
               <div key={group.tier}>
-                <div className="flex items-baseline justify-between mb-5">
+                <div className="flex justify-center mb-5">
                   <span className="text-xs tracking-[0.35em] uppercase text-[var(--hk-cream-dim)]">
                     {group.label}
-                  </span>
-                  <span className="text-xs text-[var(--hk-cream-dim)]">
-                    {group.items.length} {group.items.length === 1 ? "marca" : "marcas"}
                   </span>
                 </div>
                 <div className="flex flex-wrap justify-center rounded-2xl border border-[var(--hk-cream-line)] overflow-hidden divide-x divide-y divide-[var(--hk-cream-line)]">
