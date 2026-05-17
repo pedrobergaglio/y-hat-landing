@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "title": "Hackathón de Negocios 2026",
+    "edition": "Primera Edición",
+    "tagline": "La intersección de la tecnología, la innovación y los negocios",
+    "dates": {
+      "start": "2026-06-05",
+      "end": "2026-06-07",
+      "display": "5 · 6 · 7 de junio · 2026",
+      "short": "05 / 06 / 07 — JUNIO"
+    },
+    "venue": {
+      "name": "0+Infinito",
+      "campus": "Exactas UBA"
+    },
+    "teamSize": "3 ó 4 personas",
+    "host": "Y-Hat × FCEN · UBA",
+    "ctas": {
+      "primary": {
+        "label": "Pre-inscribirme",
+        "href": "https://luma.com/4pwyo0jy"
+      },
+      "secondary": {
+        "label": "¿No tenés equipo? Formalo acá",
+        "href": null,
+        "note": "Pendiente: link al flujo de matchmaking (consultar al equipo)."
+      }
+    }
+  },
+  "ticker": [
+    "5 · 6 · 7 JUNIO 2026",
+    "0+INFINITO · EXACTAS UBA",
+    "USD 4.500 EN PREMIOS + USD 90.000 EN CRÉDITOS AWS",
+    "EQUIPOS DE 3 A 4 PERSONAS",
+    "INSCRIPCIONES ABIERTAS"
+  ],
+  "prize": {
+    "headline": "USD 4.500 + USD 90k en créditos AWS",
+    "breakdown": [
+      { "place": "1° de cada track", "cash": "USD 1.000", "aws": "USD 10.000 en créditos AWS" },
+      { "place": "2° de cada track", "cash": "USD 500",   "aws": "USD 10.000 en créditos AWS" },
+      { "place": "Mención de honor por track", "cash": null, "aws": "USD 10.000 en créditos AWS" }
+    ],
+    "perks": [
+      "Entrada gratuita",
+      "Pernocte habilitado",
+      "Comida y bebida durante los tres días",
+      "Mentorías con VCs y fundadores activos"
+    ]
+  },
+  "about": {
+    "lead": "La Hackathón de Negocios es un evento de tres días (5 al 7 de junio de 2026) diseñado para que estudiantes universitarios transformen descubrimientos científicos e ideas innovadoras en propuestas de valor concretas y viables.",
+    "mission": "Nuestra misión: que la comunidad estudiantil adquiera herramientas de transferencia tecnológica y de negocios sin tener que irse de la facultad, creando un espacio de comunidad emprendedora que potencie perfiles innovadores y disruptivos."
+  },
+  "phases": [
+    { "num": "01", "title": "Inmersión",  "desc": "Caracterización de la industria del track. Tendencias, costos, modelos y actores. Visión macro del área elegida." },
+    { "num": "02", "title": "Formulación", "desc": "Identificación de una problemática relevante y diseño de una solución de base tecnológica que la aborde." },
+    { "num": "03", "title": "Viabilidad",  "desc": "Validación de la solución y construcción del modelo de negocios. Business Model Canvas, unit economics, go-to-market." },
+    { "num": "04", "title": "Narrativa",   "desc": "Armado del pitch para defender el proyecto frente al jurado del track. Comunicación efectiva bajo presión." }
+  ],
+  "learn": [
+    { "num": "01", "title": "Masterclass por track",        "desc": "Panorama de la industria, qué se hace hoy, dónde está la oportunidad." },
+    { "num": "02", "title": "Problemática → Solución → Producto", "desc": "Cómo filtrar problemas reales y diseñar soluciones con balance entre impacto y factibilidad." },
+    { "num": "03", "title": "Taller de Vibecoding + AWS",    "desc": "Construir rápido con IA y créditos de AWS para apoyar el MVP." },
+    { "num": "04", "title": "Modelos de negocio",            "desc": "Business Model Canvas, Value Proposition Canvas, unit economics, moats." },
+    { "num": "05", "title": "Panel: el mundo VC",            "desc": "Cómo piensan los inversores, qué miran, cómo hablarles. Con VCs activos del ecosistema." },
+    { "num": "06", "title": "Validación de soluciones",      "desc": "Cómo validar una idea bajo restricciones reales — biotech, IA, fintech." },
+    { "num": "07", "title": "Armado de pitch + oratoria",    "desc": "Estructura de pitch ganador, manejo de tiempos, comunicación bajo presión." },
+    { "num": "08", "title": "Networking real",               "desc": "Espacios diseñados para conectar con mentores, sponsors, jurados y otros equipos." }
+  ],
+  "tracks": [
+    {
+      "tag": "Track A",
+      "emoji": "🧬",
+      "title": "Deep Tech para Planeta y Salud",
+      "subtitle": "Ciencia aplicada a desafíos estructurales del planeta y la salud humana.",
+      "areas": ["Salud y agro", "Clima", "Materiales", "Biotech"]
+    },
+    {
+      "tag": "Track B",
+      "emoji": "🤖",
+      "title": "IA & Sistemas Autónomos",
+      "subtitle": "Plataformas e inteligencia artificial para optimizar industria y vida cotidiana.",
+      "areas": ["IA aplicada", "Visión por computadora", "Agentes", "SaaS de datos"]
+    },
+    {
+      "tag": "Track C",
+      "emoji": "💸",
+      "title": "Fintech & Economía Digital",
+      "subtitle": "Soluciones digitales que optimizan el acceso y la gestión del valor financiero.",
+      "areas": ["Pagos", "Lending", "Crypto · DeFi", "WealthTech"]
+    }
+  ],
+  "schedule": [
+    {
+      "pill": "Día 01",
+      "title": "Viernes 5 · Junio",
+      "hours": "14:00 — 24:00+",
+      "items": [
+        { "time": "14:00", "what": "Acreditación y apertura" },
+        { "time": "15:10", "what": "Masterclass por track" },
+        { "time": "16:10", "what": "Coffee + cowork" },
+        { "time": "18:30", "what": "Charla: Problemática → Producto" },
+        { "time": "20:20", "what": "Taller Vibecoding + AWS" },
+        { "time": "21:20", "what": "Cena + team building" },
+        { "time": "22:00", "what": "Cowork nocturno" }
+      ]
+    },
+    {
+      "pill": "Día 02",
+      "title": "Sábado 6 · Junio",
+      "hours": "08:00 — 21:00",
+      "featured": true,
+      "items": [
+        { "time": "08:00", "what": "Desayuno" },
+        { "time": "10:00", "what": "Modelos de negocio" },
+        { "time": "11:30", "what": "Cowork — BMC" },
+        { "time": "13:00", "what": "Almuerzo" },
+        { "time": "14:00", "what": "Panel: mundo VC" },
+        { "time": "15:00", "what": "Coffee + cowork" },
+        { "time": "19:00", "what": "Pitch & oratoria" },
+        { "time": "21:00", "what": "Cena" }
+      ]
+    },
+    {
+      "pill": "Día 03",
+      "title": "Domingo 7 · Junio",
+      "hours": "09:00 — 15:00",
+      "items": [
+        { "time": "09:00", "what": "Desayuno" },
+        { "time": "10:00", "what": "Entrega de video pitch" },
+        { "time": "10:00", "what": "Charlas de empresas" },
+        { "time": "12:00", "what": "Almuerzo + deliberación" },
+        { "time": "13:00", "what": "Anuncio de ganadores" },
+        { "time": "13:30", "what": "Pitch público de finalistas" },
+        { "time": "14:30", "what": "Cierre" }
+      ]
+    }
+  ],
+  "sponsors": [
+    {
+      "tier": "main",
+      "label": "Main Sponsor",
+      "items": [
+        { "name": "Rappi" }
+      ]
+    },
+    {
+      "tier": "platinum",
+      "label": "Platinum",
+      "items": [
+        { "name": "Picante" },
+        { "name": "Fardo" },
+        { "name": "Lovelytics" },
+        { "name": "Complif" },
+        { "name": "Belo" },
+        { "name": "IOL" },
+        { "name": "Ministerio de Desarrollo Económico", "subtitle": "Gobierno de la Ciudad" }
+      ]
+    },
+    {
+      "tier": "gold",
+      "label": "Gold",
+      "items": [
+        { "name": "LUCAI" },
+        { "name": "AWS" },
+        { "name": "RedBull" },
+        { "name": "PlusZero" },
+        { "name": "Geonosis" },
+        { "name": "Polo Exactas" },
+        { "name": "CID" }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Quiénes pueden participar?",
+      "a": "Estudiantes universitarios, principalmente de la FCEN — UBA y de facultades afines. Se forman equipos de 3 o 4 personas. En la inscripción especificás a qué track quiere postularse tu equipo."
+    },
+    {
+      "q": "¿Necesito saber programar?",
+      "a": "No es excluyente. Lo ideal es armar un equipo complementario: alguien técnico, alguien de negocio y alguien de comunicación. Cada track valora distintas combinaciones de habilidades y los talleres están pensados para cubrir lo esencial en 72 horas."
+    },
+    {
+      "q": "¿Cuál es el premio?",
+      "a": "USD 1.000 al 1° y USD 500 al 2° de cada track, en efectivo. Además, 1°, 2° y mención de honor de cada track se llevan USD 10.000 en créditos de AWS. Y todos los participantes acceden a networking real con VCs activos del ecosistema, sponsors y mentores de la industria."
+    },
+    {
+      "q": "¿Tengo que llevar mi proyecto pensado de antes?",
+      "a": "No. La idea es que el viernes a la noche, tras la masterclass del track y el coworking de investigación de industria, definas con tu equipo qué problema atacar. La inmersión es parte de la competencia."
+    },
+    {
+      "q": "¿Se duerme en la facultad?",
+      "a": "Sí, opcional. Habilitamos aulas y sala de estudio para descanso durante la noche del viernes y del sábado. También podés ir a tu casa y volver — no es obligatorio quedarse."
+    },
+    {
+      "q": "¿Cuánto cuesta participar?",
+      "a": "Es gratis. La hackathón es financiada por nuestros sponsors y por la facultad. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
+    },
+    {
+      "q": "¿Cómo se entregan los proyectos?",
+      "a": "Cada equipo entrega un video pitch de 3 minutos, una landing del proyecto y un documento de 1 página con el modelo de negocio. Cada track suma un entregable específico (memoria técnica, repositorio o prototipo) según corresponda."
+    },
+    {
+      "q": "¿Cómo me inscribo?",
+      "a": "A través del Luma del evento. El botón 'Pre-inscribirme' te lleva al formulario. Si todavía no armaste equipo, no te preocupes: vamos a habilitar un canal para conectarte con otros participantes."
+    }
+  ]
+}
