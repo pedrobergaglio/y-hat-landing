@@ -535,6 +535,7 @@ export default function HackathonPage() {
                             src={item.logo}
                             alt={item.name}
                             className={`${logoH} w-auto max-w-[80%] object-contain`}
+                            style={"invert" in item && item.invert ? { filter: "brightness(0)" } : undefined}
                             loading="lazy"
                           />
                         ) : (
