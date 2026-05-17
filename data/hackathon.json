@@ -150,7 +150,7 @@
       "label": "Platinum",
       "items": [
         { "name": "Picante",    "logo": "/hackathon/sponsors/picante.png" },
-        { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png", "invert": true },
+        { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png" },
         { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png" },
         { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png" },
         { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png" },
@@ -167,7 +167,7 @@
         { "name": "RedBull",      "logo": "/hackathon/sponsors/redbull.svg" },
         { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png" },
         { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png" },
-        { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png", "invert": true },
+        { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png" },
         { "name": "CID",          "logo": "/hackathon/sponsors/cid.png" }
       ]
     }
