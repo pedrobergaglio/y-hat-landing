@@ -263,7 +263,7 @@ export default function HackathonPage() {
           num="01"
           title="El"
           emphasis="hackathón"
-          sub="Una comunidad viva que busca ser y hacer desde la práctica."
+          sub="De una idea a una propuesta de negocio defendible, en tres días, con mentorías, talleres y networking real con la industria."
         />
 
         <div className="mt-16 grid lg:grid-cols-2 gap-16">
@@ -475,17 +475,25 @@ export default function HackathonPage() {
                 {meta.ctas.primary.label}
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </a>
-              {/* Secondary CTA — link pending from comms team */}
-              <span
-                className="text-sm text-[var(--hk-cream-dim)]"
-                title="Pendiente: link al flujo de matchmaking"
-              >
-                ¿No tenés equipo? Pronto vamos a habilitar un canal para conectarte.
-              </span>
+              {meta.ctas.secondary.href ? (
+                <a
+                  href={meta.ctas.secondary.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[var(--hk-cream-soft)] underline decoration-[var(--hk-cream-line)] underline-offset-4 hover:decoration-[var(--hk-cream)] transition"
+                  title={meta.ctas.secondary.note || undefined}
+                >
+                  {meta.ctas.secondary.label}
+                </a>
+              ) : (
+                <span className="text-sm text-[var(--hk-cream-dim)]">
+                  {meta.ctas.secondary.label}
+                </span>
+              )}
             </div>
 
             <p className="mt-6 text-xs text-[var(--hk-cream-dim)]">
-              Gratis · 3 ó 4 personas por equipo · {prize.headline}
+              Gratis · 3 o 4 personas por equipo · {prize.headline}
             </p>
           </div>
         </div>

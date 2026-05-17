@@ -13,7 +13,7 @@
       "name": "0+Infinito",
       "campus": "Exactas UBA"
     },
-    "teamSize": "3 ó 4 personas",
+    "teamSize": "3 o 4 personas",
     "host": "Y-Hat × FCEN · UBA",
     "ctas": {
       "primary": {
@@ -22,8 +22,8 @@
       },
       "secondary": {
         "label": "¿No tenés equipo? Formalo acá",
-        "href": null,
-        "note": "Pendiente: link al flujo de matchmaking (consultar al equipo)."
+        "href": "https://luma.com/byjg5hhc",
+        "note": "Evento de matching y networking · 22 de mayo · 17 h."
       }
     }
   },
@@ -87,7 +87,7 @@
       "tag": "Track C",
       "emoji": "💸",
       "title": "Fintech & Economía Digital",
-      "subtitle": "Soluciones digitales que optimizan el acceso y la gestión del valor financiero.",
+      "subtitle": "Soluciones digitales que optimizan el acceso, la gestión y el intercambio de valor financiero.",
       "areas": ["Pagos", "Lending", "Crypto · DeFi", "WealthTech"]
     }
   ],
@@ -128,8 +128,7 @@
       "hours": "09:00 — 15:00",
       "items": [
         { "time": "09:00", "what": "Desayuno" },
-        { "time": "10:00", "what": "Entrega de video pitch" },
-        { "time": "10:00", "what": "Charlas de empresas" },
+        { "time": "10:00", "what": "Deadline del pitch · arrancan charlas de empresas" },
         { "time": "12:00", "what": "Almuerzo + deliberación" },
         { "time": "13:00", "what": "Anuncio de ganadores" },
         { "time": "13:30", "what": "Pitch público de finalistas" },
