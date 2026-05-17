@@ -504,7 +504,7 @@ export default function HackathonPage() {
             const isMain = group.tier === "main";
             const isPlatinum = group.tier === "platinum";
             const cellMinWidth = isMain ? "100%" : isPlatinum ? "220px" : "180px";
-            const cellPadY = isMain ? "py-14" : isPlatinum ? "py-9" : "py-7";
+            const cellPadY = isMain ? "py-8" : isPlatinum ? "py-9" : "py-7";
             const nameSize = isMain
               ? "text-3xl md:text-5xl"
               : isPlatinum
@@ -524,7 +524,7 @@ export default function HackathonPage() {
                     const defaultH = isMain ? 96 : isPlatinum ? 56 : 48;
                     const hPx = "h" in item && typeof item.h === "number" ? item.h : defaultH;
                     const hMin = Math.round(hPx * 0.72);
-                    const basePadX = isMain ? "px-14 md:px-20" : isPlatinum ? "px-8 md:px-12" : "px-7 md:px-9";
+                    const basePadX = isMain ? "px-10 md:px-12" : isPlatinum ? "px-8 md:px-12" : "px-7 md:px-9";
                     const tightPadX = isMain ? "px-8 md:px-10" : isPlatinum ? "px-4 md:px-6" : "px-3 md:px-5";
                     const padX = "tight" in item && item.tight ? tightPadX : basePadX;
                     return (
