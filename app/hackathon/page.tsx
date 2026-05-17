@@ -517,14 +517,14 @@ export default function HackathonPage() {
                     {group.label}
                   </span>
                 </div>
-                <div className="flex flex-wrap justify-center rounded-2xl border border-[var(--hk-cream-line)] overflow-hidden divide-x divide-y divide-[var(--hk-cream-line)]">
+                <div className="flex flex-wrap justify-center gap-3 md:gap-4">
                   {group.items.map((item) => {
                     const logoH = isMain ? "h-20 md:h-28" : isPlatinum ? "h-12 md:h-16" : "h-10 md:h-12";
                     return (
                       <div
                         key={item.name}
                         style={{ flex: `1 1 ${cellMinWidth}`, minWidth: cellMinWidth }}
-                        className={`bg-[var(--hk-cream)] flex flex-col items-center justify-center px-6 text-center ${cellPadY}`}
+                        className={`bg-[var(--hk-cream)] rounded-2xl flex flex-col items-center justify-center px-6 text-center ${cellPadY}`}
                       >
                         {"logo" in item && item.logo ? (
                           /* eslint-disable-next-line @next/next/no-img-element */
