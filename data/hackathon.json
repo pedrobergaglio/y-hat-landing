@@ -154,8 +154,8 @@
         { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png", "h": 44 },
         { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png", "h": 56 },
         { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png", "h": 64 },
-        { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png", "h": 56 },
-        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "h": 64, "tight": true }
+        { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png", "h": 64 },
+        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "h": 52, "tight": true }
       ]
     },
     {
