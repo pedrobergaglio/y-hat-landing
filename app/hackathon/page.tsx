@@ -519,7 +519,9 @@ export default function HackathonPage() {
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
                   {group.items.map((item) => {
-                    const logoH = isMain ? "h-16 md:h-24" : isPlatinum ? "h-10 md:h-14" : "h-8 md:h-10";
+                    const baseH = isMain ? "h-16 md:h-24" : isPlatinum ? "h-10 md:h-14" : "h-8 md:h-10";
+                    const boostH = isMain ? "h-20 md:h-28" : isPlatinum ? "h-14 md:h-20" : "h-12 md:h-16";
+                    const logoH = "boost" in item && item.boost ? boostH : baseH;
                     const padX = isMain ? "px-14 md:px-20" : isPlatinum ? "px-8 md:px-12" : "px-7 md:px-9";
                     return (
                       <div

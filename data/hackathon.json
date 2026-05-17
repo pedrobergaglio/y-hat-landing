@@ -155,7 +155,7 @@
         { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png" },
         { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png" },
         { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png" },
-        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png" }
+        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "boost": true }
       ]
     },
     {
@@ -163,10 +163,10 @@
       "label": "Gold",
       "items": [
         { "name": "LUCAI",        "logo": "/hackathon/sponsors/lucai.svg" },
-        { "name": "AWS",          "logo": "/hackathon/sponsors/aws.png" },
+        { "name": "AWS",          "logo": "/hackathon/sponsors/aws.png", "boost": true },
         { "name": "RedBull",      "logo": "/hackathon/sponsors/redbull.svg" },
         { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png" },
-        { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png" },
+        { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png", "boost": true },
         { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png" },
         { "name": "CID",          "logo": "/hackathon/sponsors/cid.png" }
       ]
