@@ -39,7 +39,7 @@
     "breakdown": [
       { "place": "1° de cada track", "cash": "USD 1.000", "aws": "USD 10.000 en créditos AWS" },
       { "place": "2° de cada track", "cash": "USD 500",   "aws": "USD 10.000 en créditos AWS" },
-      { "place": "Mención de honor por track", "cash": null, "aws": "USD 10.000 en créditos AWS" }
+      { "place": "3° de cada track", "cash": null,        "aws": "USD 10.000 en créditos AWS" }
     ],
     "perks": [
       "Entrada gratuita",
@@ -142,33 +142,33 @@
       "tier": "main",
       "label": "Main Sponsor",
       "items": [
-        { "name": "Rappi" }
+        { "name": "Rappi", "logo": "/hackathon/sponsors/rappi.png" }
       ]
     },
     {
       "tier": "platinum",
       "label": "Platinum",
       "items": [
-        { "name": "Picante" },
-        { "name": "Fardo" },
-        { "name": "Lovelytics" },
-        { "name": "Complif" },
-        { "name": "Belo" },
-        { "name": "IOL" },
-        { "name": "Ministerio de Desarrollo Económico", "subtitle": "Gobierno de la Ciudad" }
+        { "name": "Picante",    "logo": "/hackathon/sponsors/picante.png" },
+        { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png" },
+        { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png" },
+        { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png" },
+        { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png" },
+        { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png" },
+        { "name": "Ministerio de Desarrollo Económico", "subtitle": "Gobierno de la Ciudad", "logo": "/hackathon/sponsors/ministerio.png" }
       ]
     },
     {
       "tier": "gold",
       "label": "Gold",
       "items": [
-        { "name": "LUCAI" },
-        { "name": "AWS" },
-        { "name": "RedBull" },
-        { "name": "PlusZero" },
-        { "name": "Geonosis" },
-        { "name": "Polo Exactas" },
-        { "name": "CID" }
+        { "name": "LUCAI",        "logo": "/hackathon/sponsors/lucai.png" },
+        { "name": "AWS",          "logo": "/hackathon/sponsors/aws.png" },
+        { "name": "RedBull",      "logo": "/hackathon/sponsors/redbull.svg" },
+        { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png" },
+        { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png" },
+        { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png" },
+        { "name": "CID",          "logo": "/hackathon/sponsors/cid.png" }
       ]
     }
   ],
@@ -183,7 +183,7 @@
     },
     {
       "q": "¿Cuál es el premio?",
-      "a": "USD 1.000 al 1° y USD 500 al 2° de cada track, en efectivo. Además, 1°, 2° y mención de honor de cada track se llevan USD 10.000 en créditos de AWS. Y todos los participantes acceden a networking real con VCs activos del ecosistema, sponsors y mentores de la industria."
+      "a": "USD 1.000 al 1° y USD 500 al 2° de cada track, en efectivo. Los tres puestos del podio (1°, 2° y 3°) de cada track también se llevan USD 10.000 en créditos de AWS. Y todos los participantes acceden a networking real con VCs activos del ecosistema, sponsors y mentores de la industria."
     },
     {
       "q": "¿Tengo que llevar mi proyecto pensado de antes?",

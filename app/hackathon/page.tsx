@@ -426,9 +426,9 @@ export default function HackathonPage() {
         </div>
       </section>
 
-      {/* Prize / CTA strip */}
+      {/* Prize / CTA strip — navy for visual contrast against the burgundy page */}
       <section id="pre-inscripcion" className="container mx-auto px-6 py-24 md:py-32">
-        <div className="relative rounded-3xl border border-[var(--hk-cream-line)] bg-[color:var(--hk-burgundy-deep)] p-10 md:p-16 overflow-hidden">
+        <div className="relative rounded-3xl border border-[var(--hk-cream-line)] bg-[color:var(--hk-navy)] p-10 md:p-16 overflow-hidden">
           <YHatMark
             className="absolute -right-10 -bottom-10 w-[320px] h-auto text-[var(--hk-cream)] opacity-[0.06]"
             aria-hidden
@@ -521,22 +521,35 @@ export default function HackathonPage() {
                   </span>
                 </div>
                 <div className="flex flex-wrap justify-center rounded-2xl border border-[var(--hk-cream-line)] overflow-hidden divide-x divide-y divide-[var(--hk-cream-line)]">
-                  {group.items.map((item) => (
-                    <div
-                      key={item.name}
-                      style={{ flex: `1 1 ${cellMinWidth}`, minWidth: cellMinWidth }}
-                      className={`bg-[var(--hk-burgundy)] flex flex-col items-center justify-center px-6 text-center ${cellPadY}`}
-                    >
-                      <span className={`font-serif leading-tight ${nameSize}`}>
-                        {item.name}
-                      </span>
-                      {"subtitle" in item && item.subtitle && (
-                        <span className="mt-1 text-xs text-[var(--hk-cream-dim)]">
-                          {item.subtitle}
-                        </span>
-                      )}
-                    </div>
-                  ))}
+                  {group.items.map((item) => {
+                    const logoH = isMain ? "h-20 md:h-28" : isPlatinum ? "h-12 md:h-16" : "h-10 md:h-12";
+                    return (
+                      <div
+                        key={item.name}
+                        style={{ flex: `1 1 ${cellMinWidth}`, minWidth: cellMinWidth }}
+                        className={`bg-[var(--hk-cream)] flex flex-col items-center justify-center px-6 text-center ${cellPadY}`}
+                      >
+                        {"logo" in item && item.logo ? (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={item.logo}
+                            alt={item.name}
+                            className={`${logoH} w-auto max-w-[80%] object-contain`}
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className={`font-serif leading-tight text-[var(--hk-burgundy-deep)] ${nameSize}`}>
+                            {item.name}
+                          </span>
+                        )}
+                        {"subtitle" in item && item.subtitle && (
+                          <span className="mt-2 text-xs text-[var(--hk-burgundy-deep)]/70">
+                            {item.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );
