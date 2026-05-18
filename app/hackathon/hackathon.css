@@ -408,10 +408,34 @@
   color: var(--hk-cream);
 }
 .hackathon-root .track h3 em { font-style: italic; color: var(--hk-cream-soft); }
+.hackathon-root .track .hook {
+  margin-top: 0;
+  font-family: var(--font-radley), Georgia, serif;
+  font-style: italic;
+  font-size: 16px; line-height: 1.4;
+  letter-spacing: -.002em;
+  color: var(--hk-cream-soft);
+}
 .hackathon-root .track .desc {
   margin-top: 14px;
   font-size: 16px; line-height: 1.55;
   color: var(--hk-cream-soft);
+}
+.hackathon-root .track .desc strong {
+  color: var(--hk-cream);
+  font-weight: 500;
+}
+.hackathon-root .track .requirement {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--hk-cream-line);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--hk-cream-soft);
+}
+.hackathon-root .track .requirement strong {
+  color: var(--hk-gold);
+  font-weight: 500;
 }
 .hackathon-root .track .areas {
   margin-top: 22px;

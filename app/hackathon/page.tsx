@@ -97,7 +97,9 @@ type TitlePart = { text: string; em?: boolean };
 type Track = {
   key: string;
   titleParts: TitlePart[];
+  hook?: string;
   desc: string;
+  requirement?: string;
   areas: string[];
   icon: string;
 };
@@ -596,12 +598,22 @@ export default function HackathonPage() {
                     <TrackIcon kind={t.icon} />
                   </span>
                 </div>
-                <p className="desc">{t.desc}</p>
+                {t.hook && <p className="hook">{t.hook}</p>}
+                <p
+                  className="desc"
+                  dangerouslySetInnerHTML={{ __html: t.desc }}
+                />
                 <div className="areas">
                   {t.areas.map((a) => (
                     <span key={a}>{a}</span>
                   ))}
                 </div>
+                {t.requirement && (
+                  <p
+                    className="requirement"
+                    dangerouslySetInnerHTML={{ __html: t.requirement }}
+                  />
+                )}
               </article>
             ))}
           </div>

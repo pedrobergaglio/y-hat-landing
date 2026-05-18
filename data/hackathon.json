@@ -66,7 +66,9 @@
       "titleParts": [
         { "text": "Deep Tech", "em": true }
       ],
-      "desc": "Ciencia aplicada a desafíos estructurales del planeta y la salud humana.",
+      "hook": "¿Tenés una idea basada en ciencia que podría mejorar la salud humana o la sostenibilidad del planeta?",
+      "desc": "Este track está orientado al desarrollo de <strong>soluciones con base científica sólida</strong> y potencial de impacto.",
+      "requirement": "<strong>No es necesario tener un prototipo funcional.</strong> Con una hipótesis bien sustentada, referencias a papers y un camino claro de validación, competís.",
       "areas": ["Salud y agro", "Clima", "Materiales", "Biotech", "Espacio"],
       "icon": "atom"
     },
@@ -75,7 +77,9 @@
       "titleParts": [
         { "text": "Inteligencia Artificial", "em": true }
       ],
-      "desc": "Plataformas e IA para optimizar industria y vida cotidiana.",
+      "hook": "¿Tenés una idea que use IA para resolver un problema repetitivo?",
+      "desc": "Este track está orientado al desarrollo de <strong>soluciones que se apalanquen de IA</strong> para resolver problemas en industria, servicios o la vida cotidiana.",
+      "requirement": "<strong>Se requiere una demo o MVP del producto.</strong>",
       "areas": ["IA aplicada", "Visión por computadora", "Agentes", "Procesamiento de lenguaje"],
       "icon": "network"
     },
@@ -84,7 +88,9 @@
       "titleParts": [
         { "text": "Fintech", "em": true }
       ],
-      "desc": "Soluciones digitales que optimizan el acceso, la gestión y el intercambio de valor financiero.",
+      "hook": "¿Tenés una idea para mejorar cómo las personas, empresas o el estado manejan su dinero?",
+      "desc": "Este track está orientado al desarrollo de <strong>soluciones digitales innovadoras</strong> para resolver fricciones financieras reales mediante productos escalables y económicamente viables.",
+      "requirement": "<strong>Se requiere una demo o MVP del producto.</strong>",
       "areas": ["Pagos", "Lending", "Crypto · DeFi", "WealthTech"],
       "icon": "trend"
     }
