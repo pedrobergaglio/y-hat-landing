@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { JetBrains_Mono } from "next/font/google";
 import "./hackathon.css";
+
+const jbm = JetBrains_Mono({
+  variable: "--font-jbm",
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Hackathón de Negocios 2026 — Y-Hat × FCEN",
@@ -13,10 +21,20 @@ export const metadata: Metadata = {
   },
 };
 
+const initScript = `
+document.documentElement.classList.add('anims-ready');
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+`;
+
 export default function HackathonLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="hackathon-root">{children}</div>;
+  return (
+    <>
+      <script dangerouslySetInnerHTML={{ __html: initScript }} />
+      <div className={`hackathon-root ${jbm.variable}`}>{children}</div>
+    </>
+  );
 }

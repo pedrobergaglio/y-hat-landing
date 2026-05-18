@@ -1,659 +1,929 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Calendar,
-  MapPin,
-  Users,
-  Trophy,
-  Plus,
-} from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import data from "@/data/hackathon.json";
 
-/* ---------- shared bits ---------- */
+/* ---------- constants ---------- */
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+const SECTION_IDS = [
+  "top",
+  "hackathon",
+  "tracks",
+  "aprendizaje",
+  "cronograma",
+  "premios",
+  "sponsors",
+  "faq",
+  "cta",
+];
+
+const SECTION_LABELS: Record<string, string> = {
+  top: "Inicio",
+  hackathon: "Programa",
+  tracks: "Tracks",
+  aprendizaje: "Aprendizaje",
+  cronograma: "Cronograma",
+  premios: "Premios",
+  sponsors: "Sponsors",
+  faq: "FAQ",
+  cta: "Inscripción",
 };
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+const DURATION = 420;
+const LOCK_HOLD = 450;
+const WHEEL_THRESHOLD = 10;
+const BOUNDARY_HOLD = 600;
+
+const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 3);
+
+function smoothScrollTo(targetY: number, duration: number) {
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  if (Math.abs(distance) < 2) return;
+  const startT = performance.now();
+  function step(now: number) {
+    const elapsed = now - startT;
+    const t = Math.min(1, elapsed / duration);
+    const y = startY + distance * easeOutQuart(t);
+    window.scrollTo(0, y);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ---------- icons ---------- */
+
+function TrackIcon({ kind }: { kind: string }) {
+  if (kind === "atom") {
+    return (
+      <svg viewBox="0 0 24 24">
+        <circle className="dot" cx="12" cy="12" r="1.4" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.5" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(60 12 12)" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-60 12 12)" />
+      </svg>
+    );
+  }
+  if (kind === "network") {
+    return (
+      <svg viewBox="0 0 24 24">
+        <circle cx="5" cy="5" r="1.8" />
+        <circle cx="19" cy="5" r="1.8" />
+        <circle cx="5" cy="19" r="1.8" />
+        <circle cx="19" cy="19" r="1.8" />
+        <circle className="dot" cx="12" cy="12" r="2" />
+        <path d="M6.5 6.5 L10.5 10.5 M17.5 6.5 L13.5 10.5 M6.5 17.5 L10.5 13.5 M17.5 17.5 L13.5 13.5" />
+      </svg>
+    );
+  }
+  if (kind === "trend") {
+    return (
+      <svg viewBox="0 0 24 24">
+        <path d="M3 17 L9 11 L13 14 L21 6" />
+        <path d="M16 6 L21 6 L21 11" />
+        <circle className="dot" cx="9" cy="11" r="1.4" />
+        <circle className="dot" cx="13" cy="14" r="1.4" />
+      </svg>
+    );
+  }
+  return null;
+}
+
+/* ---------- types ---------- */
+
+type TitlePart = { text: string; em?: boolean };
+type Track = {
+  key: string;
+  titleParts: TitlePart[];
+  desc: string;
+  areas: string[];
+  icon: string;
 };
-
-function SectionHead({
-  num,
-  title,
-  emphasis,
-  sub,
-}: {
-  num: string;
-  title: string;
-  emphasis?: string;
-  sub?: string;
-}) {
-  return (
-    <div className="max-w-3xl">
-      <div className="text-xs tracking-[0.3em] uppercase text-[var(--hk-cream-dim)] mb-4">
-        — {num}
-      </div>
-      <h2 className="text-4xl md:text-6xl leading-[1.05] mb-5">
-        {title}
-        {emphasis && (
-          <>
-            {" "}
-            <em className="not-italic font-normal text-[var(--hk-cream-soft)] [font-style:italic]">
-              {emphasis}
-            </em>
-            .
-          </>
-        )}
-      </h2>
-      {sub && (
-        <p className="text-lg md:text-xl text-[var(--hk-cream-soft)] max-w-2xl">
-          {sub}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function YHatMark({ className = "" }: { className?: string }) {
-  // Official Ŷ mark exported from the comms team's Figma.
-  return (
-    /* eslint-disable-next-line @next/next/no-img-element */
-    <img
-      src="/hackathon/logo-yhat.svg"
-      alt="Y-Hat"
-      className={className}
-    />
-  );
-}
+type Fact = {
+  label: string;
+  value?: string;
+  valueEm?: string;
+  hint: string;
+};
+type Sponsor = {
+  name: string;
+  logo: string;
+  h?: number;
+  invert?: boolean;
+  tight?: boolean;
+};
+type SponsorTier = {
+  tier: string;
+  label: string;
+  items: Sponsor[];
+};
 
 /* ---------- page ---------- */
 
 export default function HackathonPage() {
-  const { meta, prize, about, phases, learn, tracks, schedule, sponsors, faq } = data;
+  const { meta, prize, phases, learn, schedule, faq } = data;
+  const facts = data.facts as Fact[];
+  const tracks = data.tracks as Track[];
+  const sponsors = data.sponsors as SponsorTier[];
+
+  const [activeIdx, setActiveIdx] = useState(0);
+  const currentIndexRef = useRef(0);
+  const lockedRef = useRef(false);
+  const sectionsRef = useRef<HTMLElement[]>([]);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  const goTo = useCallback((index: number) => {
+    const sections = sectionsRef.current;
+    if (!sections.length) return;
+    const next = Math.max(0, Math.min(sections.length - 1, index));
+    if (next === currentIndexRef.current || lockedRef.current) return;
+    lockedRef.current = true;
+    currentIndexRef.current = next;
+    const targetY =
+      sections[next].getBoundingClientRect().top + window.scrollY;
+    smoothScrollTo(targetY, DURATION);
+    setActiveIdx(next);
+    setTimeout(() => {
+      lockedRef.current = false;
+    }, LOCK_HOLD);
+  }, []);
+
+  /* IntersectionObserver-driven scroll animations */
+  useEffect(() => {
+    document.documentElement.classList.add("anims-ready");
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    const root = rootRef.current;
+    if (!root) return;
+    const anims = root.querySelectorAll<HTMLElement>(
+      "[data-anim], [data-stagger]"
+    );
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!("IntersectionObserver" in window) || reduce) {
+      anims.forEach((el) => el.classList.add("in-view"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in-view");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -50px 0px" }
+    );
+    anims.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  /* Sticky CTA visibility */
+  useEffect(() => {
+    const sticky = stickyRef.current;
+    if (!sticky) return;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (
+        y > 700 &&
+        y < document.body.scrollHeight - window.innerHeight - 500
+      ) {
+        sticky.classList.add("show");
+      } else {
+        sticky.classList.remove("show");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* Sponsor auto-fit */
+  useEffect(() => {
+    function fitRow(row: HTMLElement, minH: number, maxH: number) {
+      const cards = Array.from(
+        row.querySelectorAll<HTMLElement>(".sponsor-card")
+      );
+      if (!cards.length) return;
+      const imgs = cards
+        .map((c) => c.querySelector("img") as HTMLImageElement | null)
+        .filter(Boolean) as HTMLImageElement[];
+      if (!imgs.length) return;
+      if (!imgs.every((img) => img.naturalWidth > 0 && img.naturalHeight > 0))
+        return;
+      const aspects = imgs.map((img) => img.naturalWidth / img.naturalHeight);
+      const totalAspect = aspects.reduce((a, b) => a + b, 0);
+      const rowStyle = window.getComputedStyle(row);
+      const gap = parseFloat(rowStyle.gap) || 0;
+      const padX = cards.map((c) => {
+        const s = window.getComputedStyle(c);
+        return parseFloat(s.paddingLeft) + parseFloat(s.paddingRight);
+      });
+      const totalPadding = padX.reduce((a, b) => a + b, 0);
+      const gapsTotal = gap * (cards.length - 1);
+      const available = row.clientWidth;
+      const fitH = Math.floor(
+        (available - totalPadding - gapsTotal) / totalAspect
+      );
+      const finalH = Math.max(minH, Math.min(maxH, fitH));
+      imgs.forEach((img) => {
+        img.style.setProperty("height", finalH + "px", "important");
+      });
+    }
+
+    function fitAll() {
+      if (window.innerWidth < 1024) return;
+      const section = document.querySelector("section.sec#sponsors");
+      if (!section) return;
+      const tiers = section.querySelectorAll<HTMLElement>(
+        ".sponsors-tier .sponsors-row"
+      );
+      if (tiers[0]) fitRow(tiers[0], 56, 110);
+      if (tiers[1]) fitRow(tiers[1], 36, 72);
+      if (tiers[2]) fitRow(tiers[2], 30, 60);
+    }
+
+    function whenImagesReady(cb: () => void) {
+      const imgs = document.querySelectorAll<HTMLImageElement>(
+        "section.sec#sponsors img"
+      );
+      let pending = 0;
+      imgs.forEach((img) => {
+        if (!img.complete || !img.naturalWidth) {
+          pending++;
+          img.addEventListener(
+            "load",
+            () => {
+              if (--pending === 0) cb();
+            },
+            { once: true }
+          );
+          img.addEventListener(
+            "error",
+            () => {
+              if (--pending === 0) cb();
+            },
+            { once: true }
+          );
+        }
+      });
+      if (pending === 0) cb();
+    }
+
+    whenImagesReady(fitAll);
+    let resizeT: ReturnType<typeof setTimeout> | null = null;
+    const onResize = () => {
+      if (resizeT) clearTimeout(resizeT);
+      resizeT = setTimeout(fitAll, 120);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (resizeT) clearTimeout(resizeT);
+    };
+  }, []);
+
+  /* Wheel-hijack snap navigation (desktop, no reduced motion) */
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isDesktop = () =>
+      window.innerWidth >= 1024 &&
+      window.matchMedia("(hover: hover)").matches;
+
+    const root = rootRef.current;
+    if (!root) return;
+    const sections = Array.from(
+      root.querySelectorAll<HTMLElement>(".hero, section.sec, .closing")
+    );
+    sectionsRef.current = sections;
+
+    if (reduce || !isDesktop()) return;
+    if (sections.length < 2) return;
+
+    window.scrollTo(0, 0);
+
+    let lastInnerScrollTime = 0;
+
+    function consumeInnerScroll(
+      deltaY: number
+    ): "consumed" | "boundary" | "none" {
+      const section = sections[currentIndexRef.current];
+      if (!section) return "none";
+      const inner = section.querySelector<HTMLElement>(
+        "[data-inner-scroll], .faq"
+      );
+      if (!inner) return "none";
+      if (inner.scrollHeight <= inner.clientHeight + 1) return "none";
+      const atTop = inner.scrollTop <= 0;
+      const atBottom =
+        inner.scrollTop + inner.clientHeight >= inner.scrollHeight - 1;
+      if ((deltaY > 0 && atBottom) || (deltaY < 0 && atTop)) {
+        return "boundary";
+      }
+      inner.scrollTop += deltaY;
+      lastInnerScrollTime = performance.now();
+      return "consumed";
+    }
+
+    function isPastLastSnap() {
+      if (!sections.length) return false;
+      const last = sections[sections.length - 1];
+      return window.scrollY > last.offsetTop + 40;
+    }
+    function isAtLastSnap() {
+      if (!sections.length) return false;
+      const last = sections[sections.length - 1];
+      return Math.abs(window.scrollY - last.offsetTop) < 40;
+    }
+
+    let lastWheelTime = 0;
+    const onWheel = (e: WheelEvent) => {
+      if (!isDesktop()) return;
+      if (isPastLastSnap()) return;
+      if (isAtLastSnap() && e.deltaY > 0) return;
+      e.preventDefault();
+      if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
+      const innerResult = consumeInnerScroll(e.deltaY);
+      if (innerResult === "consumed") return;
+      if (innerResult === "boundary") {
+        const sinceInner = performance.now() - lastInnerScrollTime;
+        if (sinceInner < BOUNDARY_HOLD) return;
+      }
+      if (lockedRef.current) return;
+      const now = performance.now();
+      if (now - lastWheelTime < 40) return;
+      lastWheelTime = now;
+      goTo(currentIndexRef.current + (e.deltaY > 0 ? 1 : -1));
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (!isDesktop()) return;
+      const tag = (e.target as HTMLElement | null)?.tagName ?? "";
+      const target = e.target as HTMLElement | null;
+      if (
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        (target && target.isContentEditable)
+      )
+        return;
+      if (["ArrowDown", "PageDown", " "].includes(e.key)) {
+        e.preventDefault();
+        goTo(currentIndexRef.current + 1);
+      } else if (["ArrowUp", "PageUp"].includes(e.key)) {
+        e.preventDefault();
+        goTo(currentIndexRef.current - 1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        goTo(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        goTo(sections.length - 1);
+      }
+    };
+
+    let touchStartY = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      if (!isDesktop()) return;
+      touchStartY = e.touches[0].clientY;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDesktop()) return;
+      e.preventDefault();
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      if (!isDesktop()) return;
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) < 30) return;
+      goTo(currentIndexRef.current + (diff > 0 ? 1 : -1));
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd);
+
+    /* Anchor hijack — intercept #-links in desktop snap mode */
+    const anchors = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')
+    );
+    const handlers: Array<{ el: HTMLAnchorElement; fn: (e: MouseEvent) => void }> = [];
+    anchors.forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      const idx = sections.indexOf(target as HTMLElement);
+      if (idx === -1) return;
+      const fn = (e: MouseEvent) => {
+        if (!isDesktop()) return;
+        e.preventDefault();
+        goTo(idx);
+      };
+      a.addEventListener("click", fn);
+      handlers.push({ el: a, fn });
+    });
+
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+      handlers.forEach(({ el, fn }) => el.removeEventListener("click", fn));
+    };
+  }, [goTo]);
+
+  const tickerItems = [
+    "Hackathón de Negocios",
+    "5 · 6 · 7 / Junio · 2026",
+    "0+Infinito · Exactas UBA",
+    "Equipos de 3 o 4",
+    "USD 4.500 + 90K AWS",
+    "Tres tracks · Tres jurados",
+    "Inscripciones abiertas",
+  ];
 
   return (
-    <main className="relative overflow-hidden">
-      {/* Nav */}
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-[color:var(--hk-burgundy)]/85 border-b border-[var(--hk-cream-line)]">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/hackathon" className="flex items-center gap-3">
-            <YHatMark className="h-7 w-auto text-[var(--hk-cream)]" />
-            <span className="font-serif text-lg tracking-tight">Hackathón de Negocios</span>
-          </Link>
-          <nav aria-label="Secciones" className="hidden md:flex items-center gap-7 text-sm text-[var(--hk-cream-soft)]">
-            <a href="#hackathon" className="hover:text-[var(--hk-cream)] transition">El hackathón</a>
-            <a href="#aprendizaje" className="hover:text-[var(--hk-cream)] transition">Aprendizaje</a>
-            <a href="#tracks" className="hover:text-[var(--hk-cream)] transition">Tracks</a>
-            <a href="#cronograma" className="hover:text-[var(--hk-cream)] transition">Cronograma</a>
-            <a href="#sponsors" className="hover:text-[var(--hk-cream)] transition">Sponsors</a>
-            <a href="#faq" className="hover:text-[var(--hk-cream)] transition">FAQ</a>
-          </nav>
-          <a
-            href={meta.ctas.primary.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[var(--hk-cream)] text-[var(--hk-burgundy-deep)] px-4 py-2 text-sm font-medium hover:opacity-95 transition"
-          >
-            {meta.ctas.primary.label}
-            <ArrowRight className="h-4 w-4" />
-          </a>
+    <div ref={rootRef}>
+      {/* TICKER */}
+      <div className="ticker" aria-hidden="true">
+        <div className="track">
+          {[...tickerItems, ...tickerItems].map((t, i) => (
+            <span key={i}>{t}</span>
+          ))}
         </div>
-      </header>
+      </div>
 
-      {/* Hero */}
-      <section id="top" className="relative">
-        <div className="container mx-auto px-6 pt-20 pb-28 md:pt-32 md:pb-40">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-end">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-xs tracking-[0.35em] uppercase text-[var(--hk-cream-dim)] mb-6"
-              >
-                {meta.host} · {meta.edition}
-              </motion.div>
+      {/* NAV (mobile only in snap mode) */}
+      <nav className="top">
+        <a href="#top" className="brand">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
+          <span>Hackathón de Negocios</span>
+        </a>
+        <span className="links">
+          <a href="#hackathon">El hackathón</a>
+          <a href="#tracks">Tracks</a>
+          <a href="#aprendizaje">Aprendizaje</a>
+          <a href="#cronograma">Cronograma</a>
+          <a href="#sponsors">Sponsors</a>
+          <a href="#faq">FAQ</a>
+        </span>
+        <a
+          href={meta.ctas.primary.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cta"
+        >
+          Inscribirme <span className="ar">→</span>
+        </a>
+      </nav>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.05 }}
-                className="font-serif text-[clamp(3rem,9vw,8rem)] leading-[0.95] tracking-tight"
-              >
+      <div className="wrap">
+        {/* HERO */}
+        <section className="hero" id="top">
+          <div className="grid">
+            <div data-stagger>
+              <h1>
                 Hackathón
                 <br />
-                <em className="not-italic [font-style:italic] font-normal text-[var(--hk-cream-soft)]">
-                  de Negocios
-                </em>
-              </motion.h1>
+                <em>de Negocios</em>
+              </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="mt-8 text-lg md:text-xl text-[var(--hk-cream-soft)] max-w-2xl"
-              >
-                {meta.tagline}. Tres días para transformar descubrimientos
-                científicos e ideas innovadoras en{" "}
-                <strong className="text-[var(--hk-cream)] font-medium">
-                  propuestas de valor concretas y viables
-                </strong>
-                .
-              </motion.p>
+              <p className="tagline">
+                <b>La intersección</b> de la tecnología, la innovación y los
+                negocios.
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.35 }}
-                className="mt-10 flex flex-wrap items-center gap-4"
-              >
+              <p className="lede">
+                Tres días para transformar descubrimientos científicos e ideas
+                innovadoras en{" "}
+                <strong>propuestas de valor concretas y viables</strong>.
+                Mentorías y talleres a lo largo del fin de semana, y un pitch
+                final ante el jurado de cada track.
+              </p>
+
+              <div className="actions">
                 <a
                   href={meta.ctas.primary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-full bg-[var(--hk-cream)] text-[var(--hk-burgundy-deep)] px-7 py-4 text-base font-medium hover:opacity-95 transition"
+                  className="btn-primary"
                 >
-                  {meta.ctas.primary.label}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  Inscribirme <span className="ar">→</span>
                 </a>
-                <span
-                  className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-[var(--hk-cream-soft)]"
-                  aria-label="Inscripciones abiertas"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--hk-cream)] opacity-60 animate-ping" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--hk-cream)]" />
-                  </span>
-                  Inscripciones abiertas
-                </span>
-                <a
-                  href="#hackathon"
-                  className="inline-flex items-center gap-2 text-sm text-[var(--hk-cream-soft)] hover:text-[var(--hk-cream)] transition"
-                >
-                  ¿Qué es esto? ↓
-                </a>
-              </motion.div>
-            </div>
-
-            {/* Big Ŷ as visual anchor */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.1, delay: 0.2, ease: "easeOut" }}
-              className="hidden lg:block opacity-[0.18]"
-              aria-hidden
-            >
-              <YHatMark className="w-[420px] h-auto text-[var(--hk-cream)]" />
-            </motion.div>
-          </div>
-
-          {/* Facts strip */}
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="visible"
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-[var(--hk-cream-line)] border border-[var(--hk-cream-line)] rounded-2xl overflow-hidden"
-          >
-            {[
-              {
-                icon: <Calendar className="h-4 w-4" />,
-                label: "Cuándo",
-                value: "5 — 7 Junio",
-                hint: "2026",
-              },
-              {
-                icon: <MapPin className="h-4 w-4" />,
-                label: "Dónde",
-                value: meta.venue.name,
-                hint: meta.venue.campus,
-              },
-              {
-                icon: <Users className="h-4 w-4" />,
-                label: "Equipos",
-                value: meta.teamSize,
-                hint: "3 tracks a elección",
-              },
-              {
-                icon: <Trophy className="h-4 w-4" />,
-                label: "1° premio por track",
-                value: "USD 1.000",
-                hint: "+ USD 10k en créditos AWS",
-              },
-            ].map((f) => (
-              <motion.div
-                key={f.label}
-                variants={fadeUp}
-                className="bg-[var(--hk-burgundy)] px-5 py-6"
-              >
-                <div className="flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-[var(--hk-cream-dim)]">
-                  {f.icon}
-                  {f.label}
-                </div>
-                <div className="mt-3 font-serif text-2xl md:text-3xl leading-tight">
-                  {f.value}
-                </div>
-                <div className="mt-1 text-xs text-[var(--hk-cream-dim)]">{f.hint}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* About + Phases */}
-      <section id="hackathon" className="container mx-auto px-6 py-24 md:py-32">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <SectionHead
-              num="01"
-              title="El"
-              emphasis="hackathón"
-              sub="De una idea a una propuesta de negocio defendible, en tres días, con mentorías, talleres y networking real con la industria."
-            />
-            <div className="mt-12 space-y-7 text-xl text-[var(--hk-cream-soft)] max-w-xl">
-              <p>{about.lead}</p>
-              <p>{about.mission}</p>
-            </div>
-          </div>
-
-          <ul className="space-y-px bg-[var(--hk-cream-line)] border border-[var(--hk-cream-line)] rounded-2xl overflow-hidden">
-            {phases.map((p) => (
-              <li
-                key={p.num}
-                className="bg-[var(--hk-burgundy)] flex gap-5 p-6"
-              >
-                <div className="font-serif text-3xl text-[var(--hk-cream-dim)] leading-none w-12 shrink-0">
-                  {p.num}
-                </div>
-                <div>
-                  <h3 className="font-serif text-2xl mb-1">{p.title}</h3>
-                  <p className="text-base text-[var(--hk-cream-soft)] leading-relaxed">
-                    {p.desc}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Learn */}
-      <section id="aprendizaje" className="container mx-auto px-6 py-24 md:py-32">
-        <SectionHead
-          num="02"
-          title="Lo que vas a"
-          emphasis="aprender"
-          sub="Charlas, paneles y talleres dictados por fundadores, inversores e investigadores. Todo el contenido pensado para que en 72 horas pases de una idea a una propuesta defendible."
-        />
-
-        <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {learn.map((l) => (
-            <article
-              key={l.num}
-              className="border border-[var(--hk-cream-line)] rounded-xl p-6 hover:border-[var(--hk-cream)]/60 transition-colors"
-            >
-              <div className="text-xs tracking-[0.3em] uppercase text-[var(--hk-cream-dim)] mb-4">
-                {l.num}
-              </div>
-              <h3 className="font-serif text-lg mb-2 leading-snug">{l.title}</h3>
-              <p className="text-sm text-[var(--hk-cream-soft)] leading-relaxed">
-                {l.desc}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Tracks */}
-      <section id="tracks" className="container mx-auto px-6 py-24 md:py-32">
-        <SectionHead
-          num="03"
-          title="Tres"
-          emphasis="tracks"
-          sub="Cada track tiene su propio jurado, sus mentores y su criterio de evaluación. Vas a poder elegir el tuyo al inscribirte."
-        />
-
-        <div className="mt-16 grid lg:grid-cols-3 gap-6">
-          {tracks.map((t) => (
-            <article
-              key={t.tag}
-              className="group relative border border-[var(--hk-cream-line)] rounded-2xl p-8 hover:bg-[color:var(--hk-burgundy-deep)] transition-colors"
-            >
-              <div className="flex items-center justify-between mb-8">
-                <span className="text-xs tracking-[0.3em] uppercase text-[var(--hk-cream-dim)]">
-                  {t.tag}
-                </span>
-                <span className="text-3xl" aria-hidden>{t.emoji}</span>
-              </div>
-              <h3 className="font-serif text-2xl md:text-3xl leading-tight mb-4">
-                {t.title}
-              </h3>
-              <p className="text-sm text-[var(--hk-cream-soft)] leading-relaxed mb-6">
-                {t.subtitle}
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                {t.areas.map((a) => (
-                  <li
-                    key={a}
-                    className="text-xs px-3 py-1.5 rounded-full border border-[var(--hk-cream-line)] text-[var(--hk-cream-soft)]"
-                  >
-                    {a}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Schedule */}
-      <section id="cronograma" className="container mx-auto px-6 py-24 md:py-32">
-        <SectionHead
-          num="04"
-          title="Tres días,"
-          emphasis="sin pausa"
-          sub="Charlas, talleres, coworking guiado y panel con VCs. El sábado es el día central."
-        />
-
-        <div className="mt-16 grid lg:grid-cols-3 gap-6">
-          {schedule.map((day) => {
-            const featured = "featured" in day && day.featured;
-            return (
-              <article
-                key={day.pill}
-                className={`rounded-2xl p-7 border ${
-                  featured
-                    ? "bg-[var(--hk-cream)] text-[var(--hk-burgundy-deep)] border-[var(--hk-cream)]"
-                    : "border-[var(--hk-cream-line)]"
-                }`}
-              >
-                <div
-                  className={`inline-flex text-[10px] tracking-[0.3em] uppercase rounded-full px-3 py-1 mb-5 ${
-                    featured
-                      ? "bg-[var(--hk-burgundy-deep)] text-[var(--hk-cream)]"
-                      : "bg-[var(--hk-cream-faint)] text-[var(--hk-cream-soft)]"
-                  }`}
-                >
-                  {day.pill}
-                </div>
-                <h3 className="font-serif text-2xl mb-1">{day.title}</h3>
-                <p
-                  className={`text-sm mb-6 ${
-                    featured ? "text-[var(--hk-burgundy-deep)]/70" : "text-[var(--hk-cream-dim)]"
-                  }`}
-                >
-                  {day.hours}
-                </p>
-                <ol className="space-y-3">
-                  {day.items.map((item, i) => (
-                    <li key={i} className="flex gap-4 text-sm">
-                      <time
-                        className={`font-mono tabular-nums w-14 shrink-0 ${
-                          featured ? "text-[var(--hk-burgundy-deep)]/70" : "text-[var(--hk-cream-dim)]"
-                        }`}
-                      >
-                        {item.time}
-                      </time>
-                      <span
-                        className={
-                          featured ? "text-[var(--hk-burgundy-deep)]" : "text-[var(--hk-cream-soft)]"
-                        }
-                      >
-                        {item.what}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Prize / CTA strip — navy for visual contrast against the burgundy page */}
-      <section id="pre-inscripcion" className="container mx-auto px-6 py-24 md:py-32">
-        <div className="relative rounded-3xl border border-[var(--hk-cream-line)] bg-[color:var(--hk-navy)] p-10 md:p-16 overflow-hidden">
-          <YHatMark
-            className="absolute -right-10 -bottom-10 w-[320px] h-auto text-[var(--hk-cream)] opacity-[0.06]"
-            aria-hidden
-          />
-          <div className="relative max-w-3xl">
-            <div className="text-xs tracking-[0.3em] uppercase text-[var(--hk-cream-dim)] mb-5">
-              Pre-inscripciones abiertas
-            </div>
-            <h2 className="font-serif text-4xl md:text-6xl leading-tight mb-5">
-              Asegurate{" "}
-              <em className="not-italic [font-style:italic] font-normal text-[var(--hk-cream-soft)]">
-                tu lugar
-              </em>
-              .
-            </h2>
-            <p className="text-lg text-[var(--hk-cream-soft)] mb-8 max-w-2xl">
-              Sumate a la lista de inscripción para confirmar tu cupo y recibir
-              novedades de oradores, sponsors, premios y logística.
-            </p>
-
-            <div className="grid sm:grid-cols-2 gap-3 mb-10">
-              {prize.breakdown.map((row) => (
-                <div
-                  key={row.place}
-                  className="border border-[var(--hk-cream-line)] rounded-xl p-4"
-                >
-                  <div className="text-xs uppercase tracking-[0.25em] text-[var(--hk-cream-dim)] mb-2">
-                    {row.place}
-                  </div>
-                  <div className="font-serif text-xl leading-tight">
-                    {row.cash ? `${row.cash} + ${row.aws}` : row.aws}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href={meta.ctas.primary.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-full bg-[var(--hk-cream)] text-[var(--hk-burgundy-deep)] px-8 py-4 text-base font-medium hover:opacity-95 transition"
-              >
-                {meta.ctas.primary.label}
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-              </a>
-              {meta.ctas.secondary.href ? (
                 <a
                   href={meta.ctas.secondary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[var(--hk-cream-soft)] underline decoration-[var(--hk-cream-line)] underline-offset-4 hover:decoration-[var(--hk-cream)] transition"
-                  title={meta.ctas.secondary.note || undefined}
+                  className="btn-secondary"
+                  title={meta.ctas.secondary.note}
                 >
-                  {meta.ctas.secondary.label}
+                  ¿No tenés equipo? Formalo acá ↗
                 </a>
-              ) : (
-                <span className="text-sm text-[var(--hk-cream-dim)]">
-                  {meta.ctas.secondary.label}
-                </span>
-              )}
+              </div>
             </div>
 
-            <p className="mt-6 text-xs text-[var(--hk-cream-dim)]">
-              Gratis · 3 o 4 personas por equipo · {prize.headline}
+            <div className="ymark" aria-hidden="true" data-anim="scale">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hackathon/logo-yhat.svg" alt="" />
+            </div>
+          </div>
+
+          <div className="facts" data-stagger>
+            {facts.map((f) => (
+              <div className="f" key={f.label}>
+                <div className="lbl">{f.label}</div>
+                <div className="v">
+                  {f.value ? <>{f.value} </> : null}
+                  {f.valueEm ? <em>{f.valueEm}</em> : null}
+                </div>
+                <div className="hint">{f.hint}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 01 — CÓMO FUNCIONA */}
+        <section className="sec" id="hackathon">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">01 · Cómo funciona</div>
+            <h2>
+              Cuatro fases <em>en tres días</em>.
+            </h2>
+            <p>Las cuatro etapas que recorre cada equipo durante el evento.</p>
+          </div>
+
+          <div className="steps" data-stagger>
+            {phases.map((p) => (
+              <div className="step" key={p.num}>
+                <div className="num">{p.num}</div>
+                <h3>
+                  <em>{p.title}</em>
+                </h3>
+                <p>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 02 — LAS ÁREAS */}
+        <section className="sec" id="tracks">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">02 · Las áreas</div>
+            <h2>
+              Tres <em>tracks</em>, tres jurados.
+            </h2>
+            <p>
+              Cada track tiene su propio jurado, mentores y criterio de
+              evaluación. Vas a poder elegir el tuyo al inscribirte.
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Sponsors */}
-      <section id="sponsors" className="container mx-auto px-6 py-24 md:py-32">
-        <SectionHead
-          num="05"
-          title="Sponsors"
-          sub="Las marcas y organizaciones que hacen posible la Hackathón de Negocios 2026."
-        />
-
-        <div className="mt-16 space-y-14">
-          {sponsors.map((group) => {
-            const isMain = group.tier === "main";
-            const isPlatinum = group.tier === "platinum";
-            const cellMinWidth = isMain ? "100%" : isPlatinum ? "220px" : "180px";
-            const cellPadY = isMain ? "py-8" : isPlatinum ? "py-9" : "py-7";
-            const nameSize = isMain
-              ? "text-3xl md:text-5xl"
-              : isPlatinum
-              ? "text-xl md:text-2xl"
-              : "text-base md:text-lg";
-            return (
-              <div key={group.tier}>
-                <div className="flex justify-center mb-6">
-                  <h3 className="font-serif text-2xl md:text-3xl text-[var(--hk-cream)]">
-                    {group.label}
+          <div className="tracks" data-stagger>
+            {tracks.map((t) => (
+              <article className="track" key={t.key}>
+                <div className="row">
+                  <h3>
+                    {t.titleParts.map((part, i) =>
+                      part.em ? <em key={i}>{part.text}</em> : <span key={i}>{part.text}</span>
+                    )}
                   </h3>
+                  <span className="ix" aria-hidden="true">
+                    <TrackIcon kind={t.icon} />
+                  </span>
                 </div>
-                <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4">
-                  {group.items.map((item) => {
-                    // h: optional per-item height in px (desktop). Mobile clamps to 72%.
-                    // Defaults by tier if not specified. Override per item to tune visual size.
-                    const defaultH = isMain ? 96 : isPlatinum ? 56 : 48;
-                    const hPx = "h" in item && typeof item.h === "number" ? item.h : defaultH;
-                    const hMin = Math.round(hPx * 0.72);
-                    const basePadX = isMain ? "px-10 md:px-12" : isPlatinum ? "px-8 md:px-12" : "px-7 md:px-9";
-                    const tightPadX = isMain ? "px-8 md:px-10" : isPlatinum ? "px-4 md:px-6" : "px-3 md:px-5";
-                    const padX = "tight" in item && item.tight ? tightPadX : basePadX;
-                    return (
-                      <div
-                        key={item.name}
-                        className={`bg-[var(--hk-cream)] rounded-2xl inline-flex flex-col items-center justify-center text-center ${padX} ${cellPadY}`}
-                      >
-                        {"logo" in item && item.logo ? (
-                          /* eslint-disable-next-line @next/next/no-img-element */
+                <p className="desc">{t.desc}</p>
+                <div className="areas">
+                  {t.areas.map((a) => (
+                    <span key={a}>{a}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 03 — APRENDIZAJE */}
+        <section className="sec" id="aprendizaje">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">03 · Lo que vas a aprender</div>
+            <h2>
+              Charlas, paneles y <em>talleres</em>.
+            </h2>
+            <p>
+              Charlas, paneles y talleres dictados a lo largo del fin de semana
+              para apoyar lo que tu equipo necesita construir.
+            </p>
+          </div>
+
+          <div className="learn-grid" data-stagger>
+            {learn.map((l) => (
+              <article className="track" key={l.num}>
+                <div className="row">
+                  <span className="tag">{l.num}</span>
+                </div>
+                <h3>{l.title}</h3>
+                <p className="desc">{l.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 04 — CRONOGRAMA */}
+        <section className="sec" id="cronograma">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">04 · Cronograma</div>
+            <h2>
+              Tres días, <em>sin pausa</em>.
+            </h2>
+            <p>Cronograma del evento: charlas, talleres, cowork y entregas.</p>
+          </div>
+
+          <div className="days" data-stagger="slide">
+            {schedule.map((day) => (
+              <article className="day" key={day.pill}>
+                <span className="pill">{day.pill}</span>
+                <h3>{day.title}</h3>
+                <p className="hours">{day.hours}</p>
+                <ol>
+                  {day.items.map((item, i) => (
+                    <li key={i}>
+                      <time>{item.time}</time>
+                      <span>{item.what}</span>
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 05 — PREMIOS */}
+        <section className="sec" id="premios">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">05 · Premios</div>
+            <h2>
+              Los <em>premios</em>.
+            </h2>
+            <p>{prize.sub}</p>
+          </div>
+
+          <div className="prizes" data-stagger>
+            {prize.breakdown.map((row) => (
+              <article className="prize-card" key={row.place}>
+                <span className="pos">{row.place}</span>
+                <div className="amt">
+                  {row.amount} <em>{row.amountEm}</em>
+                </div>
+                <div className="det">{row.detail}</div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* 06 — SPONSORS */}
+        <section className="sec" id="sponsors">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">06 · Sponsors</div>
+            <h2>
+              Las marcas que <em>hacen posible</em> esta edición.
+            </h2>
+          </div>
+
+          <div className="sponsors-block" data-stagger>
+            {sponsors.map((tier) => {
+              const cardClass =
+                tier.tier === "main"
+                  ? "main"
+                  : tier.tier === "platinum"
+                  ? "plat"
+                  : "gold";
+              const defaultH =
+                tier.tier === "main"
+                  ? { hMin: 69, vw: 6.7, hMax: 96 }
+                  : tier.tier === "platinum"
+                  ? { hMin: 40, vw: 3.9, hMax: 56 }
+                  : { hMin: 32, vw: 3.1, hMax: 44 };
+              return (
+                <div className="sponsors-tier" key={tier.tier}>
+                  <div className="lbl">{tier.label}</div>
+                  <div className="sponsors-row">
+                    {tier.items.map((s) => {
+                      const h = s.h ?? defaultH.hMax;
+                      const hMin = Math.round(h * 0.72);
+                      const vw = ((h / 14.4)).toFixed(2);
+                      const cls = [
+                        "sponsor-card",
+                        cardClass,
+                        s.invert ? "invert" : "",
+                        s.tight ? "tight" : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" ");
+                      return (
+                        <div className={cls} key={s.name}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
-                            src={item.logo}
-                            alt={item.name}
-                            className="w-auto object-contain"
+                            src={s.logo}
+                            alt={s.name}
                             style={{
-                              height: `clamp(${hMin}px, ${(hPx / 14.4).toFixed(2)}vw, ${hPx}px)`,
-                              ...("invert" in item && item.invert ? { filter: "brightness(0)" } : {}),
+                              height: `clamp(${hMin}px, ${vw}vw, ${h}px)`,
                             }}
                             loading="lazy"
                           />
-                        ) : (
-                          <span className={`font-serif leading-tight text-[var(--hk-burgundy-deep)] ${nameSize}`}>
-                            {item.name}
-                          </span>
-                        )}
-                        {"subtitle" in item && item.subtitle && (
-                          <span className="mt-2 text-xs text-[var(--hk-burgundy-deep)]/70">
-                            {item.subtitle}
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-4">
-          <a
-            href="mailto:hola@somosyhat.com?subject=Sponsorship%20Hackath%C3%B3n%20de%20Negocios%202026"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--hk-cream-line)] hover:border-[var(--hk-cream)]/60 px-5 py-3 text-sm transition"
-          >
-            Quiero ser sponsor
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-          <span className="text-sm text-[var(--hk-cream-dim)]">
-            o escribinos a{" "}
+          <div className="sponsor-cta">
             <a
-              className="underline underline-offset-4 hover:text-[var(--hk-cream)]"
-              href="mailto:hola@somosyhat.com"
+              href={`mailto:${meta.contactEmail}?subject=Sponsorship%20Hackath%C3%B3n%20de%20Negocios%202026`}
+              className="btn-secondary"
             >
-              hola@somosyhat.com
+              Quiero ser sponsor <span style={{ opacity: 0.6 }}>↗</span>
             </a>
-          </span>
-        </div>
-      </section>
+            <span style={{ color: "var(--hk-cream-dim)", fontSize: 14 }}>
+              o escribinos a{" "}
+              <a href={`mailto:${meta.contactEmail}`} className="underline">
+                {meta.contactEmail}
+              </a>
+            </span>
+          </div>
+        </section>
 
-      {/* FAQ */}
-      <section id="faq" className="container mx-auto px-6 py-24 md:py-32">
-        <SectionHead num="06" title="Preguntas" emphasis="frecuentes" />
+        {/* 07 — FAQ */}
+        <section className="sec" id="faq">
+          <div className="sec-head" data-anim="rise">
+            <div className="num">07 · Preguntas frecuentes</div>
+            <h2>
+              Preguntas <em>frecuentes</em>.
+            </h2>
+          </div>
 
-        <div className="mt-14 hk-faq">
-          {faq.map((item) => (
-            <details key={item.q} className="group">
-              <summary className="flex items-center justify-between gap-6 py-6 text-lg md:text-xl font-serif text-[var(--hk-cream)] hover:text-[var(--hk-cream)]">
-                <span>{item.q}</span>
-                <Plus className="hk-faq__chev h-5 w-5 shrink-0 text-[var(--hk-cream-soft)]" />
-              </summary>
-              <div className="pb-6 pr-10 text-[var(--hk-cream-soft)] leading-relaxed">
-                {item.a}
+          <div className="faq" data-stagger>
+            {faq.map((item, i) => (
+              <details key={item.q} open={i === 0}>
+                <summary>
+                  <span>{item.q}</span>
+                  <span className="chev">+</span>
+                </summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* 08 — CLOSING */}
+        <section className="closing" id="cta" data-anim="scale">
+          <div className="num">Y-Hat × FCEN · 2026</div>
+          <h2>
+            El futuro no se <em>adivina</em>, se modela.
+          </h2>
+          <p>
+            Las inscripciones cierran el 2 de junio.
+            <br />
+            Confirmamos cupos por mail al cierre del proceso.
+          </p>
+          <div className="actions">
+            <a
+              href={meta.ctas.primary.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              Inscribirme <span className="ar">→</span>
+            </a>
+            <a
+              href={meta.ctas.secondary.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              ¿No tenés equipo? Formalo acá ↗
+            </a>
+          </div>
+        </section>
+      </div>
+
+      {/* FOOTER (out of snap) */}
+      <footer>
+        <div className="wrap">
+          <div className="top">
+            <div className="brand">
+              <div className="head">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
+                <span>Y-Hat</span>
               </div>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-[var(--hk-cream-line)] py-14">
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-10">
-          <div>
-            <Link href="/" className="inline-flex items-center gap-3">
-              <YHatMark className="h-7 w-auto text-[var(--hk-cream)]" />
-              <span className="font-serif text-lg">Y-Hat</span>
-            </Link>
-            <p className="mt-4 text-sm text-[var(--hk-cream-soft)] max-w-md">
-              El punto de encuentro entre la comunidad estudiantil y el
-              ecosistema de innovación.
-            </p>
+              <p>
+                El punto de encuentro entre la comunidad estudiantil y el
+                ecosistema de innovación.
+              </p>
+            </div>
+            <div>
+              <h5>Hackathón</h5>
+              <a href="#hackathon">El hackathón</a>
+              <a href="#aprendizaje">Aprendizaje</a>
+              <a href="#tracks">Tracks</a>
+              <a href="#cronograma">Cronograma</a>
+            </div>
+            <div>
+              <h5>Sumarse</h5>
+              <a
+                href={meta.ctas.primary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Inscripción ↗
+              </a>
+              <a
+                href={meta.ctas.secondary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Armá tu equipo ↗
+              </a>
+              <a href="#sponsors">Sponsors</a>
+              <a href="#faq">FAQ</a>
+            </div>
+            <div>
+              <h5>Y-Hat</h5>
+              <Link href="/">somosyhat.com ↗</Link>
+              <a
+                href="https://www.instagram.com/somos.yhat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram ↗
+              </a>
+              <a
+                href="https://www.linkedin.com/company/y-hat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn ↗
+              </a>
+            </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
-            <div>
-              <h4 className="text-[var(--hk-cream-dim)] text-xs tracking-[0.25em] uppercase mb-3">
-                Hackathón
-              </h4>
-              <ul className="space-y-2 text-[var(--hk-cream-soft)]">
-                <li><a className="hover:text-[var(--hk-cream)]" href="#hackathon">El hackathón</a></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="#aprendizaje">Aprendizaje</a></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="#tracks">Tracks</a></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="#cronograma">Cronograma</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[var(--hk-cream-dim)] text-xs tracking-[0.25em] uppercase mb-3">
-                Sumarse
-              </h4>
-              <ul className="space-y-2 text-[var(--hk-cream-soft)]">
-                <li><a className="hover:text-[var(--hk-cream)]" href={meta.ctas.primary.href} target="_blank" rel="noopener noreferrer">Pre-inscripción</a></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="#sponsors">Sponsors</a></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="#faq">FAQ</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[var(--hk-cream-dim)] text-xs tracking-[0.25em] uppercase mb-3">
-                Y-Hat
-              </h4>
-              <ul className="space-y-2 text-[var(--hk-cream-soft)]">
-                <li><Link className="hover:text-[var(--hk-cream)]" href="/">Sitio principal</Link></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="https://www.instagram.com/somos.yhat" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                <li><a className="hover:text-[var(--hk-cream)]" href="https://www.linkedin.com/company/y-hat" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-              </ul>
-            </div>
+          <div className="bot">
+            <span>© 2026 Y-Hat</span>
+            <span>FCEN · UBA · Primera Edición</span>
           </div>
-        </div>
-        <div className="container mx-auto px-6 mt-10 pt-6 border-t border-[var(--hk-cream-line)] flex flex-wrap justify-between text-xs text-[var(--hk-cream-dim)]">
-          <span>© 2026 Y-Hat — Hecho en Ciudad Universitaria</span>
-          <span>FCEN · UBA</span>
         </div>
       </footer>
-    </main>
+
+      {/* STICKY CTA */}
+      <div
+        ref={stickyRef}
+        className="sticky-cta"
+        role="region"
+        aria-label="Inscripción"
+      >
+        <span className="dot"></span>
+        <span>
+          <b>Inscripciones abiertas</b> · cierran 2 jun
+        </span>
+        <a
+          href={meta.ctas.primary.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn"
+        >
+          Inscribirme <span className="ar">→</span>
+        </a>
+      </div>
+
+      {/* SIDE NAV (desktop snap only — hidden via CSS on mobile) */}
+      <nav className="snap-nav" aria-label="Navegación por secciones">
+        <div className="snap-nav-bg" aria-hidden="true"></div>
+        <ul>
+          {SECTION_IDS.map((id, i) => (
+            <li key={id}>
+              <button
+                type="button"
+                className={i === activeIdx ? "active" : ""}
+                aria-label={`Ir a ${SECTION_LABELS[id]}`}
+                onClick={(e) => {
+                  goTo(i);
+                  (e.currentTarget as HTMLButtonElement).blur();
+                }}
+              >
+                <span className="lbl">{SECTION_LABELS[id]}</span>
+                <span className="dot" aria-hidden="true"></span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   );
 }
