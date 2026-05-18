@@ -29,12 +29,14 @@ const SECTION_LABELS: Record<string, string> = {
   cta: "Inscripción",
 };
 
-const DURATION = 420;
-const LOCK_HOLD = 450;
-const WHEEL_THRESHOLD = 10;
-const BOUNDARY_HOLD = 600;
+const DURATION = 680;
+const LOCK_HOLD = 720;
+const WHEEL_THRESHOLD = 12;
+const WHEEL_COOLDOWN = 110;
+const BOUNDARY_HOLD = 700;
 
-const easeOutQuart = (t: number) => 1 - Math.pow(1 - t, 3);
+const easeInOutCubic = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 function smoothScrollTo(targetY: number, duration: number) {
   const startY = window.scrollY;
@@ -44,7 +46,7 @@ function smoothScrollTo(targetY: number, duration: number) {
   function step(now: number) {
     const elapsed = now - startT;
     const t = Math.min(1, elapsed / duration);
-    const y = startY + distance * easeOutQuart(t);
+    const y = startY + distance * easeInOutCubic(t);
     window.scrollTo(0, y);
     if (t < 1) requestAnimationFrame(step);
   }
@@ -351,7 +353,7 @@ export default function HackathonPage() {
       }
       if (lockedRef.current) return;
       const now = performance.now();
-      if (now - lastWheelTime < 40) return;
+      if (now - lastWheelTime < WHEEL_COOLDOWN) return;
       lastWheelTime = now;
       goTo(currentIndexRef.current + (e.deltaY > 0 ? 1 : -1));
     };
