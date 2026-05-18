@@ -185,27 +185,28 @@
     },
     {
       "q": "¿Cuál es el premio?",
-      "a": "USD 1.000 al 1° y USD 500 al 2° de cada track, en efectivo. Los tres puestos del podio (1°, 2° y 3°) de cada track también se llevan USD 10.000 en créditos de AWS. Y todos los participantes acceden a networking real con VCs activos del ecosistema, sponsors y mentores de la industria."
+      "a": "USD 1.000 al 1° y USD 500 al 2° de cada track, en efectivo. Los tres puestos del podio (1°, 2° y 3°) de cada track también se llevan USD 10.000 en créditos de AWS. Y todos los participantes tienen acceso a networking con VCs, sponsors y mentores de la industria."
     },
     {
       "q": "¿Tengo que llevar mi proyecto pensado de antes?",
-      "a": "No. La idea es que el viernes a la noche, tras la masterclass del track y el coworking de investigación de industria, definas con tu equipo qué problema atacar. La inmersión es parte de la competencia."
+      "a": "No, definir el problema es parte de la competencia. El viernes a la noche, después de la masterclass por track y el primer cowork de investigación, decidís con tu equipo qué oportunidad querés perseguir."
     },
     {
       "q": "¿Se duerme en la facultad?",
-      "a": "Sí, opcional. Habilitamos aulas y sala de estudio para descanso durante la noche del viernes y del sábado. También podés ir a tu casa y volver, no es obligatorio quedarse."
+      "a": "Sí, opcional. Habilitamos aulas designadas para dormir durante la noche del viernes y del sábado, además de salas de estudio para seguir trabajando. También podés ir a tu casa y volver: no es obligatorio quedarse."
     },
     {
       "q": "¿Cuánto cuesta participar?",
       "a": "Es gratis. La hackathón es financiada por nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
     },
     {
-      "q": "¿Cómo se entregan los proyectos?",
-      "a": "Cada equipo entrega un video pitch de 3 minutos, una landing del proyecto y un documento de 1 página con el modelo de negocio. Cada track suma un entregable específico (memoria técnica, repositorio o prototipo) según corresponda."
+      "q": "¿Cómo se evalúan los proyectos?",
+      "a": "Cada track tiene su propio jurado, pero los cinco criterios son los mismos: impacto potencial del problema, innovación y originalidad de la solución, viabilidad técnica, calidad de la presentación, y solidez del modelo de negocio."
     },
     {
       "q": "¿Cómo me inscribo?",
-      "a": "A través del Luma del evento. El botón 'Inscribirme' te lleva al formulario. Si todavía no armaste equipo, no te preocupes: vamos a habilitar un canal para conectarte con otros participantes."
+      "a": "A través del Luma del evento. El botón 'Inscribirme' te lleva al formulario. Si todavía no armaste equipo, sumate al evento de matchmaking del 22 de mayo (link en 'Formalo acá') para conectarte con otros participantes.",
+      "aPost": "A través del Luma del evento. El botón 'Inscribirme' te lleva al formulario. Si todavía no armaste equipo, escribinos a @somos.yhat por Instagram y te conectamos con otros participantes."
     }
   ]
 }

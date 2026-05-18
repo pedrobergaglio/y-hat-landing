@@ -35,6 +35,10 @@ const WHEEL_THRESHOLD = 12;
 const WHEEL_COOLDOWN = 110;
 const BOUNDARY_HOLD = 700;
 
+// After the Y-Talks matchmaking event, hide its CTAs and swap the FAQ #8 copy
+// to point people to Instagram instead.
+const MATCHMAKING_END_ISO = "2026-05-23T00:00:00-03:00";
+
 const easeInOutCubic = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
@@ -131,6 +135,7 @@ export default function HackathonPage() {
   const sponsors = data.sponsors as SponsorTier[];
 
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isPostMatchmaking, setIsPostMatchmaking] = useState(false);
   const currentIndexRef = useRef(0);
   const lockedRef = useRef(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
@@ -151,6 +156,13 @@ export default function HackathonPage() {
     setTimeout(() => {
       lockedRef.current = false;
     }, LOCK_HOLD);
+  }, []);
+
+  /* Flip the matchmaking flag on the client once we know the local clock. */
+  useEffect(() => {
+    if (Date.now() >= new Date(MATCHMAKING_END_ISO).getTime()) {
+      setIsPostMatchmaking(true);
+    }
   }, []);
 
   /* IntersectionObserver-driven scroll animations */
@@ -517,15 +529,17 @@ export default function HackathonPage() {
                 >
                   Inscribirme <span className="ar">→</span>
                 </a>
-                <a
-                  href={meta.ctas.secondary.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  title={meta.ctas.secondary.note}
-                >
-                  ¿No tenés equipo? Formalo acá ↗
-                </a>
+                {!isPostMatchmaking && (
+                  <a
+                    href={meta.ctas.secondary.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary"
+                    title={meta.ctas.secondary.note}
+                  >
+                    ¿No tenés equipo? Formalo acá ↗
+                  </a>
+                )}
               </div>
             </div>
 
@@ -753,15 +767,19 @@ export default function HackathonPage() {
           </div>
 
           <div className="faq" data-stagger>
-            {faq.map((item, i) => (
-              <details key={item.q} open={i === 0}>
-                <summary>
-                  <span>{item.q}</span>
-                  <span className="chev">+</span>
-                </summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
+            {faq.map((item, i) => {
+              const post = (item as { aPost?: string }).aPost;
+              const answer = isPostMatchmaking && post ? post : item.a;
+              return (
+                <details key={item.q} open={i === 0}>
+                  <summary>
+                    <span>{item.q}</span>
+                    <span className="chev">+</span>
+                  </summary>
+                  <p>{answer}</p>
+                </details>
+              );
+            })}
           </div>
         </section>
 
@@ -785,14 +803,16 @@ export default function HackathonPage() {
             >
               Inscribirme <span className="ar">→</span>
             </a>
-            <a
-              href={meta.ctas.secondary.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-            >
-              ¿No tenés equipo? Formalo acá ↗
-            </a>
+            {!isPostMatchmaking && (
+              <a
+                href={meta.ctas.secondary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+              >
+                ¿No tenés equipo? Formalo acá ↗
+              </a>
+            )}
           </div>
         </section>
       </div>
@@ -828,13 +848,15 @@ export default function HackathonPage() {
               >
                 Inscripción ↗
               </a>
-              <a
-                href={meta.ctas.secondary.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Armá tu equipo ↗
-              </a>
+              {!isPostMatchmaking && (
+                <a
+                  href={meta.ctas.secondary.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Armá tu equipo ↗
+                </a>
+              )}
               <a href="#sponsors">Sponsors</a>
               <a href="#faq">FAQ</a>
             </div>
