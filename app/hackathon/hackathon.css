@@ -977,7 +977,7 @@
   .hackathon-root .sec-head h2 { text-wrap: balance; }
   .hackathon-root section.sec#sponsors .sec-head { max-width: none; }
   .hackathon-root section.sec#sponsors .sec-head h2 { white-space: nowrap; }
-  .hackathon-root .sec-head p { max-width: none; white-space: nowrap; }
+  .hackathon-root .sec-head p { max-width: none; }
 
   /* FAQ internal scroll */
   .hackathon-root section.sec#faq .faq {
