@@ -527,7 +527,7 @@ export default function HackathonPage() {
               </div>
             </div>
 
-            <div className="ymark" aria-hidden="true" data-anim="scale">
+            <div className="ymark" aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/hackathon/logo-yhat.svg" alt="" />
             </div>
