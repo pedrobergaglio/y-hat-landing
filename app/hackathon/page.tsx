@@ -437,7 +437,7 @@ export default function HackathonPage() {
   const tickerItems = [
     "Hackathón de Negocios",
     "5 · 6 · 7 / Junio · 2026",
-    "0+Infinito · Exactas UBA",
+    "0+Infinito · Exactas — UBA",
     "Equipos de 3 o 4",
     "USD 4.500 + 90K AWS",
     "Tres tracks · Tres jurados",
