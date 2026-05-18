@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "title": "Hackathón de Negocios 2026",
+    "edition": "Primera Edición",
+    "tagline": "La intersección de la tecnología, la innovación y los negocios",
+    "lede": "Tres días para transformar descubrimientos científicos e ideas innovadoras en propuestas de valor concretas y viables. Mentorías y talleres a lo largo del fin de semana, y un pitch final ante el jurado de cada track.",
+    "contactEmail": "yhat.arg@gmail.com",
+    "dates": {
+      "start": "2026-06-05",
+      "end": "2026-06-07",
+      "display": "5 · 6 · 7 de junio · 2026",
+      "short": "05 / 06 / 07 · JUNIO"
+    },
+    "venue": {
+      "name": "0+Infinito",
+      "campus": "Exactas, UBA · Ciudad Universitaria"
+    },
+    "teamSize": "3 o 4 personas",
+    "host": "Y-Hat",
+    "ctas": {
+      "primary": {
+        "label": "Inscribirme",
+        "href": "https://luma.com/4pwyo0jy"
+      },
+      "secondary": {
+        "label": "¿No tenés equipo? Formalo acá",
+        "href": "https://luma.com/byjg5hhc",
+        "note": "Evento de matching · 22 de mayo · 17 h"
+      }
+    }
+  },
+  "facts": [
+    { "label": "Cuándo", "value": "5 al 7", "valueEm": "de junio", "hint": "2026 · viernes a domingo" },
+    { "label": "Dónde", "valueEm": "0+Infinito", "hint": "Exactas, UBA · Ciudad Universitaria" },
+    { "label": "Equipos", "value": "3 o 4", "valueEm": "personas", "hint": "3 tracks a elección" },
+    { "label": "Premios", "value": "USD", "valueEm": "4.500", "hint": "+ USD 90K en créditos AWS" }
+  ],
+  "prize": {
+    "headline": "USD 4.500 + USD 90K en créditos AWS",
+    "sub": "USD 4.500 en cash más USD 90.000 en créditos AWS, distribuidos entre los tres tracks.",
+    "breakdown": [
+      { "place": "1° de cada track", "amount": "USD", "amountEm": "1.000", "detail": "+ USD 10.000 en créditos AWS" },
+      { "place": "2° de cada track", "amount": "USD", "amountEm": "500",   "detail": "+ USD 10.000 en créditos AWS" },
+      { "place": "3° de cada track", "amount": "USD", "amountEm": "10K",   "detail": "en créditos AWS" }
+    ]
+  },
+  "phases": [
+    { "num": "01", "title": "Inmersión",   "desc": "Caracterización de la industria del track. Tendencias, costos, modelos y actores." },
+    { "num": "02", "title": "Formulación", "desc": "Identificación de una problemática relevante y diseño de una solución de base tecnológica." },
+    { "num": "03", "title": "Viabilidad",  "desc": "Validación de la solución y modelo de negocio. BMC, unit economics, go-to-market." },
+    { "num": "04", "title": "Narrativa",   "desc": "Armado del pitch para defender el proyecto frente al jurado del track. Tres minutos para condensar todo lo construido." }
+  ],
+  "learn": [
+    { "num": "01", "title": "Masterclass por track",   "desc": "Panorama de la industria, qué se hace hoy, dónde está la oportunidad." },
+    { "num": "02", "title": "Problema → Producto",     "desc": "Filtrar problemas reales y diseñar soluciones con balance entre impacto y factibilidad." },
+    { "num": "03", "title": "Vibecoding + AWS",        "desc": "Construir rápido con IA y créditos AWS para apoyar el MVP." },
+    { "num": "04", "title": "Modelos de negocio",      "desc": "BMC, Value Proposition Canvas, unit economics, moats." },
+    { "num": "05", "title": "Panel: mundo VC",         "desc": "Cómo piensan los inversores, qué miran, cómo hablarles." },
+    { "num": "06", "title": "Validación de soluciones","desc": "Cómo validar una idea bajo restricciones reales: biotech, IA, fintech." },
+    { "num": "07", "title": "Pitch + oratoria",        "desc": "Estructura de pitch, manejo de tiempos, cómo plantarse frente al jurado." },
+    { "num": "08", "title": "Networking",              "desc": "Espacios para conectar con mentores, sponsors, jurados y otros equipos." }
+  ],
+  "tracks": [
+    {
+      "key": "deep-tech",
+      "titleParts": [
+        { "text": "Deep Tech", "em": true }
+      ],
+      "desc": "Ciencia aplicada a desafíos estructurales del planeta y la salud humana.",
+      "areas": ["Salud y agro", "Clima", "Materiales", "Biotech", "Espacio"],
+      "icon": "atom"
+    },
+    {
+      "key": "ia",
+      "titleParts": [
+        { "text": "Inteligencia Artificial", "em": true }
+      ],
+      "desc": "Plataformas e IA para optimizar industria y vida cotidiana.",
+      "areas": ["IA aplicada", "Visión por computadora", "Agentes", "Procesamiento de lenguaje"],
+      "icon": "network"
+    },
+    {
+      "key": "fintech",
+      "titleParts": [
+        { "text": "Fintech", "em": true }
+      ],
+      "desc": "Soluciones digitales que optimizan el acceso, la gestión y el intercambio de valor financiero.",
+      "areas": ["Pagos", "Lending", "Crypto · DeFi", "WealthTech"],
+      "icon": "trend"
+    }
+  ],
+  "schedule": [
+    {
+      "pill": "Día 01",
+      "title": "Viernes 5 · Junio",
+      "hours": "14:00 a 24:00+",
+      "items": [
+        { "time": "14:00", "what": "Acreditación y apertura" },
+        { "time": "15:10", "what": "Masterclass por track" },
+        { "time": "16:10", "what": "Coffee + cowork" },
+        { "time": "18:30", "what": "Charla: Problemática → Producto" },
+        { "time": "20:20", "what": "Taller Vibecoding + AWS" },
+        { "time": "21:20", "what": "Cena + team building" },
+        { "time": "22:00", "what": "Cowork nocturno" }
+      ]
+    },
+    {
+      "pill": "Día 02",
+      "title": "Sábado 6 · Junio",
+      "hours": "08:00 a 21:00",
+      "items": [
+        { "time": "08:00", "what": "Desayuno" },
+        { "time": "10:00", "what": "Modelos de negocio" },
+        { "time": "11:30", "what": "Cowork: BMC" },
+        { "time": "13:00", "what": "Almuerzo" },
+        { "time": "14:00", "what": "Panel: mundo VC" },
+        { "time": "15:00", "what": "Coffee + cowork" },
+        { "time": "19:00", "what": "Pitch & oratoria" },
+        { "time": "21:00", "what": "Cena" }
+      ]
+    },
+    {
+      "pill": "Día 03",
+      "title": "Domingo 7 · Junio",
+      "hours": "09:00 a 15:00",
+      "items": [
+        { "time": "09:00", "what": "Desayuno" },
+        { "time": "10:00", "what": "Deadline del pitch · charlas empresas" },
+        { "time": "12:00", "what": "Almuerzo + deliberación" },
+        { "time": "13:00", "what": "Anuncio de ganadores" },
+        { "time": "13:30", "what": "Pitch público de finalistas" },
+        { "time": "14:30", "what": "Cierre" }
+      ]
+    }
+  ],
+  "sponsors": [
+    {
+      "tier": "main",
+      "label": "Main",
+      "items": [
+        { "name": "Rappi", "logo": "/hackathon/sponsors/rappi.png" }
+      ]
+    },
+    {
+      "tier": "platinum",
+      "label": "Platinum",
+      "items": [
+        { "name": "Picante",    "logo": "/hackathon/sponsors/picante.png", "h": 48 },
+        { "name": "Fardo",      "logo": "/hackathon/sponsors/fardo.png", "invert": true, "h": 56 },
+        { "name": "Lovelytics", "logo": "/hackathon/sponsors/lovelytics.png", "h": 44 },
+        { "name": "Complif",    "logo": "/hackathon/sponsors/complif.png", "h": 56 },
+        { "name": "Belo",       "logo": "/hackathon/sponsors/belo.png", "h": 64 },
+        { "name": "IOL",        "logo": "/hackathon/sponsors/iol.png", "h": 64 },
+        { "name": "Ministerio de Desarrollo Económico", "logo": "/hackathon/sponsors/ministerio.png", "h": 46, "tight": true }
+      ]
+    },
+    {
+      "tier": "gold",
+      "label": "Gold",
+      "items": [
+        { "name": "LUCAI",        "logo": "/hackathon/sponsors/lucai.svg", "h": 44 },
+        { "name": "AWS",          "logo": "/hackathon/sponsors/aws.png", "h": 56 },
+        { "name": "RedBull",      "logo": "/hackathon/sponsors/redbull.svg", "h": 40 },
+        { "name": "PlusZero",     "logo": "/hackathon/sponsors/pluszero.png", "h": 48 },
+        { "name": "Geonosis",     "logo": "/hackathon/sponsors/geonosis.png", "h": 52 },
+        { "name": "Polo Exactas", "logo": "/hackathon/sponsors/polo-exactas.png", "h": 44 },
+        { "name": "CID",          "logo": "/hackathon/sponsors/cid.png", "h": 44 }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Quiénes pueden participar?",
+      "a": "Estudiantes universitarios, principalmente de la FCEN, UBA y de facultades afines. Se forman equipos de 3 o 4 personas. En la inscripción especificás a qué track quiere postularse tu equipo."
+    },
+    {
+      "q": "¿Necesito saber programar?",
+      "a": "No es excluyente. Lo ideal es armar un equipo complementario. Cada track valora distintas combinaciones de habilidades y los talleres están pensados para cubrir lo esencial en 72 horas."
+    },
+    {
+      "q": "¿Cuál es el premio?",
+      "a": "USD 1.000 al 1° y USD 500 al 2° de cada track, en efectivo. Los tres puestos del podio (1°, 2° y 3°) de cada track también se llevan USD 10.000 en créditos de AWS. Y todos los participantes acceden a networking real con VCs activos del ecosistema, sponsors y mentores de la industria."
+    },
+    {
+      "q": "¿Tengo que llevar mi proyecto pensado de antes?",
+      "a": "No. La idea es que el viernes a la noche, tras la masterclass del track y el coworking de investigación de industria, definas con tu equipo qué problema atacar. La inmersión es parte de la competencia."
+    },
+    {
+      "q": "¿Se duerme en la facultad?",
+      "a": "Sí, opcional. Habilitamos aulas y sala de estudio para descanso durante la noche del viernes y del sábado. También podés ir a tu casa y volver, no es obligatorio quedarse."
+    },
+    {
+      "q": "¿Cuánto cuesta participar?",
+      "a": "Es gratis. La hackathón es financiada por nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
+    },
+    {
+      "q": "¿Cómo se entregan los proyectos?",
+      "a": "Cada equipo entrega un video pitch de 3 minutos, una landing del proyecto y un documento de 1 página con el modelo de negocio. Cada track suma un entregable específico (memoria técnica, repositorio o prototipo) según corresponda."
+    },
+    {
+      "q": "¿Cómo me inscribo?",
+      "a": "A través del Luma del evento. El botón 'Inscribirme' te lleva al formulario. Si todavía no armaste equipo, no te preocupes: vamos a habilitar un canal para conectarte con otros participantes."
+    }
+  ]
+}
