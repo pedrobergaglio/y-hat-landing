@@ -93,7 +93,7 @@
     {
       "pill": "Día 01",
       "title": "Viernes 5 · Junio",
-      "hours": "14:00 — 24:00+",
+      "hours": "14:00 a 24:00+",
       "items": [
         { "time": "14:00", "what": "Acreditación y apertura" },
         { "time": "15:10", "what": "Masterclass por track" },
@@ -107,11 +107,11 @@
     {
       "pill": "Día 02",
       "title": "Sábado 6 · Junio",
-      "hours": "08:00 — 21:00",
+      "hours": "08:00 a 21:00",
       "items": [
         { "time": "08:00", "what": "Desayuno" },
         { "time": "10:00", "what": "Modelos de negocio" },
-        { "time": "11:30", "what": "Cowork — BMC" },
+        { "time": "11:30", "what": "Cowork: BMC" },
         { "time": "13:00", "what": "Almuerzo" },
         { "time": "14:00", "what": "Panel: mundo VC" },
         { "time": "15:00", "what": "Coffee + cowork" },
@@ -122,7 +122,7 @@
     {
       "pill": "Día 03",
       "title": "Domingo 7 · Junio",
-      "hours": "09:00 — 15:00",
+      "hours": "09:00 a 15:00",
       "items": [
         { "time": "09:00", "what": "Desayuno" },
         { "time": "10:00", "what": "Deadline del pitch · charlas empresas" },
@@ -171,11 +171,11 @@
   "faq": [
     {
       "q": "¿Quiénes pueden participar?",
-      "a": "Estudiantes universitarios, principalmente de la FCEN — UBA y de facultades afines. Se forman equipos de 3 o 4 personas. En la inscripción especificás a qué track quiere postularse tu equipo."
+      "a": "Estudiantes universitarios, principalmente de la FCEN, UBA y de facultades afines. Se forman equipos de 3 o 4 personas. En la inscripción especificás a qué track quiere postularse tu equipo."
     },
     {
       "q": "¿Necesito saber programar?",
-      "a": "No es excluyente. Lo ideal es armar un equipo complementario: alguien técnico, alguien de negocio y alguien de comunicación. Cada track valora distintas combinaciones de habilidades y los talleres están pensados para cubrir lo esencial en 72 horas."
+      "a": "No es excluyente. Lo ideal es armar un equipo complementario. Cada track valora distintas combinaciones de habilidades y los talleres están pensados para cubrir lo esencial en 72 horas."
     },
     {
       "q": "¿Cuál es el premio?",
@@ -187,7 +187,7 @@
     },
     {
       "q": "¿Se duerme en la facultad?",
-      "a": "Sí, opcional. Habilitamos aulas y sala de estudio para descanso durante la noche del viernes y del sábado. También podés ir a tu casa y volver — no es obligatorio quedarse."
+      "a": "Sí, opcional. Habilitamos aulas y sala de estudio para descanso durante la noche del viernes y del sábado. También podés ir a tu casa y volver, no es obligatorio quedarse."
     },
     {
       "q": "¿Cuánto cuesta participar?",
