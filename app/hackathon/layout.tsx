@@ -10,13 +10,12 @@ const jbm = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hackathón de Negocios 2026 — Y-Hat × FCEN",
+  title: "Hackathón de Negocios 2026 — Y-Hat",
   description:
-    "5, 6 y 7 de junio en 0+Infinito · Exactas UBA. Tres días para transformar ciencia e innovación en propuestas de negocio. USD 4.500 + USD 90.000 en créditos AWS.",
+    "5, 6 y 7 de junio en 0+Infinito. Tres días para transformar ciencia e innovación en propuestas de negocio. USD 4.500 + USD 90.000 en créditos AWS.",
   openGraph: {
-    title: "Hackathón de Negocios 2026 — Y-Hat × FCEN",
-    description:
-      "Primera Edición · 5, 6 y 7 de junio · 0+Infinito · Exactas UBA",
+    title: "Hackathón de Negocios 2026 — Y-Hat",
+    description: "Primera Edición · 5, 6 y 7 de junio · 0+Infinito",
     type: "website",
   },
 };

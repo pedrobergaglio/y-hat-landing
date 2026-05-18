@@ -16,7 +16,7 @@
       "campus": "Exactas UBA"
     },
     "teamSize": "3 o 4 personas",
-    "host": "Y-Hat × FCEN · UBA",
+    "host": "Y-Hat",
     "ctas": {
       "primary": {
         "label": "Inscribirme",
@@ -64,8 +64,7 @@
     {
       "key": "deep-tech",
       "titleParts": [
-        { "text": "Deep Tech para " },
-        { "text": "Planeta y Salud", "em": true }
+        { "text": "Deep Tech", "em": true }
       ],
       "desc": "Ciencia aplicada a desafíos estructurales del planeta y la salud humana.",
       "areas": ["Salud y agro", "Clima", "Materiales", "Biotech", "Espacio"],
@@ -74,8 +73,7 @@
     {
       "key": "ia",
       "titleParts": [
-        { "text": "IA", "em": true },
-        { "text": " & Sistemas Autónomos" }
+        { "text": "Inteligencia Artificial", "em": true }
       ],
       "desc": "Plataformas e IA para optimizar industria y vida cotidiana.",
       "areas": ["IA aplicada", "Visión por computadora", "Agentes", "Procesamiento de lenguaje"],
@@ -84,8 +82,7 @@
     {
       "key": "fintech",
       "titleParts": [
-        { "text": "Fintech", "em": true },
-        { "text": " & Economía Digital" }
+        { "text": "Fintech", "em": true }
       ],
       "desc": "Soluciones digitales que optimizan el acceso, la gestión y el intercambio de valor financiero.",
       "areas": ["Pagos", "Lending", "Crypto · DeFi", "WealthTech"],
@@ -194,7 +191,7 @@
     },
     {
       "q": "¿Cuánto cuesta participar?",
-      "a": "Es gratis. La hackathón es financiada por nuestros sponsors y por la facultad. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
+      "a": "Es gratis. La hackathón es financiada por nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
     },
     {
       "q": "¿Cómo se entregan los proyectos?",

@@ -12,7 +12,6 @@ const SECTION_IDS = [
   "hackathon",
   "tracks",
   "aprendizaje",
-  "cronograma",
   "premios",
   "sponsors",
   "faq",
@@ -24,7 +23,6 @@ const SECTION_LABELS: Record<string, string> = {
   hackathon: "Programa",
   tracks: "Tracks",
   aprendizaje: "Aprendizaje",
-  cronograma: "Cronograma",
   premios: "Premios",
   sponsors: "Sponsors",
   faq: "FAQ",
@@ -123,7 +121,7 @@ type SponsorTier = {
 /* ---------- page ---------- */
 
 export default function HackathonPage() {
-  const { meta, prize, phases, learn, schedule, faq } = data;
+  const { meta, prize, phases, learn, faq } = data;
   const facts = data.facts as Fact[];
   const tracks = data.tracks as Track[];
   const sponsors = data.sponsors as SponsorTier[];
@@ -633,39 +631,10 @@ export default function HackathonPage() {
           </div>
         </section>
 
-        {/* 04 — CRONOGRAMA */}
-        <section className="sec" id="cronograma">
-          <div className="sec-head" data-anim="rise">
-            <div className="num">04 · Cronograma</div>
-            <h2>
-              Tres días, <em>sin pausa</em>.
-            </h2>
-            <p>Cronograma del evento: charlas, talleres, cowork y entregas.</p>
-          </div>
-
-          <div className="days" data-stagger="slide">
-            {schedule.map((day) => (
-              <article className="day" key={day.pill}>
-                <span className="pill">{day.pill}</span>
-                <h3>{day.title}</h3>
-                <p className="hours">{day.hours}</p>
-                <ol>
-                  {day.items.map((item, i) => (
-                    <li key={i}>
-                      <time>{item.time}</time>
-                      <span>{item.what}</span>
-                    </li>
-                  ))}
-                </ol>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* 05 — PREMIOS */}
+        {/* 04 — PREMIOS */}
         <section className="sec" id="premios">
           <div className="sec-head" data-anim="rise">
-            <div className="num">05 · Premios</div>
+            <div className="num">04 · Premios</div>
             <h2>
               Los <em>premios</em>.
             </h2>
@@ -685,10 +654,10 @@ export default function HackathonPage() {
           </div>
         </section>
 
-        {/* 06 — SPONSORS */}
+        {/* 05 — SPONSORS */}
         <section className="sec" id="sponsors">
           <div className="sec-head" data-anim="rise">
-            <div className="num">06 · Sponsors</div>
+            <div className="num">05 · Sponsors</div>
             <h2>
               Las marcas que <em>hacen posible</em> esta edición.
             </h2>
@@ -763,7 +732,7 @@ export default function HackathonPage() {
         {/* 07 — FAQ */}
         <section className="sec" id="faq">
           <div className="sec-head" data-anim="rise">
-            <div className="num">07 · Preguntas frecuentes</div>
+            <div className="num">06 · Preguntas frecuentes</div>
             <h2>
               Preguntas <em>frecuentes</em>.
             </h2>
@@ -782,14 +751,14 @@ export default function HackathonPage() {
           </div>
         </section>
 
-        {/* 08 — CLOSING */}
+        {/* 07 — CLOSING */}
         <section className="closing" id="cta" data-anim="scale">
-          <div className="num">Y-Hat × FCEN · 2026</div>
+          <div className="num">Y-Hat · 2026</div>
           <h2>
             El futuro no se <em>adivina</em>, se modela.
           </h2>
           <p>
-            Las inscripciones cierran el 2 de junio.
+            Las inscripciones cierran el 29 de mayo.
             <br />
             Confirmamos cupos por mail al cierre del proceso.
           </p>
@@ -834,7 +803,7 @@ export default function HackathonPage() {
               <a href="#hackathon">El hackathón</a>
               <a href="#aprendizaje">Aprendizaje</a>
               <a href="#tracks">Tracks</a>
-              <a href="#cronograma">Cronograma</a>
+              <a href="#premios">Premios</a>
             </div>
             <div>
               <h5>Sumarse</h5>
@@ -876,7 +845,7 @@ export default function HackathonPage() {
           </div>
           <div className="bot">
             <span>© 2026 Y-Hat</span>
-            <span>FCEN · UBA · Primera Edición</span>
+            <span>Primera Edición</span>
           </div>
         </div>
       </footer>
@@ -890,7 +859,7 @@ export default function HackathonPage() {
       >
         <span className="dot"></span>
         <span>
-          <b>Inscripciones abiertas</b> · cierran 2 jun
+          <b>Inscripciones abiertas</b> · cierran 29 may
         </span>
         <a
           href={meta.ctas.primary.href}
