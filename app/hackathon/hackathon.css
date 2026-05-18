@@ -439,6 +439,7 @@
 }
 .hackathon-root .track .areas {
   margin-top: 22px;
+  margin-bottom: 22px;
   display: flex; flex-wrap: wrap; gap: 8px;
 }
 .hackathon-root .track .areas span {
