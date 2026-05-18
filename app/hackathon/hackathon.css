@@ -590,7 +590,9 @@
 .hackathon-root .sponsor-card.plat { padding: 24px 36px; }
 .hackathon-root .sponsor-card.plat.tight { padding: 24px 18px; }
 .hackathon-root .sponsor-card.gold { padding: 20px 28px; }
-.hackathon-root .sponsor-card.invert img { filter: brightness(0); }
+/* Custom class name: "invert" collides with Tailwind v4's .invert utility,
+   which would also apply the filter to the card element. Use a scoped name. */
+.hackathon-root .sponsor-card.is-inv img { filter: brightness(0); }
 .hackathon-root .sponsor-cta {
   margin-top: 32px;
   display: flex; flex-wrap: wrap;

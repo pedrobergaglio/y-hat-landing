@@ -716,7 +716,7 @@ export default function HackathonPage() {
                       const cls = [
                         "sponsor-card",
                         cardClass,
-                        s.invert ? "invert" : "",
+                        s.invert ? "is-inv" : "",
                         s.tight ? "tight" : "",
                       ]
                         .filter(Boolean)
