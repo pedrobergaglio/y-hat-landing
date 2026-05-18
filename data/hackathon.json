@@ -196,6 +196,10 @@
       "a": "Sí, opcional. Habilitamos aulas designadas para dormir durante la noche del viernes y del sábado, además de salas de estudio para seguir trabajando. También podés ir a tu casa y volver: no es obligatorio quedarse."
     },
     {
+      "q": "¿Tengo que llevar algo?",
+      "a": "La comida está totalmente cubierta los tres días: desayuno, almuerzo, cena, café, agua, snacks y fruta. Recomendamos que traigas tu laptop con cargador (hay aulas con computadoras para quien lo necesite) y auriculares. Si te quedás a dormir, traé una muda de ropa y lo que necesites para descansar: bolsa de dormir, almohada, manta o cualquier cosa que necesites."
+    },
+    {
       "q": "¿Cuánto cuesta participar?",
       "a": "Es gratis. La hackathón es financiada por nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
     },
