@@ -285,7 +285,7 @@
   text-transform: uppercase; color: var(--hk-cream-dim);
   margin-bottom: 18px;
 }
-.hackathon-root .sec-head .num::before { content: "— "; }
+.hackathon-root .sec-head .num::before { content: ""; }
 .hackathon-root .sec-head h2 {
   font-family: var(--font-radley), Georgia, serif;
   font-weight: 400;

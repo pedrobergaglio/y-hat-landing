@@ -9,11 +9,11 @@
       "start": "2026-06-05",
       "end": "2026-06-07",
       "display": "5 · 6 · 7 de junio · 2026",
-      "short": "05 / 06 / 07 — JUNIO"
+      "short": "05 / 06 / 07 · JUNIO"
     },
     "venue": {
       "name": "0+Infinito",
-      "campus": "Exactas — UBA · Ciudad Universitaria"
+      "campus": "Exactas, UBA · Ciudad Universitaria"
     },
     "teamSize": "3 o 4 personas",
     "host": "Y-Hat",
@@ -30,8 +30,8 @@
     }
   },
   "facts": [
-    { "label": "Cuándo", "value": "5 — 7", "valueEm": "Junio", "hint": "2026 · viernes a domingo" },
-    { "label": "Dónde", "valueEm": "0+Infinito", "hint": "Exactas — UBA · Ciudad Universitaria" },
+    { "label": "Cuándo", "value": "5 al 7", "valueEm": "de junio", "hint": "2026 · viernes a domingo" },
+    { "label": "Dónde", "valueEm": "0+Infinito", "hint": "Exactas, UBA · Ciudad Universitaria" },
     { "label": "Equipos", "value": "3 o 4", "valueEm": "personas", "hint": "3 tracks a elección" },
     { "label": "Premios", "value": "USD", "valueEm": "4.500", "hint": "+ USD 90K en créditos AWS" }
   ],
@@ -56,7 +56,7 @@
     { "num": "03", "title": "Vibecoding + AWS",        "desc": "Construir rápido con IA y créditos AWS para apoyar el MVP." },
     { "num": "04", "title": "Modelos de negocio",      "desc": "BMC, Value Proposition Canvas, unit economics, moats." },
     { "num": "05", "title": "Panel: mundo VC",         "desc": "Cómo piensan los inversores, qué miran, cómo hablarles." },
-    { "num": "06", "title": "Validación de soluciones","desc": "Cómo validar una idea bajo restricciones reales — biotech, IA, fintech." },
+    { "num": "06", "title": "Validación de soluciones","desc": "Cómo validar una idea bajo restricciones reales: biotech, IA, fintech." },
     { "num": "07", "title": "Pitch + oratoria",        "desc": "Estructura de pitch, manejo de tiempos, cómo plantarse frente al jurado." },
     { "num": "08", "title": "Networking",              "desc": "Espacios para conectar con mentores, sponsors, jurados y otros equipos." }
   ],
