@@ -559,31 +559,39 @@ export default function InvestigathonPage() {
           </div>
 
           <footer>
-            <div className="brand">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
-              <span>Y-Hat</span>
-              <span className="copy">© 2026</span>
+            <div className="row">
+              <div className="brand">
+                <div className="head">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
+                  <span>Y-Hat</span>
+                </div>
+                <p>
+                  El punto de encuentro entre la comunidad estudiantil y el
+                  ecosistema de innovación.
+                </p>
+              </div>
+              <nav className="links" aria-label="Y-Hat">
+                <Link href="/">somosyhat.com</Link>
+                <Link href="/hackathon">Hackathón de Negocios</Link>
+                <a
+                  href="https://www.instagram.com/somos.yhat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/y-hat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
+              </nav>
             </div>
-            <nav className="links" aria-label="Y-Hat">
-              <Link href="/">somosyhat.com</Link>
-              <Link href="/hackathon">Hackathón de Negocios</Link>
-              <a
-                href="https://www.instagram.com/somos.yhat"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://www.linkedin.com/company/y-hat"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
-            </nav>
+            <div className="copy">© 2026 Y-Hat</div>
           </footer>
         </section>
       </div>

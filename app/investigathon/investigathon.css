@@ -438,7 +438,7 @@
 .investigathon-root .faq details p a:hover { border-color: var(--iv-accent); color: var(--iv-accent); }
 .investigathon-root .faq details p strong { color: var(--iv-cream); font-weight: 500; }
 
-/* CLOSING */
+/* CLOSING: mirrors the hero, left aligned, watermark on the right */
 .investigathon-root .closing {
   position: relative;
   margin: 96px 0 0;
@@ -446,53 +446,57 @@
   border-top: 1px solid var(--iv-cream-line);
   display: flex; flex-direction: column;
 }
-.investigathon-root .closing-body { text-align: center; padding-bottom: 96px; }
 .investigathon-root .closing::after {
-  content: ""; position: absolute; inset: 0;
+  content: ""; position: absolute; top: 0; bottom: 0; right: -40px; width: 60%;
   background-image: url("/hackathon/logo-yhat.svg");
   background-repeat: no-repeat;
-  background-position: right -80px center;
-  background-size: 620px auto;
+  background-position: right center;
+  background-size: auto 78%;
   opacity: .06; pointer-events: none;
 }
 .investigathon-root .closing > * { position: relative; z-index: 1; }
+.investigathon-root .closing-body { padding-bottom: 96px; max-width: 900px; }
 .investigathon-root .closing h2 {
-  font-size: clamp(48px, 6.6vw, 108px);
+  font-size: clamp(48px, 6.2vw, 100px);
   line-height: .98; letter-spacing: -.025em;
-  max-width: 18ch; margin: 0 auto;
 }
 .investigathon-root .closing h2 em { font-style: italic; color: var(--iv-accent); }
 .investigathon-root .closing-body p {
   margin-top: 28px;
   font-size: 19px; line-height: 1.55;
   color: var(--iv-cream-soft);
-  max-width: 54ch; margin-left: auto; margin-right: auto;
+  max-width: 54ch;
 }
 .investigathon-root .closing .actions {
   margin-top: 36px;
-  display: flex; gap: 14px;
-  justify-content: center; flex-wrap: wrap;
+  display: flex; gap: 14px; flex-wrap: wrap;
 }
 
-/* FOOTER: one quiet line at the bottom of the closing panel */
+/* FOOTER: bottom of the closing panel, inside the grid */
 .investigathon-root footer {
-  /* full-bleed: break out of .wrap, content pinned to both edges */
-  margin: auto calc(50% - 50vw) 0;
-  padding: 22px 28px 26px;
+  margin-top: auto;
+  padding: 28px 0 24px;
   border-top: 1px solid var(--iv-cream-line);
-  text-align: left;
   position: relative; z-index: 1;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: 12px 28px;
   font-size: 15px; color: var(--iv-cream-dim);
 }
-.investigathon-root footer .brand { display: flex; align-items: center; gap: 12px; }
-.investigathon-root footer .brand img { height: 22px; width: auto; }
-.investigathon-root footer .brand span { color: var(--iv-cream-soft); font-weight: 500; }
-.investigathon-root footer .brand .copy { color: var(--iv-cream-dim); font-weight: 400; margin-left: 4px; }
-.investigathon-root footer .links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
-.investigathon-root footer .links a { color: var(--iv-cream-dim); transition: color .2s; }
+.investigathon-root footer .row {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;
+  gap: 18px 40px;
+}
+.investigathon-root footer .brand { display: flex; flex-direction: column; gap: 10px; max-width: 40ch; }
+.investigathon-root footer .brand .head { display: flex; align-items: center; gap: 12px; }
+.investigathon-root footer .brand .head img { height: 22px; width: auto; }
+.investigathon-root footer .brand .head span { color: var(--iv-cream); font-weight: 500; font-size: 16px; }
+.investigathon-root footer .brand p { line-height: 1.5; color: var(--iv-cream-dim); }
+.investigathon-root footer .links {
+  display: grid; grid-template-columns: auto auto; gap: 8px 40px;
+  padding-top: 2px;
+}
+@media (min-width: 880px) { .investigathon-root footer .links { grid-template-columns: repeat(5, auto); gap: 8px 28px; } }
+.investigathon-root footer .links a { color: var(--iv-cream-soft); transition: color .2s; }
 .investigathon-root footer .links a:hover { color: var(--iv-cream); }
+.investigathon-root footer .copy { margin-top: 22px; font-size: 14px; color: var(--iv-cream-dim); }
 
 /* SNAP NAV (right edge, desktop only) */
 .investigathon-root .snap-nav {
@@ -539,7 +543,7 @@
     margin-bottom: 0;
   }
   .investigathon-root .closing { margin: 0; border-top: none; padding-bottom: 0; justify-content: flex-start; }
-  .investigathon-root .closing-body { margin: auto 0; padding: 32px 0; }
+  .investigathon-root .closing-body { margin: auto 0; padding: 24px 0; }
 
   .investigathon-root .sec-head p { max-width: 70ch; }
   .investigathon-root section.sec#fechas .phase ul { display: none; }
@@ -569,9 +573,11 @@
 }
 @media (min-width: 1024px) and (max-height: 760px) and (prefers-reduced-motion: no-preference) {
   /* Closing + footer must share one short viewport */
-  .investigathon-root .closing h2 { font-size: clamp(44px, 5.6vw, 88px); }
-  .investigathon-root .closing-body p { margin-top: 16px; font-size: 17px; }
-  .investigathon-root .closing .actions { margin-top: 22px; }
+  .investigathon-root .closing h2 { font-size: clamp(44px, 5.2vw, 80px); }
+  .investigathon-root .closing-body p { margin-top: 18px; font-size: 17px; }
+  .investigathon-root .closing .actions { margin-top: 24px; }
+  .investigathon-root footer { padding: 20px 0 18px; }
+  .investigathon-root footer .copy { margin-top: 14px; }
   .investigathon-root section.sec#fechas .sec-head p { display: none; }
   .investigathon-root section.sec#fechas .sec-head { margin-bottom: 24px; }
   .investigathon-root section.sec#fechas .phase { padding: 11px 0; }
