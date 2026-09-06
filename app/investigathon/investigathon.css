@@ -119,7 +119,7 @@
 .investigathon-root .topbar .brand { display: flex; align-items: center; gap: 12px; }
 .investigathon-root .topbar .brand img { height: 26px; width: auto; }
 .investigathon-root .topbar .brand span {
-  font-family: var(--display); font-size: 21px; letter-spacing: -.01em;
+  font-size: 17px; font-weight: 500; letter-spacing: -.005em;
 }
 .investigathon-root .topbar .links {
   display: none; gap: 28px;
@@ -131,8 +131,7 @@
 .investigathon-root .topbar .edition {
   display: none;
   margin-left: auto;
-  font-family: var(--display); font-style: italic;
-  font-size: 16px; color: var(--iv-cream-soft);
+  font-size: 15px; color: var(--iv-cream-dim);
 }
 @media (min-width: 1100px) { .investigathon-root .topbar .edition { display: block; } }
 .investigathon-root .topbar .cta {
@@ -314,7 +313,7 @@
 .investigathon-root .week .block.first { border-left: none; }
 .investigathon-root .week .block .t { font-size: 13.5px; color: var(--iv-cream-dim); }
 .investigathon-root .week .block.escuela { background: rgba(250,250,250,.06); color: var(--iv-cream); }
-.investigathon-root .week .block.trabajo { font-style: italic; font-family: var(--display); font-size: 17px; }
+.investigathon-root .week .block.trabajo { color: var(--iv-cream-dim); }
 .investigathon-root .week .block.hito,
 .investigathon-root .week .block.checkpoint {
   background: rgba(var(--iv-accent-rgb), .12);
@@ -346,7 +345,6 @@
   .investigathon-root .week .day { font-size: 11px; padding: 8px 2px 6px; }
   .investigathon-root .week .day b { font-size: 16px; }
   .investigathon-root .week .block { font-size: 12px; padding: 8px 6px; min-height: 64px; }
-  .investigathon-root .week .block.trabajo { font-size: 13px; }
   .investigathon-root .week .block .t { font-size: 11px; }
 }
 
@@ -497,7 +495,7 @@
 .investigathon-root footer .brand { display: flex; flex-direction: column; gap: 14px; }
 .investigathon-root footer .brand .head { display: flex; align-items: center; gap: 12px; }
 .investigathon-root footer .brand .head img { height: 26px; width: auto; }
-.investigathon-root footer .brand .head span { font-family: var(--display); font-size: 22px; }
+.investigathon-root footer .brand .head span { font-size: 18px; font-weight: 500; }
 .investigathon-root footer .brand p { font-size: 16px; line-height: 1.55; color: var(--iv-cream-soft); max-width: 36ch; }
 .investigathon-root footer h5 { font-size: 15px; color: var(--iv-cream-dim); font-weight: 400; margin-bottom: 14px; }
 .investigathon-root footer a { display: block; padding: 5px 0; font-size: 16px; color: var(--iv-cream-soft); }
