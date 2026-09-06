@@ -330,6 +330,18 @@
 }
 .investigathon-root .week .block.final .t { color: rgba(7,30,42,.75); }
 .investigathon-root .week .block.off { background: rgba(0,0,0,.25); }
+.investigathon-root .week a.block { cursor: pointer; transition: background .2s, box-shadow .2s; }
+.investigathon-root .week a.block.hito:hover,
+.investigathon-root .week a.block.checkpoint:hover { background: rgba(var(--iv-accent-rgb), .24); }
+.investigathon-root .week a.block.final:hover { background: var(--iv-cream); }
+.investigathon-root .week a.block:focus-visible { outline: 2px solid var(--iv-cream); outline-offset: -2px; }
+
+.investigathon-root .cal-actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px;
+  margin: -14px 0 40px;
+}
+.investigathon-root .cal-actions .btn-secondary { background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; cursor: pointer; }
+.investigathon-root .cal-actions .hint { font-size: 15px; color: var(--iv-cream-dim); max-width: 60ch; line-height: 1.45; }
 @media (max-width: 879px) {
   .investigathon-root .week .day { font-size: 11px; padding: 8px 2px 6px; }
   .investigathon-root .week .day b { font-size: 16px; }
@@ -547,7 +559,8 @@
   .investigathon-root .sec-head p { max-width: 70ch; }
   .investigathon-root section.sec#fechas .sec-head { margin-bottom: 1.6rem; }
   .investigathon-root section.sec#fechas .sec-head p { margin-top: 12px; }
-  .investigathon-root section.sec#fechas .calendar { margin-bottom: 26px; }
+  .investigathon-root section.sec#fechas .calendar { margin-bottom: 22px; }
+  .investigathon-root section.sec#fechas .cal-actions { margin: -4px 0 26px; }
   .investigathon-root section.sec#fechas .phase ul { display: none; }
   .investigathon-root section.sec#tracks .sec-head { margin-bottom: 1.8rem; }
 

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import data from "@/data/investigathon.json";
 import HeroField from "./hero-field";
+import { buildEvents, googleCalendarUrl, toICS } from "./calendar-export";
 
 /* ---------- constants ---------- */
 
@@ -69,6 +70,8 @@ type Phase = { title: string; range: string; desc: string; items: string[] };
 type Block = { from: number; to: number; kind: string; label?: string; time?: string };
 type Week = { start: string; blocks: Block[] };
 
+const SITE_URL = "https://somosyhat.com/investigathon";
+
 /* ---------- page ---------- */
 
 export default function InvestigathonPage() {
@@ -77,6 +80,27 @@ export default function InvestigathonPage() {
   const tracks = data.tracks as Track[];
   const phases = data.phases as Phase[];
   const weeks = data.schedule.weeks as Week[];
+  const eventMeta = {
+    title: meta.title,
+    location: `${meta.venue.name}, ${meta.venue.campus}`,
+    url: SITE_URL,
+  };
+  const googleUrlFor = (w: Week, bk: Block) => {
+    const [ev] = buildEvents([{ start: w.start, blocks: [bk] }], eventMeta);
+    return ev ? googleCalendarUrl(ev) : undefined;
+  };
+  const downloadICS = () => {
+    const ics = toICS(buildEvents(weeks, eventMeta), eventMeta);
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "investigathon-2026.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
 
   const [activeIdx, setActiveIdx] = useState(0);
   const currentIndexRef = useRef(0);
@@ -355,19 +379,48 @@ export default function InvestigathonPage() {
                       <b>{d.n}</b>
                     </div>
                   ))}
-                  {w.blocks.map((bk) => (
-                    <div
-                      key={`${w.start}-${bk.from}`}
-                      className={`block ${bk.kind}${bk.from === 0 ? " first" : ""}`}
-                      style={{ gridColumn: `${bk.from + 1} / ${bk.to + 2}` }}
-                    >
-                      {bk.label && <span>{bk.label}</span>}
-                      {bk.time && <span className="t">{bk.time}</span>}
-                    </div>
-                  ))}
+                  {w.blocks.map((bk) => {
+                    const cls = `block ${bk.kind}${bk.from === 0 ? " first" : ""}`;
+                    const style = { gridColumn: `${bk.from + 1} / ${bk.to + 2}` };
+                    const href = bk.time ? googleUrlFor(w, bk) : undefined;
+                    const inner = (
+                      <>
+                        {bk.label && <span>{bk.label}</span>}
+                        {bk.time && <span className="t">{bk.time}</span>}
+                      </>
+                    );
+                    return href ? (
+                      <a
+                        key={`${w.start}-${bk.from}`}
+                        className={`${cls} link`}
+                        style={style}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={`Agregar "${bk.label}" a Google Calendar`}
+                      >
+                        {inner}
+                      </a>
+                    ) : (
+                      <div key={`${w.start}-${bk.from}`} className={cls} style={style}>
+                        {inner}
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
+          </div>
+
+          <div className="cal-actions">
+            <button type="button" className="btn-secondary" onClick={downloadICS}>
+              Agregar todas las fechas a mi calendario
+            </button>
+            <span className="hint">
+              Descarga un archivo .ics para Google Calendar, Apple Calendar u
+              Outlook. Los eventos con horario también se agregan de a uno
+              haciendo clic en el calendario.
+            </span>
           </div>
 
           <div className="timeline">
