@@ -248,6 +248,8 @@
 @media (min-width: 880px) {
   .investigathon-root .sec-head { grid-template-columns: 52px 1fr; gap: 0 16px; }
   .investigathon-root .sec-head .roman { font-size: 38px; line-height: 1.95; }
+  /* Body aligns with the title text, the numeral hangs in the margin */
+  .investigathon-root .sec-body { padding-left: 68px; }
 }
 .investigathon-root .sec-head h2 {
   font-size: clamp(40px, 5.2vw, 74px);
@@ -363,7 +365,8 @@
 .investigathon-root .split .sec-head { margin-bottom: 28px; }
 .investigathon-root .split-right { order: -1; }
 @media (min-width: 1200px) {
-  .investigathon-root .split { grid-template-columns: minmax(380px, 5fr) 8fr; gap: 56px; align-items: start; }
+  .investigathon-root .split { grid-template-columns: minmax(440px, 6fr) 7fr; gap: 52px; align-items: start; }
+  .investigathon-root .split .phases { margin-left: 58px; }
   .investigathon-root .split-right { order: 0; }
   .investigathon-root .split .sec-head { grid-template-columns: 44px 1fr; gap: 0 14px; }
   .investigathon-root .split .sec-head .roman { font-size: 32px; line-height: 1.5; }
