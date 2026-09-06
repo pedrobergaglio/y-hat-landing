@@ -584,6 +584,17 @@
   body::-webkit-scrollbar { display: none; }
 }
 @media (min-width: 1024px) and (max-height: 760px) and (prefers-reduced-motion: no-preference) {
+  /* Closing + footer must share one short viewport */
+  .investigathon-root .closing-body { padding: 12px 0; }
+  .investigathon-root .closing h2 { font-size: clamp(44px, 5.4vw, 84px); }
+  .investigathon-root .closing p { margin-top: 16px; font-size: 17px; }
+  .investigathon-root .closing .actions { margin-top: 22px; }
+  .investigathon-root footer { padding-top: 22px; padding-bottom: 12px; }
+  .investigathon-root footer .top { padding-bottom: 16px; gap: 24px; }
+  .investigathon-root footer a { padding: 3px 0; font-size: 15px; }
+  .investigathon-root footer h5 { margin-bottom: 8px; }
+  .investigathon-root footer .brand p { font-size: 15px; }
+  .investigathon-root footer .bot { padding-top: 12px; margin-top: 12px; }
   .investigathon-root section.sec#fechas .sec-head p { display: none; }
   .investigathon-root section.sec#fechas .sec-head { margin-bottom: 24px; }
   .investigathon-root section.sec#fechas .phase { padding: 11px 0; }
