@@ -465,7 +465,7 @@
   max-width: 18ch; margin: 0 auto;
 }
 .investigathon-root .closing h2 em { font-style: italic; color: var(--iv-accent); }
-.investigathon-root .closing p {
+.investigathon-root .closing-body p {
   margin-top: 28px;
   font-size: 19px; line-height: 1.55;
   color: var(--iv-cream-soft);
@@ -499,7 +499,7 @@
 .investigathon-root footer .brand .head img { height: 26px; width: auto; }
 .investigathon-root footer .brand .head span { font-size: 18px; font-weight: 500; }
 .investigathon-root footer .brand p { font-size: 16px; line-height: 1.55; color: var(--iv-cream-soft); max-width: 36ch; }
-.investigathon-root footer h5 { font-size: 15px; color: var(--iv-cream-dim); font-weight: 400; margin-bottom: 14px; }
+.investigathon-root footer h5 { font-family: var(--text); font-size: 15px; color: var(--iv-cream-dim); font-weight: 400; margin-bottom: 14px; }
 .investigathon-root footer a { display: block; padding: 5px 0; font-size: 16px; color: var(--iv-cream-soft); }
 .investigathon-root footer a:hover { color: var(--iv-cream); }
 .investigathon-root footer .bot {
@@ -587,7 +587,7 @@
   /* Closing + footer must share one short viewport */
   .investigathon-root .closing-body { padding: 12px 0; }
   .investigathon-root .closing h2 { font-size: clamp(44px, 5.4vw, 84px); }
-  .investigathon-root .closing p { margin-top: 16px; font-size: 17px; }
+  .investigathon-root .closing-body p { margin-top: 16px; font-size: 17px; }
   .investigathon-root .closing .actions { margin-top: 22px; }
   .investigathon-root footer { padding-top: 22px; padding-bottom: 12px; }
   .investigathon-root footer .top { padding-bottom: 16px; gap: 24px; }
