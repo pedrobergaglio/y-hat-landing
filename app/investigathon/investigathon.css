@@ -477,8 +477,9 @@
 
 /* FOOTER: one quiet line at the bottom of the closing panel */
 .investigathon-root footer {
-  margin-top: auto;
-  padding: 22px 0 26px;
+  /* full-bleed: break out of .wrap, content pinned to both edges */
+  margin: auto calc(50% - 50vw) 0;
+  padding: 22px 28px 26px;
   border-top: 1px solid var(--iv-cream-line);
   text-align: left;
   position: relative; z-index: 1;
