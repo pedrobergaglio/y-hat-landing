@@ -477,37 +477,24 @@
   justify-content: center; flex-wrap: wrap;
 }
 
-/* FOOTER */
+/* FOOTER: one quiet line at the bottom of the closing panel */
 .investigathon-root footer {
   margin-top: auto;
-  padding: 40px 0 24px;
+  padding: 22px 0 26px;
   border-top: 1px solid var(--iv-cream-line);
   text-align: left;
   position: relative; z-index: 1;
-}
-.investigathon-root footer .top {
-  display: grid; grid-template-columns: 1fr;
-  gap: 32px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--iv-cream-line);
-}
-@media (min-width: 880px) {
-  .investigathon-root footer .top { grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; }
-}
-.investigathon-root footer .brand { display: flex; flex-direction: column; gap: 14px; }
-.investigathon-root footer .brand .head { display: flex; align-items: center; gap: 12px; }
-.investigathon-root footer .brand .head img { height: 26px; width: auto; }
-.investigathon-root footer .brand .head span { font-size: 18px; font-weight: 500; }
-.investigathon-root footer .brand p { font-size: 16px; line-height: 1.55; color: var(--iv-cream-soft); max-width: 36ch; }
-.investigathon-root footer h5 { font-family: var(--text); font-size: 15px; color: var(--iv-cream-dim); font-weight: 400; margin-bottom: 14px; }
-.investigathon-root footer a { display: block; padding: 5px 0; font-size: 16px; color: var(--iv-cream-soft); }
-.investigathon-root footer a:hover { color: var(--iv-cream); }
-.investigathon-root footer .bot {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 22px; margin-top: 22px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px 28px;
   font-size: 15px; color: var(--iv-cream-dim);
-  flex-wrap: wrap; gap: 8px;
 }
+.investigathon-root footer .brand { display: flex; align-items: center; gap: 12px; }
+.investigathon-root footer .brand img { height: 22px; width: auto; }
+.investigathon-root footer .brand span { color: var(--iv-cream-soft); font-weight: 500; }
+.investigathon-root footer .brand .copy { color: var(--iv-cream-dim); font-weight: 400; margin-left: 4px; }
+.investigathon-root footer .links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.investigathon-root footer .links a { color: var(--iv-cream-dim); transition: color .2s; }
+.investigathon-root footer .links a:hover { color: var(--iv-cream); }
 
 /* SNAP NAV (right edge, desktop only) */
 .investigathon-root .snap-nav {
@@ -555,7 +542,6 @@
   }
   .investigathon-root .closing { margin: 0; border-top: none; padding-bottom: 0; justify-content: flex-start; }
   .investigathon-root .closing-body { margin: auto 0; padding: 32px 0; }
-  .investigathon-root footer { padding-top: 32px; padding-bottom: 20px; }
 
   .investigathon-root .sec-head p { max-width: 70ch; }
   .investigathon-root section.sec#fechas .phase ul { display: none; }
@@ -585,16 +571,9 @@
 }
 @media (min-width: 1024px) and (max-height: 760px) and (prefers-reduced-motion: no-preference) {
   /* Closing + footer must share one short viewport */
-  .investigathon-root .closing-body { padding: 12px 0; }
-  .investigathon-root .closing h2 { font-size: clamp(44px, 5.4vw, 84px); }
+  .investigathon-root .closing h2 { font-size: clamp(44px, 5.6vw, 88px); }
   .investigathon-root .closing-body p { margin-top: 16px; font-size: 17px; }
   .investigathon-root .closing .actions { margin-top: 22px; }
-  .investigathon-root footer { padding-top: 22px; padding-bottom: 12px; }
-  .investigathon-root footer .top { padding-bottom: 16px; gap: 24px; }
-  .investigathon-root footer a { padding: 3px 0; font-size: 15px; }
-  .investigathon-root footer h5 { margin-bottom: 8px; }
-  .investigathon-root footer .brand p { font-size: 15px; }
-  .investigathon-root footer .bot { padding-top: 12px; margin-top: 12px; }
   .investigathon-root section.sec#fechas .sec-head p { display: none; }
   .investigathon-root section.sec#fechas .sec-head { margin-bottom: 24px; }
   .investigathon-root section.sec#fechas .phase { padding: 11px 0; }

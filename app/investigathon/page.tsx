@@ -157,15 +157,17 @@ export default function InvestigathonPage() {
       return "consumed";
     }
 
+    // Document-relative top. offsetTop would be relative to .wrap, which is
+    // positioned, and would be off by the top bar's height.
+    const docTop = (el: HTMLElement) =>
+      el.getBoundingClientRect().top + window.scrollY;
     function isPastLastSnap() {
       if (!sections.length) return false;
-      const last = sections[sections.length - 1];
-      return window.scrollY > last.offsetTop + 40;
+      return window.scrollY > docTop(sections[sections.length - 1]) + 40;
     }
     function isAtLastSnap() {
       if (!sections.length) return false;
-      const last = sections[sections.length - 1];
-      return Math.abs(window.scrollY - last.offsetTop) < 40;
+      return Math.abs(window.scrollY - docTop(sections[sections.length - 1])) < 40;
     }
 
     let lastWheelTime = 0;
@@ -535,55 +537,31 @@ export default function InvestigathonPage() {
           </div>
 
           <footer>
-            <div className="top">
-              <div className="brand">
-                <div className="head">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
-                  <span>Y-Hat</span>
-                </div>
-                <p>
-                  El punto de encuentro entre la comunidad estudiantil y el
-                  ecosistema de innovación.
-                </p>
-              </div>
-              <div>
-                <h5>Investigathon</h5>
-                <a href="#fechas">Fechas</a>
-                <a href="#tracks">Los problemas</a>
-                <a href="#faq">FAQ</a>
-              </div>
-              <div>
-                <h5>Sumarse</h5>
-                <a href={primaryHref} target="_blank" rel="noopener noreferrer">
-                  Inscripción
-                </a>
-                <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
-              </div>
-              <div>
-                <h5>Y-Hat</h5>
-                <Link href="/">somosyhat.com</Link>
-                <Link href="/hackathon">Hackathón de Negocios</Link>
-                <a
-                  href="https://www.instagram.com/somos.yhat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/y-hat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LinkedIn
-                </a>
-              </div>
+            <div className="brand">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
+              <span>Y-Hat</span>
+              <span className="copy">© 2026</span>
             </div>
-            <div className="bot">
-              <span>© 2026 Y-Hat</span>
-              <span>{meta.edition}</span>
-            </div>
+            <nav className="links" aria-label="Y-Hat">
+              <Link href="/">somosyhat.com</Link>
+              <Link href="/hackathon">Hackathón de Negocios</Link>
+              <a
+                href="https://www.instagram.com/somos.yhat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.linkedin.com/company/y-hat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
+            </nav>
           </footer>
         </section>
       </div>
