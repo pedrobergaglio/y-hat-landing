@@ -107,34 +107,6 @@ const dprNow = () => Math.min(2, Math.max(1, window.devicePixelRatio || 1));
 
 type Renderer = { start(): void; stop(): void; dispose(): void };
 
-/* Places the "ŷ" tag at the right end of the fitted curve. Runs on its own
-   light loop so both renderers share it. */
-function startTag(tag: HTMLElement, canvas: HTMLCanvasElement, animate: boolean) {
-  const t0 = performance.now();
-  let raf = 0;
-  const place = () => {
-    const t = animate ? (performance.now() - t0) / 1000 : 3;
-    const c = canvas.getBoundingClientRect();
-    const r = tag.getBoundingClientRect();
-    const u = c.width ? (r.left + r.width / 2 - c.left) / c.width : 0.98;
-    tag.style.top = `${model(u, t) * (c.height || 1)}px`;
-  };
-  const tick = () => {
-    place();
-    raf = requestAnimationFrame(tick);
-  };
-  return {
-    start() {
-      place();
-      if (animate && !raf) raf = requestAnimationFrame(tick);
-    },
-    stop() {
-      if (raf) cancelAnimationFrame(raf);
-      raf = 0;
-    },
-  };
-}
-
 /* ---------- renderer 1: WebGPU via vgpu ---------- */
 
 async function startWebGPU(
@@ -300,17 +272,14 @@ function start2D(canvas: HTMLCanvasElement, animate: boolean): Renderer {
 
 export default function HeroField() {
   const ref = useRef<HTMLCanvasElement>(null);
-  const tagRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
-    const tagEl = tagRef.current;
-    if (!canvas || !tagEl) return;
+    if (!canvas) return;
 
     let alive = true;
     let renderer: Renderer | null = null;
     let io: IntersectionObserver | null = null;
-    let tagStop: (() => void) | undefined;
 
     (async () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -336,41 +305,24 @@ export default function HeroField() {
 
       // Only render while the hero is on screen.
       const r = renderer;
-      const tag = startTag(tagEl, canvas, !reduce);
-      tagStop = tag.stop;
       io = new IntersectionObserver(
         (entries) => {
-          if (entries.some((e) => e.isIntersecting)) {
-            r.start();
-            tag.start();
-          } else {
-            r.stop();
-            tag.stop();
-          }
+          if (entries.some((e) => e.isIntersecting)) r.start();
+          else r.stop();
         },
         { threshold: 0.05 }
       );
       io.observe(canvas);
       r.start();
-      tag.start();
       canvas.classList.add("on");
-      tagEl.classList.add("on");
     })();
 
     return () => {
       alive = false;
       io?.disconnect();
-      tagStop?.();
       renderer?.dispose();
     };
   }, []);
 
-  return (
-    <>
-      <canvas ref={ref} className="hero-field" aria-hidden="true" />
-      <span ref={tagRef} className="hero-yhat" aria-hidden="true">
-        ŷ
-      </span>
-    </>
-  );
+  return <canvas ref={ref} className="hero-field" aria-hidden="true" />;
 }
