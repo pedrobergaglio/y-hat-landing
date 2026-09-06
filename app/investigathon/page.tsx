@@ -119,7 +119,7 @@ export default function InvestigathonPage() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isDesktop = () =>
-      window.innerWidth >= 1024 &&
+      window.innerWidth >= 1200 &&
       window.matchMedia("(hover: hover)").matches;
 
     const root = rootRef.current;
