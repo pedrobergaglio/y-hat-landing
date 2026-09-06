@@ -98,15 +98,16 @@ export default function InvestigathonPage() {
   const sectionsRef = useRef<HTMLElement[]>([]);
   const rootRef = useRef<HTMLDivElement>(null);
 
-  const goTo = useCallback((index: number) => {
+  const goTo = useCallback((index: number, force = false) => {
     const sections = sectionsRef.current;
     if (!sections.length) return;
     const next = Math.max(0, Math.min(sections.length - 1, index));
-    if (next === currentIndexRef.current || lockedRef.current) return;
+    if ((next === currentIndexRef.current && !force) || lockedRef.current) return;
     lockedRef.current = true;
     currentIndexRef.current = next;
+    // Index 0 goes to the very top so the sticky bar is fully in view.
     const targetY =
-      sections[next].getBoundingClientRect().top + window.scrollY;
+      next === 0 ? 0 : sections[next].getBoundingClientRect().top + window.scrollY;
     smoothScrollTo(targetY, DURATION);
     setActiveIdx(next);
     setTimeout(() => {
@@ -170,7 +171,12 @@ export default function InvestigathonPage() {
     let lastWheelTime = 0;
     const onWheel = (e: WheelEvent) => {
       if (!isDesktop()) return;
-      if (isPastLastSnap()) return;
+      if (isPastLastSnap()) {
+        if (e.deltaY >= 0) return; // native scroll to reach the rest of the last panel
+        e.preventDefault();
+        goTo(sections.length - 1, true);
+        return;
+      }
       if (isAtLastSnap() && e.deltaY > 0) return;
       e.preventDefault();
       if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
@@ -504,84 +510,83 @@ export default function InvestigathonPage() {
           </div>
         </section>
 
-        {/* 04 — CLOSING */}
+        {/* 04 — CLOSING + FOOTER (one panel) */}
         <section className="closing" id="cta">
-          <h2>
-            El futuro no se <em>adivina</em>, se modela.
-          </h2>
-          <p>
-            Las inscripciones están abiertas.
-            <br />
-            Se inscribe una sola vez por grupo y elegís el track en el
-            formulario.
-          </p>
-          <div className="actions">
-            <a
-              href={primaryHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              {meta.ctas.primary.label}
-            </a>
+          <div className="closing-body">
+            <h2>
+              El futuro no se <em>adivina</em>, se modela.
+            </h2>
+            <p>
+              Las inscripciones están abiertas.
+              <br />
+              Se inscribe una sola vez por grupo y elegís el track en el
+              formulario.
+            </p>
+            <div className="actions">
+              <a
+                href={primaryHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                {meta.ctas.primary.label}
+              </a>
+            </div>
           </div>
+
+          <footer>
+            <div className="top">
+              <div className="brand">
+                <div className="head">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
+                  <span>Y-Hat</span>
+                </div>
+                <p>
+                  El punto de encuentro entre la comunidad estudiantil y el
+                  ecosistema de innovación.
+                </p>
+              </div>
+              <div>
+                <h5>Investigathon</h5>
+                <a href="#fechas">Fechas</a>
+                <a href="#tracks">Los problemas</a>
+                <a href="#faq">FAQ</a>
+              </div>
+              <div>
+                <h5>Sumarse</h5>
+                <a href={primaryHref} target="_blank" rel="noopener noreferrer">
+                  Inscripción
+                </a>
+                <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
+              </div>
+              <div>
+                <h5>Y-Hat</h5>
+                <Link href="/">somosyhat.com</Link>
+                <Link href="/hackathon">Hackathón de Negocios</Link>
+                <a
+                  href="https://www.instagram.com/somos.yhat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/y-hat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+            <div className="bot">
+              <span>© 2026 Y-Hat</span>
+              <span>{meta.edition}</span>
+            </div>
+          </footer>
         </section>
       </div>
-
-      {/* FOOTER (out of snap) */}
-      <footer>
-        <div className="wrap">
-          <div className="top">
-            <div className="brand">
-              <div className="head">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
-                <span>Y-Hat</span>
-              </div>
-              <p>
-                El punto de encuentro entre la comunidad estudiantil y el
-                ecosistema de innovación.
-              </p>
-            </div>
-            <div>
-              <h5>Investigathon</h5>
-              <a href="#fechas">Fechas</a>
-              <a href="#tracks">Los problemas</a>
-              <a href="#faq">FAQ</a>
-            </div>
-            <div>
-              <h5>Sumarse</h5>
-              <a href={primaryHref} target="_blank" rel="noopener noreferrer">
-                Inscripción
-              </a>
-              <a href={`mailto:${meta.contactEmail}`}>{meta.contactEmail}</a>
-            </div>
-            <div>
-              <h5>Y-Hat</h5>
-              <Link href="/">somosyhat.com</Link>
-              <Link href="/hackathon">Hackathón de Negocios</Link>
-              <a
-                href="https://www.instagram.com/somos.yhat"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://www.linkedin.com/company/y-hat"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-            </div>
-          </div>
-          <div className="bot">
-            <span>© 2026 Y-Hat</span>
-            <span>{meta.edition}</span>
-          </div>
-        </div>
-      </footer>
 
       {/* SIDE NAV (desktop snap only; hidden via CSS on mobile) */}
       <nav className="snap-nav" aria-label="Navegación por secciones">

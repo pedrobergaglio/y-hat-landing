@@ -32,7 +32,9 @@
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   isolation: isolate;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden would turn the root into a scroll container
+     and break the sticky top bar */
+  overflow-x: clip;
 }
 
 /* Gradient plane: covers the html-level teal gradient of the main landing
@@ -442,11 +444,12 @@
 .investigathon-root .closing {
   position: relative;
   margin: 96px 0 0;
-  padding: 96px 0;
+  padding: 96px 0 0;
   border-top: 1px solid var(--iv-cream-line);
-  text-align: center;
   overflow: hidden;
+  display: flex; flex-direction: column;
 }
+.investigathon-root .closing-body { text-align: center; padding-bottom: 96px; }
 .investigathon-root .closing::after {
   content: ""; position: absolute; inset: 0;
   background-image: url("/hackathon/logo-yhat.svg");
@@ -476,9 +479,11 @@
 
 /* FOOTER */
 .investigathon-root footer {
-  margin-top: 80px;
-  padding: 44px 0 28px;
+  margin-top: auto;
+  padding: 40px 0 24px;
   border-top: 1px solid var(--iv-cream-line);
+  text-align: left;
+  position: relative; z-index: 1;
 }
 .investigathon-root footer .top {
   display: grid; grid-template-columns: 1fr;
@@ -548,8 +553,9 @@
     margin-top: 0;
     margin-bottom: 0;
   }
-  .investigathon-root .closing { margin: 0; border-top: none; align-items: center; }
-  .investigathon-root footer { padding-top: 48px; padding-bottom: 24px; }
+  .investigathon-root .closing { margin: 0; border-top: none; padding-bottom: 0; justify-content: flex-start; }
+  .investigathon-root .closing-body { margin: auto 0; padding: 32px 0; }
+  .investigathon-root footer { padding-top: 32px; padding-bottom: 20px; }
 
   .investigathon-root .sec-head p { max-width: 70ch; }
   .investigathon-root section.sec#fechas .phase ul { display: none; }
