@@ -247,12 +247,12 @@
 }
 @media (min-width: 880px) {
   .investigathon-root .sec-head { grid-template-columns: 52px 1fr; gap: 0 16px; }
-  .investigathon-root .sec-head .roman { font-size: 38px; line-height: 1.95; }
+  .investigathon-root .sec-head .roman { font-size: 36px; line-height: 1.7; }
   /* Body aligns with the title text, the numeral hangs in the margin */
   .investigathon-root .sec-body { padding-left: 68px; }
 }
 .investigathon-root .sec-head h2 {
-  font-size: clamp(40px, 5.2vw, 74px);
+  font-size: clamp(36px, 4.2vw, 60px);
   line-height: 1.02; letter-spacing: -.02em;
 }
 .investigathon-root .sec-head p {
@@ -324,7 +324,7 @@
 
 .investigathon-root .cal-actions {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px;
-  margin: 0 0 16px;
+  margin: 16px 0 0;
 }
 .investigathon-root .cal-actions .btn-secondary { background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; cursor: pointer; padding: 8px 0; font-size: 15.5px; }
 .investigathon-root .cal-actions .hint { font-size: 15px; color: var(--iv-cream-dim); max-width: 60ch; line-height: 1.45; }
@@ -362,16 +362,13 @@
 
 /* Fechas split: text left, calendar right (wide screens) */
 .investigathon-root .split { display: grid; grid-template-columns: 1fr; gap: 40px; }
-.investigathon-root .split .sec-head { margin-bottom: 28px; }
 .investigathon-root .split-right { order: -1; }
+@media (min-width: 880px) { .investigathon-root .split { padding-left: 68px; } }
 @media (min-width: 1200px) {
-  .investigathon-root .split { grid-template-columns: minmax(440px, 6fr) 7fr; gap: 52px; align-items: start; }
-  .investigathon-root .split .phases { margin-left: 58px; }
+  .investigathon-root .split { grid-template-columns: minmax(380px, 5fr) 7fr; gap: 52px; align-items: start; }
   .investigathon-root .split-right { order: 0; }
-  .investigathon-root .split .sec-head { grid-template-columns: 44px 1fr; gap: 0 14px; }
-  .investigathon-root .split .sec-head .roman { font-size: 32px; line-height: 1.5; }
-  .investigathon-root .split .sec-head h2 { font-size: clamp(34px, 3vw, 46px); }
-  .investigathon-root .split .sec-head p { font-size: 17px; margin-top: 14px; }
+  .investigathon-root .split .phases { margin-top: 0; }
+  .investigathon-root .split .phase:first-child { border-top: none; padding-top: 0; }
 }
 
 /* TRACKS: an index of problems */
@@ -582,7 +579,7 @@
 }
 @media (min-width: 1024px) and (max-height: 760px) and (prefers-reduced-motion: no-preference) {
   .investigathon-root section.sec#fechas .sec-head p { display: none; }
-  .investigathon-root section.sec#fechas .split .sec-head { margin-bottom: 18px; }
+  .investigathon-root section.sec#fechas .sec-head { margin-bottom: 24px; }
   .investigathon-root section.sec#fechas .phase { padding: 11px 0; }
   .investigathon-root section.sec#fechas .phase > p { font-size: 15px; margin-top: 4px; }
   .investigathon-root section.sec#fechas .phase h3 { font-size: 23px; }
