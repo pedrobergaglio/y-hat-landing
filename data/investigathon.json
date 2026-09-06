@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "title": "Investigathon 2026",
+    "edition": "Primera Edición",
+    "subtitle": "Pensar",
+    "lede": "Competencia de investigación en la que equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.",
+    "contactEmail": "yhat.arg@gmail.com",
+    "dates": {
+      "start": "2026-10-16",
+      "end": "2026-10-30",
+      "display": "16 al 30 de octubre · 2026",
+      "short": "16 al 30 · OCTUBRE"
+    },
+    "venue": {
+      "name": "0+Infinito",
+      "campus": "Exactas, UBA · Ciudad Universitaria"
+    },
+    "teamSize": "3 o 4 personas",
+    "host": "Y-Hat",
+    "ctas": {
+      "primary": {
+        "label": "Inscribir a mi grupo",
+        "href": "https://forms.gle/5ziDMkM1tcrCobrd7"
+      }
+    }
+  },
+  "facts": [
+    {
+      "label": "Cuándo",
+      "value": "16 al 30",
+      "valueEm": "de octubre",
+      "hint": "2026 · tres fases en tres semanas"
+    },
+    {
+      "label": "Dónde",
+      "valueEm": "0+Infinito",
+      "hint": "Exactas, UBA · Ciudad Universitaria"
+    },
+    {
+      "label": "Equipos",
+      "value": "3 o 4",
+      "valueEm": "personas",
+      "hint": "Una inscripción por grupo"
+    },
+    {
+      "label": "Tracks",
+      "value": "4",
+      "valueEm": "laboratorios",
+      "hint": "Cada laboratorio es jurado de su track"
+    }
+  ],
+  "phases": [
+    {
+      "week": "Semana 1",
+      "date": "Viernes 16 de octubre",
+      "dateISO": "2026-10-16",
+      "title": "Apertura",
+      "desc": "Cada laboratorio presenta su problema. Los equipos conocen a lxs investigadorxs que los van a acompañar, eligen enfoque y arman el plan de trabajo.",
+      "items": [
+        "Presentación de los cuatro problemas",
+        "Encuentro con cada laboratorio",
+        "Plan de trabajo del equipo"
+      ]
+    },
+    {
+      "week": "Semana 2",
+      "date": "Viernes 23 de octubre",
+      "dateISO": "2026-10-23",
+      "title": "Investigación",
+      "desc": "Trabajo acompañado: lectura, experimentos y datos. Checkpoint intermedio con el laboratorio para ajustar el rumbo.",
+      "items": [
+        "Mentorías con investigadorxs",
+        "Checkpoint de avance",
+        "Talleres y charlas"
+      ]
+    },
+    {
+      "week": "Semana 3",
+      "date": "Viernes 30 de octubre",
+      "dateISO": "2026-10-30",
+      "title": "Presentación",
+      "desc": "Entrega final y defensa de los resultados frente al laboratorio que propuso el problema.",
+      "items": [
+        "Entrega de resultados",
+        "Presentación ante el jurado",
+        "Cierre"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "key": "ai-safety",
+      "title": "AI Safety",
+      "labs": [
+        "LIAA",
+        "BAISH"
+      ],
+      "desc": "El reward hacking en aprendizaje automático es la maximización de una métrica de recompensa de formas inesperadas, incumpliendo los objetivos de la tarea. La pregunta del track: <strong>¿qué motiva a agentes de IA a hacer reward hacking en entornos de evaluación?</strong> Se trabaja con enfoques como interpretabilidad mecanística o evaluación black box."
+    },
+    {
+      "key": "biotech",
+      "title": "Biotech",
+      "labs": [
+        "Epilab"
+      ],
+      "desc": "Dado un patosistema (par planta-patógeno), <strong>identificar qué genes son candidatos a silenciar mediante la tecnología de RNAi</strong>. Se evalúan los entregables en orden de preferibilidad: genes, secuencias de genes, secuencias de regiones y, si llegan, un ARN quimera. También suma el análisis de off-target."
+    },
+    {
+      "key": "social-physics",
+      "title": "Social Physics",
+      "labs": [
+        "SoPhyLab"
+      ],
+      "desc": "A partir de documentos públicos del gobierno de Estados Unidos, <strong>identificar y rankear las empresas con las capacidades necesarias para satisfacer una necesidad, requerimiento o programa</strong> descripto en esos documentos. El problema consiste en relacionar de manera directa un documento oficial con los potenciales adjudicatarios y traducir eso a un score o probabilidad."
+    },
+    {
+      "key": "contextual-bandits",
+      "title": "Contextual Bandits",
+      "labs": [
+        "ModEsto"
+      ],
+      "desc": "El laboratorio está terminando de definir el problema. Lo publicamos acá en los próximos días.",
+      "pending": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Quiénes pueden participar?",
+      "a": "¡Cualquier estudiante universitario! El Investigathon está abierto a estudiantes de cualquier facultad o universidad. La FCEN, UBA es nuestra casa, así que muchos vienen de ahí, pero queremos equipos diversos: si estudiás algo afín (o no tanto) y te dan ganas de sumarte, te esperamos. Se participa en equipos de 3 o 4 personas, y al inscribirte elegís el track."
+    },
+    {
+      "q": "¿Cómo nos inscribimos?",
+      "a": "Completando <a href=\"https://forms.gle/5ziDMkM1tcrCobrd7\" target=\"_blank\" rel=\"noopener noreferrer\">este formulario</a> <strong>una sola vez por grupo</strong>. Tiene dos secciones: en la primera se indican las preferencias de track de todo el equipo; en la segunda, la información personal de cada participante que necesitamos para organizar el evento."
+    },
+    {
+      "q": "¿Puedo participar si no sé nada de los temas de los tracks?",
+      "a": "¡Obvio! Nos parece la oportunidad perfecta para conocer temas nuevos y, además, aprender a investigar desde cero acompañado por el laboratorio."
+    },
+    {
+      "q": "¿Cuánto cuesta participar?",
+      "a": "Es gratis. El Investigathon es posible gracias al trabajo de los laboratorios y al financiamiento de nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
+    }
+  ]
+}
