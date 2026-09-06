@@ -368,6 +368,16 @@ export default function InvestigathonPage() {
           </div>
 
           <div className="sec-body">
+          <div className="cal-actions">
+            <button type="button" className="btn-secondary" onClick={downloadICS}>
+              Agregar todas las fechas a mi calendario
+            </button>
+            <span className="hint">
+              Archivo .ics para Google, Apple u Outlook. Cada evento con horario
+              también se agrega con un clic en el calendario.
+            </span>
+          </div>
+
           <div className="calendar" aria-label="Calendario del evento">
             {weeks.map((w) => {
               const days = weekDays(w.start);
@@ -410,17 +420,6 @@ export default function InvestigathonPage() {
                 </div>
               );
             })}
-          </div>
-
-          <div className="cal-actions">
-            <button type="button" className="btn-secondary" onClick={downloadICS}>
-              Agregar todas las fechas a mi calendario
-            </button>
-            <span className="hint">
-              Descarga un archivo .ics para Google Calendar, Apple Calendar u
-              Outlook. Los eventos con horario también se agregan de a uno
-              haciendo clic en el calendario.
-            </span>
           </div>
 
           <div className="timeline">
