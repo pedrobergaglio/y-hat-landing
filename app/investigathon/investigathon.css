@@ -444,7 +444,6 @@
   margin: 96px 0 0;
   padding: 96px 0 0;
   border-top: 1px solid var(--iv-cream-line);
-  overflow: hidden;
   display: flex; flex-direction: column;
 }
 .investigathon-root .closing-body { text-align: center; padding-bottom: 96px; }
