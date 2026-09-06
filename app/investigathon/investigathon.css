@@ -557,14 +557,17 @@
     max-height: calc(100vh - var(--iv-bar) - 13rem);
     overflow-y: auto;
     padding-bottom: 8px;
+    padding-right: 10px;
     scrollbar-width: thin;
+    scrollbar-color: var(--iv-cream-line) transparent;
   }
   .investigathon-root section.sec#tracks .track { padding-top: 22px; padding-bottom: 22px; }
   .investigathon-root section.sec#faq .faq {
     max-height: 62vh;
     overflow-y: auto;
-    padding-right: 8px;
+    padding-right: 10px;
     scrollbar-width: thin;
+    scrollbar-color: var(--iv-cream-line) transparent;
   }
 
   body { scrollbar-width: none; }
