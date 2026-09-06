@@ -47,6 +47,20 @@ function smoothScrollTo(targetY: number, duration: number) {
 
 const WEEKDAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
 
+const MONTHS = [
+  "enero", "febrero", "marzo", "abril", "mayo", "junio",
+  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+];
+
+/** "12 al 18 de octubre" or "26 de octubre al 1 de noviembre" */
+function weekRange(fromISO: string, toISO: string) {
+  const [, m1, d1] = fromISO.split("-").map(Number);
+  const [, m2, d2] = toISO.split("-").map(Number);
+  return m1 === m2
+    ? `${d1} al ${d2} de ${MONTHS[m1 - 1]}`
+    : `${d1} de ${MONTHS[m1 - 1]} al ${d2} de ${MONTHS[m2 - 1]}`;
+}
+
 function weekDays(startISO: string) {
   const d = new Date(`${startISO}T12:00:00`);
   return Array.from({ length: 7 }, (_, i) => {
@@ -409,10 +423,20 @@ export default function InvestigathonPage() {
 
             <div className="split-right">
               <div className="calendar" aria-label="Calendario del evento">
-                {weeks.map((w) => {
+                {weeks.map((w, wi) => {
                   const days = weekDays(w.start);
+                  const when = (bk: Block) => {
+                    const a = days[bk.from];
+                    const b = days[bk.to];
+                    return bk.from === bk.to
+                      ? `${a.wd} ${a.n}`
+                      : `${a.wd} ${a.n} a ${b.wd} ${b.n}`;
+                  };
                   return (
                     <div className="week" key={w.start}>
+                      <div className="wk-head">
+                        Semana {wi + 1} · {weekRange(days[0].iso, days[6].iso)}
+                      </div>
                       {days.map((d) => (
                         <div className={`day${d.weekend ? " wk" : ""}`} key={d.iso}>
                           {d.wd}
@@ -425,8 +449,11 @@ export default function InvestigathonPage() {
                         const href = bk.time ? googleUrlFor(w, bk) : undefined;
                         const inner = (
                           <>
-                            {bk.label && <span>{bk.label}</span>}
-                            {bk.time && <span className="t">{bk.time}</span>}
+                            <span className="when">{when(bk)}</span>
+                            <span className="what">
+                              {bk.label && <span>{bk.label}</span>}
+                              {bk.time && <span className="t">{bk.time}</span>}
+                            </span>
                           </>
                         );
                         return href ? (

@@ -298,6 +298,9 @@
   color: var(--iv-cream-soft);
 }
 .investigathon-root .week .block.first { border-left: none; }
+.investigathon-root .week .block .what { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.investigathon-root .week .wk-head,
+.investigathon-root .week .block .when { display: none; }
 .investigathon-root .week .block .t { font-size: 13px; color: var(--iv-cream-dim); white-space: nowrap; }
 .investigathon-root .week .block.escuela { background: rgba(250,250,250,.06); color: var(--iv-cream); }
 .investigathon-root .week .block.trabajo { color: var(--iv-cream-dim); }
@@ -329,10 +332,32 @@
 .investigathon-root .btn-primary.small { padding: 11px 18px; font-size: 15px; }
 .investigathon-root .btn-secondary.small { padding: 11px 0; font-size: 15px; }
 @media (max-width: 879px) {
-  .investigathon-root .week .day { font-size: 11px; padding: 6px 2px; flex-direction: column; gap: 1px; }
-  .investigathon-root .week .day b { font-size: 16px; }
-  .investigathon-root .week .block { font-size: 12px; padding: 8px 6px; min-height: 64px; }
-  .investigathon-root .week .block .t { font-size: 11px; }
+  /* Agenda view: one list per week */
+  .investigathon-root .week { display: flex; flex-direction: column; }
+  .investigathon-root .week .day { display: none; }
+  .investigathon-root .week .wk-head {
+    display: block;
+    padding: 12px 16px;
+    font-size: 14px; color: var(--iv-cream-dim);
+    border-bottom: 1px solid var(--iv-cream-line);
+    background: rgba(0,0,0,.18);
+  }
+  .investigathon-root .week .block {
+    display: grid; grid-template-columns: 112px 1fr; gap: 0 16px;
+    align-items: center; text-align: left;
+    min-height: 0; padding: 14px 16px;
+    border-left: none; border-top: 1px solid var(--iv-cream-line);
+    box-shadow: none;
+  }
+  .investigathon-root .week .wk-head + .block,
+  .investigathon-root .week .day + .block { border-top: none; }
+  .investigathon-root .week .block .when { display: block; font-size: 14px; color: var(--iv-cream-dim); }
+  .investigathon-root .week .block .what { align-items: flex-start; gap: 2px; font-size: 16px; }
+  .investigathon-root .week .block.trabajo .what { color: var(--iv-cream-dim); }
+  .investigathon-root .week .block.hito,
+  .investigathon-root .week .block.checkpoint { box-shadow: inset 3px 0 0 0 var(--iv-accent); }
+  .investigathon-root .week .block.final .when { color: rgba(7,30,42,.75); }
+  .investigathon-root .week .block.off { display: none; }
 }
 
 /* PHASES: a list beside the calendar */
