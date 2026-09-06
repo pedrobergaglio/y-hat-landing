@@ -50,7 +50,7 @@
     {
       "title": "Escuela Investigathón",
       "range": "Lunes 12 a jueves 15",
-      "desc": "Cuatro días de preparación antes de competir: cómo se investiga, cómo se lee un paper, cómo se arma un plan de trabajo y qué espera cada laboratorio.",
+      "desc": "Cuatro días de preparación: cómo se investiga, cómo se lee un paper y qué espera cada laboratorio.",
       "items": [
         "Talleres de método",
         "Presentación de los laboratorios",
@@ -60,7 +60,7 @@
     {
       "title": "Fase 1",
       "range": "Viernes 16 a domingo 18",
-      "desc": "Apertura el viernes a la mañana: se presentan los cuatro problemas y cada equipo arranca con el suyo junto a lxs investigadorxs.",
+      "desc": "Apertura el viernes a la mañana con los cuatro problemas; cada equipo arranca con el suyo junto al laboratorio.",
       "items": [
         "Apertura, viernes 09:30 a 14:15",
         "Primer fin de semana de trabajo"
@@ -69,7 +69,7 @@
     {
       "title": "Fase 2",
       "range": "Lunes 19 a domingo 25",
-      "desc": "Semana de trabajo acompañado. Arranca con el primer checkpoint frente al laboratorio para ajustar el rumbo.",
+      "desc": "Semana de trabajo acompañado. Arranca el lunes con el primer checkpoint frente al laboratorio.",
       "items": [
         "1er checkpoint, lunes 15:00 a 17:00",
         "Mentorías con investigadorxs"
@@ -78,7 +78,7 @@
     {
       "title": "Fase 3",
       "range": "Lunes 26 a viernes 30",
-      "desc": "Segundo checkpoint, cierre de resultados, simulacro de pósters el jueves y Gran final el viernes frente a los jurados.",
+      "desc": "Segundo checkpoint, simulacro de pósters el jueves y Gran final el viernes frente a los jurados.",
       "items": [
         "2do checkpoint, lunes 15:00 a 17:00",
         "Simulacro de pósters, jueves 18:00 a 20:00",

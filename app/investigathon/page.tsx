@@ -354,88 +354,94 @@ export default function InvestigathonPage() {
 
         {/* 01 — FECHAS */}
         <section className="sec" id="fechas">
-          <div className="sec-head">
-            <div className="roman">I</div>
-            <div>
-              <h2>
-                Una escuela, tres fases, <em>una final</em>.
-              </h2>
-              <p>
-                Una semana de escuela, tres fases de trabajo con un checkpoint
-                por semana, y la Gran final el viernes 30 en 0+Infinito.
-              </p>
-            </div>
-          </div>
-
-          <div className="sec-body">
-          <div className="cal-actions">
-            <button type="button" className="btn-secondary" onClick={downloadICS}>
-              Agregar todas las fechas a mi calendario
-            </button>
-            <span className="hint">
-              Archivo .ics para Google, Apple u Outlook. Cada evento con horario
-              también se agrega con un clic en el calendario.
-            </span>
-          </div>
-
-          <div className="calendar" aria-label="Calendario del evento">
-            {weeks.map((w) => {
-              const days = weekDays(w.start);
-              return (
-                <div className="week" key={w.start}>
-                  {days.map((d) => (
-                    <div className={`day${d.weekend ? " wk" : ""}`} key={d.iso}>
-                      {d.wd}
-                      <b>{d.n}</b>
-                    </div>
-                  ))}
-                  {w.blocks.map((bk) => {
-                    const cls = `block ${bk.kind}${bk.from === 0 ? " first" : ""}`;
-                    const style = { gridColumn: `${bk.from + 1} / ${bk.to + 2}` };
-                    const href = bk.time ? googleUrlFor(w, bk) : undefined;
-                    const inner = (
-                      <>
-                        {bk.label && <span>{bk.label}</span>}
-                        {bk.time && <span className="t">{bk.time}</span>}
-                      </>
-                    );
-                    return href ? (
-                      <a
-                        key={`${w.start}-${bk.from}`}
-                        className={`${cls} link`}
-                        style={style}
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={`Agregar "${bk.label}" a Google Calendar`}
-                      >
-                        {inner}
-                      </a>
-                    ) : (
-                      <div key={`${w.start}-${bk.from}`} className={cls} style={style}>
-                        {inner}
-                      </div>
-                    );
-                  })}
+          <div className="split">
+            <div className="split-left">
+              <div className="sec-head">
+                <div className="roman">I</div>
+                <div>
+                  <h2>
+                    Una escuela, tres fases, <em>una final</em>.
+                  </h2>
+                  <p>
+                    Una semana de escuela, tres fases de trabajo con un checkpoint
+                    por semana, y la Gran final el viernes 30 en 0+Infinito.
+                  </p>
                 </div>
-              );
-            })}
-          </div>
+              </div>
 
-          <div className="timeline">
-            {phases.map((p) => (
-              <article className="phase" key={p.title}>
-                <div className="head">{p.range}</div>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-                <ul>
-                  {p.items.map((it) => (
-                    <li key={it}>{it}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
+              <div className="phases">
+                {phases.map((p) => (
+                  <article className="phase" key={p.title}>
+                    <div className="head">
+                      <h3>{p.title}</h3>
+                      <span className="range">{p.range}</span>
+                    </div>
+                    <p>{p.desc}</p>
+                    <ul>
+                      {p.items.map((it) => (
+                        <li key={it}>{it}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="split-right">
+              <div className="cal-actions">
+                <button type="button" className="btn-secondary" onClick={downloadICS}>
+                  Agregar todas las fechas a mi calendario
+                </button>
+                <span className="hint">
+                  Archivo .ics para Google, Apple u Outlook. Cada evento con
+                  horario también se agrega con un clic.
+                </span>
+              </div>
+
+              <div className="calendar" aria-label="Calendario del evento">
+                {weeks.map((w) => {
+                  const days = weekDays(w.start);
+                  return (
+                    <div className="week" key={w.start}>
+                      {days.map((d) => (
+                        <div className={`day${d.weekend ? " wk" : ""}`} key={d.iso}>
+                          {d.wd}
+                          <b>{d.n}</b>
+                        </div>
+                      ))}
+                      {w.blocks.map((bk) => {
+                        const cls = `block ${bk.kind}${bk.from === 0 ? " first" : ""}`;
+                        const style = { gridColumn: `${bk.from + 1} / ${bk.to + 2}` };
+                        const href = bk.time ? googleUrlFor(w, bk) : undefined;
+                        const inner = (
+                          <>
+                            {bk.label && <span>{bk.label}</span>}
+                            {bk.time && <span className="t">{bk.time}</span>}
+                          </>
+                        );
+                        return href ? (
+                          <a
+                            key={`${w.start}-${bk.from}`}
+                            className={`${cls} link`}
+                            style={style}
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={`Agregar "${bk.label}" a Google Calendar`}
+                          >
+                            {inner}
+                          </a>
+                        ) : (
+                          <div key={`${w.start}-${bk.from}`} className={cls} style={style}>
+                            {inner}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
 
