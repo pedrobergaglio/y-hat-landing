@@ -367,8 +367,8 @@
 @media (min-width: 1200px) {
   .investigathon-root .split { grid-template-columns: minmax(380px, 5fr) 8fr; gap: 56px; align-items: start; }
   .investigathon-root .split-right { order: 0; }
-  .investigathon-root .split .sec-head { grid-template-columns: 1fr; gap: 6px; }
-  .investigathon-root .split .sec-head .roman { font-size: 34px; padding-top: 0; }
+  .investigathon-root .split .sec-head { grid-template-columns: 44px 1fr; gap: 0 14px; align-items: start; }
+  .investigathon-root .split .sec-head .roman { font-size: 32px; line-height: 1.5; padding-top: 0; }
   .investigathon-root .split .sec-head h2 { font-size: clamp(34px, 3vw, 46px); }
   .investigathon-root .split .sec-head p { font-size: 17px; margin-top: 14px; }
 }
