@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import data from "@/data/investigathon.json";
+import HeroField from "./hero-field";
 
 /* ---------- constants ---------- */
 
@@ -329,6 +330,7 @@ export default function InvestigathonPage() {
       <div className="wrap">
         {/* HERO */}
         <section className="hero" id="top">
+          <HeroField />
           <div className="masthead">
             <div className="brand">
               {/* eslint-disable-next-line @next/next/no-img-element */}

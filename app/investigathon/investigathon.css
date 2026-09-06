@@ -121,6 +121,20 @@
 /* HERO: publication masthead. Title block on the left, metadata column
    on the right, separated by a hairline like a paper header. */
 .investigathon-root .hero { position: relative; padding: 48px 0 96px; }
+.investigathon-root .hero > * { position: relative; z-index: 1; }
+/* WebGPU point field, full-bleed behind the hero. Fades in once the first
+   frame is drawn; stays invisible when WebGPU is unavailable. */
+.investigathon-root .hero-field {
+  position: absolute; z-index: 0 !important;
+  top: 0; bottom: 0; left: 50%;
+  width: 100vw; height: 100%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1.6s ease;
+  pointer-events: none;
+  display: block;
+}
+.investigathon-root .hero-field.on { opacity: 1; }
 .investigathon-root .masthead {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding-bottom: 18px;
