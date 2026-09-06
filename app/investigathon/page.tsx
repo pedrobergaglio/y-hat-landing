@@ -312,7 +312,7 @@ export default function InvestigathonPage() {
           </a>
           <nav className="links" aria-label="Secciones">
             <a href="#fechas">Fechas</a>
-            <a href="#tracks">Los problemas</a>
+            <a href="#tracks">Tracks</a>
             <a href="#faq">FAQ</a>
           </nav>
           <span className="edition">{meta.edition} · Octubre 2026 · FCEN, UBA</span>

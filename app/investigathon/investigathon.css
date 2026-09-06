@@ -570,6 +570,14 @@
   .investigathon-root .closing .actions { margin-top: 24px; }
   .investigathon-root footer { padding: 18px 0 20px; }
   .investigathon-root section.sec#fechas .sec-head p { display: none; }
+  /* Tracks: four rows must fit without inner scroll */
+  .investigathon-root section.sec#tracks .sec-head { margin-bottom: 1.2rem; }
+  .investigathon-root section.sec#tracks .sec-head p { display: none; }
+  .investigathon-root section.sec#tracks .track { grid-template-columns: 60px 250px 1fr; padding: 15px 14px 15px 0; gap: 8px 28px; }
+  .investigathon-root section.sec#tracks .track h3 { font-size: 26px; }
+  .investigathon-root section.sec#tracks .track .lab { margin-top: 4px; font-size: 15px; }
+  .investigathon-root section.sec#tracks .track .ord { font-size: 30px; padding-top: 4px; }
+  .investigathon-root section.sec#tracks .track .desc { font-size: 15.5px; line-height: 1.5; max-width: none; }
   .investigathon-root section.sec#fechas .sec-head { margin-bottom: 24px; }
   .investigathon-root section.sec#fechas .phase { padding: 11px 0; }
   .investigathon-root section.sec#fechas .phase > p { font-size: 15px; margin-top: 4px; }
