@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildEvents, googleCalendarUrl, toICS } from "./calendar-export.ts";
+import { buildEvents, googleCalendarUrl, googleSubscribeUrl, toICS } from "./calendar-export.ts";
 
 const weeks = [
   {
@@ -65,4 +65,10 @@ test("toICS: valid VCALENDAR with one VEVENT per event, CRLF lines, escaped comm
   assert.match(ics, /LOCATION:0\+Infinito\\, Ciudad Universitaria\\, Buenos Aires/);
   assert.match(ics, /UID:[^\r\n]+@somosyhat\.com/);
   assert.ok(!/(^|[^\r])\n/.test(ics), "every line break is CRLF");
+});
+
+test("googleSubscribeUrl: cid points at the public .ics", () => {
+  const url = new URL(googleSubscribeUrl("https://somosyhat.com/investigathon/investigathon-2026.ics"));
+  assert.equal(url.hostname, "calendar.google.com");
+  assert.equal(url.searchParams.get("cid"), "https://somosyhat.com/investigathon/investigathon-2026.ics");
 });

@@ -68,6 +68,11 @@ export function buildEvents(weeks: Week[], meta: EventMeta): CalEvent[] {
   return out;
 }
 
+/** "Add this calendar" flow in Google Calendar for a public .ics URL. */
+export function googleSubscribeUrl(icsUrl: string): string {
+  return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(icsUrl)}`;
+}
+
 export function googleCalendarUrl(e: CalEvent): string {
   const p = new URLSearchParams({
     action: "TEMPLATE",

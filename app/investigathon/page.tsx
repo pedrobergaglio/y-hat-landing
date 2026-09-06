@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import data from "@/data/investigathon.json";
 import HeroField from "./hero-field";
-import { buildEvents, googleCalendarUrl, toICS } from "./calendar-export";
+import { buildEvents, googleCalendarUrl, googleSubscribeUrl } from "./calendar-export";
 
 /* ---------- constants ---------- */
 
@@ -71,6 +71,8 @@ type Block = { from: number; to: number; kind: string; label?: string; time?: st
 type Week = { start: string; blocks: Block[] };
 
 const SITE_URL = "https://somosyhat.com/investigathon";
+const ICS_PATH = "/investigathon/investigathon-2026.ics";
+const ICS_URL = `https://somosyhat.com${ICS_PATH}`;
 
 /* ---------- page ---------- */
 
@@ -88,18 +90,6 @@ export default function InvestigathonPage() {
   const googleUrlFor = (w: Week, bk: Block) => {
     const [ev] = buildEvents([{ start: w.start, blocks: [bk] }], eventMeta);
     return ev ? googleCalendarUrl(ev) : undefined;
-  };
-  const downloadICS = () => {
-    const ics = toICS(buildEvents(weeks, eventMeta), eventMeta);
-    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "investigathon-2026.ics";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const [activeIdx, setActiveIdx] = useState(0);
@@ -433,13 +423,17 @@ export default function InvestigathonPage() {
               </div>
 
               <div className="cal-actions">
-                <button type="button" className="btn-secondary" onClick={downloadICS}>
-                  Agregar todas las fechas a mi calendario
-                </button>
-                <span className="hint">
-                  Archivo .ics para Google, Apple u Outlook. Cada evento con
-                  horario también se agrega con un clic.
-                </span>
+                <a
+                  href={googleSubscribeUrl(ICS_URL)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary small"
+                >
+                  Agregar a Google Calendar
+                </a>
+                <a href={ICS_PATH} download className="btn-secondary small">
+                  Apple Calendar / Outlook
+                </a>
               </div>
             </div>
           </div>
