@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Investigathon 2026",
-    "edition": "Primera Edición",
+    "edition": "Segunda edición",
     "subtitle": "Pensar",
     "lede": "Competencia de investigación en la que equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.",
     "contactEmail": "yhat.arg@gmail.com",
@@ -27,63 +27,62 @@
   "facts": [
     {
       "label": "Cuándo",
-      "value": "16 al 30",
-      "valueEm": "de octubre",
-      "hint": "2026 · tres fases en tres semanas"
+      "value": "16 al 30 de octubre",
+      "hint": "Escuela desde el lunes 12 · Gran final el viernes 30"
     },
     {
       "label": "Dónde",
-      "valueEm": "0+Infinito",
+      "value": "0+Infinito",
       "hint": "Exactas, UBA · Ciudad Universitaria"
     },
     {
       "label": "Equipos",
-      "value": "3 o 4",
-      "valueEm": "personas",
+      "value": "3 o 4 personas",
       "hint": "Una inscripción por grupo"
     },
     {
       "label": "Tracks",
-      "value": "4",
-      "valueEm": "laboratorios",
+      "value": "4 laboratorios",
       "hint": "Cada laboratorio es jurado de su track"
     }
   ],
   "phases": [
     {
-      "week": "Semana 1",
-      "date": "Viernes 16 de octubre",
-      "dateISO": "2026-10-16",
-      "title": "Apertura",
-      "desc": "Cada laboratorio presenta su problema. Los equipos conocen a lxs investigadorxs que los van a acompañar, eligen enfoque y arman el plan de trabajo.",
+      "title": "Escuela Investigathón",
+      "range": "Lunes 12 a jueves 15",
+      "desc": "Cuatro días de preparación antes de competir: cómo se investiga, cómo se lee un paper, cómo se arma un plan de trabajo y qué espera cada laboratorio.",
       "items": [
-        "Presentación de los cuatro problemas",
-        "Encuentro con cada laboratorio",
-        "Plan de trabajo del equipo"
+        "Talleres de método",
+        "Presentación de los laboratorios",
+        "Armado de equipos"
       ]
     },
     {
-      "week": "Semana 2",
-      "date": "Viernes 23 de octubre",
-      "dateISO": "2026-10-23",
-      "title": "Investigación",
-      "desc": "Trabajo acompañado: lectura, experimentos y datos. Checkpoint intermedio con el laboratorio para ajustar el rumbo.",
+      "title": "Fase 1",
+      "range": "Viernes 16 a domingo 18",
+      "desc": "Apertura el viernes a la mañana: se presentan los cuatro problemas y cada equipo arranca con el suyo junto a lxs investigadorxs.",
       "items": [
-        "Mentorías con investigadorxs",
-        "Checkpoint de avance",
-        "Talleres y charlas"
+        "Apertura, viernes 09:30 a 14:15",
+        "Primer fin de semana de trabajo"
       ]
     },
     {
-      "week": "Semana 3",
-      "date": "Viernes 30 de octubre",
-      "dateISO": "2026-10-30",
-      "title": "Presentación",
-      "desc": "Entrega final y defensa de los resultados frente al laboratorio que propuso el problema.",
+      "title": "Fase 2",
+      "range": "Lunes 19 a domingo 25",
+      "desc": "Semana de trabajo acompañado. Arranca con el primer checkpoint frente al laboratorio para ajustar el rumbo.",
       "items": [
-        "Entrega de resultados",
-        "Presentación ante el jurado",
-        "Cierre"
+        "1er checkpoint, lunes 15:00 a 17:00",
+        "Mentorías con investigadorxs"
+      ]
+    },
+    {
+      "title": "Fase 3",
+      "range": "Lunes 26 a viernes 30",
+      "desc": "Segundo checkpoint, cierre de resultados, simulacro de pósters el jueves y Gran final el viernes frente a los jurados.",
+      "items": [
+        "2do checkpoint, lunes 15:00 a 17:00",
+        "Simulacro de pósters, jueves 18:00 a 20:00",
+        "Gran final, viernes 14:00 a 21:00"
       ]
     }
   ],
@@ -140,5 +139,88 @@
       "q": "¿Cuánto cuesta participar?",
       "a": "Es gratis. El Investigathon es posible gracias al trabajo de los laboratorios y al financiamiento de nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
     }
-  ]
+  ],
+  "schedule": {
+    "weeks": [
+      {
+        "start": "2026-10-12",
+        "blocks": [
+          {
+            "from": 0,
+            "to": 3,
+            "kind": "escuela",
+            "label": "Escuela Investigathón"
+          },
+          {
+            "from": 4,
+            "to": 4,
+            "kind": "hito",
+            "label": "Apertura",
+            "time": "09:30 a 14:15"
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "kind": "trabajo",
+            "label": "Trabajo · Fase 1"
+          }
+        ]
+      },
+      {
+        "start": "2026-10-19",
+        "blocks": [
+          {
+            "from": 0,
+            "to": 0,
+            "kind": "checkpoint",
+            "label": "1er checkpoint",
+            "time": "15:00 a 17:00"
+          },
+          {
+            "from": 1,
+            "to": 6,
+            "kind": "trabajo",
+            "label": "Trabajo · Fase 2"
+          }
+        ]
+      },
+      {
+        "start": "2026-10-26",
+        "blocks": [
+          {
+            "from": 0,
+            "to": 0,
+            "kind": "checkpoint",
+            "label": "2do checkpoint",
+            "time": "15:00 a 17:00"
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "kind": "trabajo",
+            "label": "Trabajo · Fase 3"
+          },
+          {
+            "from": 3,
+            "to": 3,
+            "kind": "hito",
+            "label": "Simulacro de pósters",
+            "time": "18:00 a 20:00"
+          },
+          {
+            "from": 4,
+            "to": 4,
+            "kind": "final",
+            "label": "Gran final",
+            "time": "14:00 a 21:00"
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "kind": "off"
+          }
+        ]
+      }
+    ]
+  }
 }

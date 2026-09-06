@@ -44,31 +44,15 @@ function smoothScrollTo(targetY: number, duration: number) {
 
 /* ---------- calendar ---------- */
 
-const WEEKDAYS = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"];
+const WEEKDAYS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
 
-type Day = { iso: string; n: number; wd: string; weekend: boolean; phase?: string };
-
-function buildDays(
-  startISO: string,
-  endISO: string,
-  phases: { dateISO: string; title: string }[]
-): Day[] {
-  const out: Day[] = [];
+function weekDays(startISO: string) {
   const d = new Date(`${startISO}T12:00:00`);
-  const end = new Date(`${endISO}T12:00:00`);
-  while (d <= end) {
-    const iso = d.toISOString().slice(0, 10);
-    const dow = d.getDay();
-    out.push({
-      iso,
-      n: d.getDate(),
-      wd: WEEKDAYS[dow],
-      weekend: dow === 0 || dow === 6,
-      phase: phases.find((p) => p.dateISO === iso)?.title,
-    });
-    d.setDate(d.getDate() + 1);
-  }
-  return out;
+  return Array.from({ length: 7 }, (_, i) => {
+    const day = new Date(d);
+    day.setDate(d.getDate() + i);
+    return { n: day.getDate(), wd: WEEKDAYS[i], weekend: i >= 5, iso: day.toISOString().slice(0, 10) };
+  });
 }
 
 /* ---------- types ---------- */
@@ -80,20 +64,10 @@ type Track = {
   desc: string;
   pending?: boolean;
 };
-type Fact = {
-  label: string;
-  value?: string;
-  valueEm?: string;
-  hint: string;
-};
-type Phase = {
-  week: string;
-  date: string;
-  dateISO: string;
-  title: string;
-  desc: string;
-  items: string[];
-};
+type Fact = { label: string; value: string; hint: string };
+type Phase = { title: string; range: string; desc: string; items: string[] };
+type Block = { from: number; to: number; kind: string; label?: string; time?: string };
+type Week = { start: string; blocks: Block[] };
 
 /* ---------- page ---------- */
 
@@ -102,12 +76,12 @@ export default function InvestigathonPage() {
   const facts = data.facts as Fact[];
   const tracks = data.tracks as Track[];
   const phases = data.phases as Phase[];
+  const weeks = data.schedule.weeks as Week[];
 
   const [activeIdx, setActiveIdx] = useState(0);
   const currentIndexRef = useRef(0);
   const lockedRef = useRef(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
-  const stickyRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
   const goTo = useCallback((index: number) => {
@@ -124,26 +98,6 @@ export default function InvestigathonPage() {
     setTimeout(() => {
       lockedRef.current = false;
     }, LOCK_HOLD);
-  }, []);
-
-  /* Sticky CTA visibility */
-  useEffect(() => {
-    const sticky = stickyRef.current;
-    if (!sticky) return;
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (
-        y > 700 &&
-        y < document.body.scrollHeight - window.innerHeight - 500
-      ) {
-        sticky.classList.add("show");
-      } else {
-        sticky.classList.remove("show");
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   /* Wheel-hijack snap navigation (desktop, no reduced motion) */
@@ -173,7 +127,7 @@ export default function InvestigathonPage() {
       const section = sections[currentIndexRef.current];
       if (!section) return "none";
       const inner = section.querySelector<HTMLElement>(
-        ".tracks, .faq"
+        ".sec-body, .tracks, .faq"
       );
       if (!inner) return "none";
       if (inner.scrollHeight <= inner.clientHeight + 1) return "none";
@@ -301,47 +255,38 @@ export default function InvestigathonPage() {
   }, [goTo]);
 
   const primaryHref = meta.ctas.primary.href;
-  const days = buildDays(meta.dates.start, meta.dates.end, phases);
 
   return (
     <div ref={rootRef}>
-      {/* NAV (mobile only in snap mode) */}
-      <nav className="top">
-        <a href="#top" className="brand">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
-          <span>Investigathon</span>
-        </a>
-        <span className="links">
-          <a href="#fechas">Fechas</a>
-          <a href="#tracks">Tracks</a>
-          <a href="#faq">FAQ</a>
-        </span>
-        <a
-          href={primaryHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cta"
-        >
-          Inscribirme
-        </a>
-      </nav>
+      {/* TOP BAR */}
+      <header className="topbar">
+        <div className="in">
+          <a href="#top" className="brand">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
+            <span>Y-Hat</span>
+          </a>
+          <nav className="links" aria-label="Secciones">
+            <a href="#fechas">Fechas</a>
+            <a href="#tracks">Los problemas</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <span className="edition">{meta.edition} · Octubre 2026 · FCEN, UBA</span>
+          <a
+            href={primaryHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cta"
+          >
+            Inscribirme
+          </a>
+        </div>
+      </header>
 
       <div className="wrap">
         {/* HERO */}
         <section className="hero" id="top">
           <HeroField />
-          <div className="masthead">
-            <div className="brand">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hackathon/logo-yhat.svg" alt="Y-Hat" />
-              <span>Y-Hat</span>
-            </div>
-            <span className="edition">
-              {meta.edition} · Octubre 2026 · FCEN, UBA
-            </span>
-          </div>
-
           <div className="grid">
             <div>
               <h1>Investigathon</h1>
@@ -374,8 +319,7 @@ export default function InvestigathonPage() {
                 <div className="row" key={f.label}>
                   <dt>{f.label}</dt>
                   <dd>
-                    {f.value ? <>{f.value} </> : null}
-                    {f.valueEm ? <em>{f.valueEm}</em> : null}
+                    {f.value}
                     <small>{f.hint}</small>
                   </dd>
                 </div>
@@ -393,33 +337,43 @@ export default function InvestigathonPage() {
                 Tres fases <em>en tres semanas</em>.
               </h2>
               <p>
-                Del viernes 16 al viernes 30 de octubre, con un encuentro por
-                semana en 0+Infinito y trabajo acompañado entre medio.
+                Una semana de escuela, tres fases de trabajo con un checkpoint
+                por semana, y la Gran final el viernes 30 en 0+Infinito.
               </p>
             </div>
           </div>
 
           <div className="sec-body">
           <div className="calendar" aria-label="Calendario del evento">
-            {days.map((d) => (
-              <div
-                key={d.iso}
-                className={`day${d.weekend ? " weekend" : ""}${d.phase ? " event" : ""}`}
-              >
-                {d.phase && <span className="tag">{d.phase}</span>}
-                <span className="wd">{d.wd}</span>
-                <span className="n">{d.n}</span>
-              </div>
-            ))}
+            {weeks.map((w) => {
+              const days = weekDays(w.start);
+              return (
+                <div className="week" key={w.start}>
+                  {days.map((d) => (
+                    <div className={`day${d.weekend ? " wk" : ""}`} key={d.iso}>
+                      {d.wd}
+                      <b>{d.n}</b>
+                    </div>
+                  ))}
+                  {w.blocks.map((bk) => (
+                    <div
+                      key={`${w.start}-${bk.from}`}
+                      className={`block ${bk.kind}${bk.from === 0 ? " first" : ""}`}
+                      style={{ gridColumn: `${bk.from + 1} / ${bk.to + 2}` }}
+                    >
+                      {bk.label && <span>{bk.label}</span>}
+                      {bk.time && <span className="t">{bk.time}</span>}
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
           </div>
 
           <div className="timeline">
             {phases.map((p) => (
-              <article className="phase" key={p.dateISO}>
-                <div className="head">
-                  <span className="week">{p.week}</span>
-                  <time dateTime={p.dateISO}>{p.date}</time>
-                </div>
+              <article className="phase" key={p.title}>
+                <div className="head">{p.range}</div>
                 <h3>{p.title}</h3>
                 <p>{p.desc}</p>
                 <ul>
@@ -576,24 +530,6 @@ export default function InvestigathonPage() {
           </div>
         </div>
       </footer>
-
-      {/* STICKY CTA */}
-      <div
-        ref={stickyRef}
-        className="sticky-cta"
-        role="region"
-        aria-label="Inscripción"
-      >
-        <span>Inscripciones abiertas, una por grupo</span>
-        <a
-          href={primaryHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Inscribirme
-        </a>
-      </div>
 
       {/* SIDE NAV (desktop snap only; hidden via CSS on mobile) */}
       <nav className="snap-nav" aria-label="Navegación por secciones">

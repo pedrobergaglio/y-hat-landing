@@ -1,5 +1,21 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import "./investigathon.css";
+
+const display = Newsreader({
+  variable: "--font-display",
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const text = IBM_Plex_Sans({
+  variable: "--font-text",
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Investigathon 2026 · Y-Hat",
@@ -8,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Investigathon 2026 · Y-Hat",
     description:
-      "Primera Edición · 16 al 30 de octubre · 0+Infinito · Exactas, UBA",
+      "Segunda edición · 16 al 30 de octubre · 0+Infinito · Exactas, UBA",
     type: "website",
   },
 };
@@ -25,7 +41,9 @@ export default function InvestigathonLayout({
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: initScript }} />
-      <div className="investigathon-root">{children}</div>
+      <div className={`investigathon-root ${display.variable} ${text.variable}`}>
+        {children}
+      </div>
     </>
   );
 }
