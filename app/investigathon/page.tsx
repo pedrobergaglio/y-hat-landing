@@ -358,7 +358,7 @@ export default function InvestigathonPage() {
             <div className="roman">I</div>
             <div>
               <h2>
-                Tres fases <em>en tres semanas</em>.
+                Una escuela, tres fases de trabajo, <em>una final</em>.
               </h2>
               <p>
                 Una semana de escuela, tres fases de trabajo con un checkpoint
