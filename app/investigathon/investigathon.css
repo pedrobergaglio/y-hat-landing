@@ -380,10 +380,16 @@
   transition: background .2s;
 }
 @media (min-width: 880px) {
+  /* narrow desktop: numeral | title + description stacked */
   .investigathon-root .track {
-    grid-template-columns: 72px 300px 1fr;
+    grid-template-columns: 72px 1fr;
     padding: 30px 14px 30px 0;
   }
+  .investigathon-root .track .desc { grid-column: 2; margin-top: 4px; }
+}
+@media (min-width: 1200px) {
+  .investigathon-root .track { grid-template-columns: 72px 300px 1fr; }
+  .investigathon-root .track .desc { grid-column: auto; margin-top: 0; }
 }
 .investigathon-root .track:hover { background: var(--iv-fill); }
 .investigathon-root .track .ord {
