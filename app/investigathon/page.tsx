@@ -161,6 +161,28 @@ export default function InvestigathonPage() {
     // positioned, and would be off by the top bar's height.
     const docTop = (el: HTMLElement) =>
       el.getBoundingClientRect().top + window.scrollY;
+    // The index the viewport is actually on. The stored index goes stale
+    // when the user drags the scrollbar or lands on a hash.
+    function nearestIndex() {
+      let best = 0;
+      let bestDist = Infinity;
+      sections.forEach((sec, i) => {
+        const d = Math.abs(docTop(sec) - window.scrollY);
+        if (d < bestDist) {
+          bestDist = d;
+          best = i;
+        }
+      });
+      return best;
+    }
+    function syncIndex() {
+      const i = nearestIndex();
+      if (i !== currentIndexRef.current) {
+        currentIndexRef.current = i;
+        setActiveIdx(i);
+      }
+      return i;
+    }
     function isPastLastSnap() {
       if (!sections.length) return false;
       return window.scrollY > docTop(sections[sections.length - 1]) + 40;
@@ -192,7 +214,7 @@ export default function InvestigathonPage() {
       const now = performance.now();
       if (now - lastWheelTime < WHEEL_COOLDOWN) return;
       lastWheelTime = now;
-      goTo(currentIndexRef.current + (e.deltaY > 0 ? 1 : -1));
+      goTo(syncIndex() + (e.deltaY > 0 ? 1 : -1));
     };
 
     const onKey = (e: KeyboardEvent) => {
@@ -207,10 +229,10 @@ export default function InvestigathonPage() {
         return;
       if (["ArrowDown", "PageDown", " "].includes(e.key)) {
         e.preventDefault();
-        goTo(currentIndexRef.current + 1);
+        goTo(syncIndex() + 1);
       } else if (["ArrowUp", "PageUp"].includes(e.key)) {
         e.preventDefault();
-        goTo(currentIndexRef.current - 1);
+        goTo(syncIndex() - 1);
       } else if (e.key === "Home") {
         e.preventDefault();
         goTo(0);
@@ -233,7 +255,7 @@ export default function InvestigathonPage() {
       if (!isDesktop()) return;
       const diff = touchStartY - e.changedTouches[0].clientY;
       if (Math.abs(diff) < 30) return;
-      goTo(currentIndexRef.current + (diff > 0 ? 1 : -1));
+      goTo(syncIndex() + (diff > 0 ? 1 : -1));
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
