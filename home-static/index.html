@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ŷ-Hat · Comunidad de innovación y emprendimiento de Exactas, UBA</title>
+<meta name="description" content="Ŷ-Hat es la comunidad de innovación y emprendimiento de Exactas, UBA. El punto de encuentro entre la comunidad estudiantil y el ecosistema de innovación.">
+<link rel="icon" type="image/x-icon" href="assets/brand/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<meta property="og:title" content="Ŷ-Hat · El punto de encuentro entre la comunidad estudiantil y el ecosistema de innovación">
+<meta property="og:description" content="Comunidad de innovación y emprendimiento de Exactas, UBA.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://somosyhat.com/">
+<meta property="og:image" content="https://somosyhat.com/og.png">
+<meta property="og:image:secure_url" content="https://somosyhat.com/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="900">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Radley:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#020F16;
+    --accent:#43D3B2;
+    --offwhite:#F4F4F4;
+    --legacy:#092634;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{background:var(--bg);color:var(--offwhite);}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:rgba(67,211,178,0.28);color:#fff;}
+  a{color:inherit;}
+
+  /* ===================== STRIP STICKY (hackathon, persistente) ===================== */
+  .strip{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:60;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.65rem;
+    flex-wrap:wrap;
+    padding:.62rem 1.1rem;
+    background:linear-gradient(90deg, rgba(4,18,24,0.82), rgba(7,32,40,0.86), rgba(4,18,24,0.82));
+    border-bottom:1px solid rgba(67,211,178,0.22);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    font-size:clamp(.72rem, .68rem + .3vw, .86rem);
+    letter-spacing:.01em;
+  }
+  .strip .pulse{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 0 rgba(67,211,178,0.6);
+    animation:pulse 2.4s ease-out infinite;
+    flex:0 0 auto;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(67,211,178,0.55);}
+    70%{box-shadow:0 0 0 9px rgba(67,211,178,0);}
+    100%{box-shadow:0 0 0 0 rgba(67,211,178,0);}
+  }
+  .strip .label{color:rgba(244,244,244,0.86);}
+  .strip .label b{color:var(--offwhite);font-weight:600;}
+  .strip .sep{color:rgba(67,211,178,0.5);}
+  .strip .ver{
+    display:inline-flex;align-items:center;gap:.2rem;
+    color:var(--accent);
+    text-decoration:none;
+    font-weight:500;
+    font-size:.9em;
+    padding:.04rem .42rem;
+    border:1px solid rgba(67,211,178,0.3);
+    border-radius:999px;
+    transition:background .2s ease, border-color .2s ease;
+    white-space:nowrap;
+  }
+  .strip .ver:hover{background:rgba(67,211,178,0.14);border-color:rgba(67,211,178,0.75);}
+  .strip .ver .arrow{transition:transform .2s ease;}
+  .strip .ver:hover .arrow{transform:translateX(2px);}
+
+  /* ===================== HERO (animación bloqueada) ===================== */
+  .hero{
+    position:relative;
+    width:100%;
+    height:100svh;
+    min-height:580px;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 50% 18%, rgba(67,211,178,0.10) 0%, rgba(9,38,52,0.32) 38%, rgba(2,15,22,0) 70%),
+      var(--bg);
+  }
+  #net{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+    z-index:1;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:
+      radial-gradient(140% 100% at 50% 42%, rgba(2,15,22,0) 46%, rgba(2,15,22,0.55) 82%, rgba(2,15,22,0.9) 100%),
+      linear-gradient(180deg, rgba(2,15,22,0.55) 0%, rgba(2,15,22,0) 22%, rgba(2,15,22,0) 70%, rgba(2,15,22,0.95) 100%);
+  }
+  .content{
+    position:absolute;
+    inset:0;
+    z-index:5;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6rem 1.4rem 5rem;
+    pointer-events:none;
+  }
+  .yhat{
+    font-family:'Radley',Georgia,serif;
+    color:var(--offwhite);
+    font-size:clamp(5.5rem, 4rem + 16vw, 14rem);
+    line-height:.9;
+    font-weight:400;
+    text-shadow:
+      0 0 22px rgba(67,211,178,0.45),
+      0 0 60px rgba(67,211,178,0.28),
+      0 0 120px rgba(67,211,178,0.16);
+    margin-bottom:1.3rem;
+    user-select:none;
+  }
+  .headline{
+    font-family:'Radley',Georgia,serif;
+    font-weight:400;
+    color:var(--offwhite);
+    font-size:clamp(1.5rem, 1.1rem + 2.4vw, 2.9rem);
+    line-height:1.2;
+    max-width:34ch;
+    text-wrap:balance;
+    text-shadow:0 1px 30px rgba(2,15,22,0.6);
+  }
+  .subhead{
+    margin-top:1.2rem;
+    font-family:'Radley',Georgia,serif;
+    font-weight:400;
+    color:rgba(244,244,244,0.5);
+    font-size:clamp(.98rem, .9rem + .5vw, 1.18rem);
+    letter-spacing:.005em;
+    max-width:44ch;
+  }
+  .hero-cta{
+    pointer-events:auto;
+    display:inline-flex;align-items:center;gap:.5rem;
+    margin-top:2.1rem;
+    font-family:'Inter',sans-serif;font-weight:600;
+    font-size:clamp(.92rem,.86rem + .3vw,1.05rem);
+    text-decoration:none;
+    color:#04221b;
+    background:var(--accent);
+    padding:.9rem 1.8rem;
+    border-radius:999px;
+    box-shadow:0 0 32px rgba(67,211,178,0.35);
+    transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .hero-cta:hover{transform:translateY(-2px);background:#5ee0c1;box-shadow:0 0 44px rgba(67,211,178,0.5);}
+  .hero-cta .ar{transition:transform .2s ease;}
+  .hero-cta:hover .ar{transform:translateX(3px);}
+
+  @media (max-width:600px){
+    .content{padding:5.5rem 1.2rem 4.5rem;}
+    .yhat{margin-bottom:1rem;}
+    .strip{font-size:.74rem;gap:.4rem .55rem;padding:.55rem .9rem;}
+    .strip .ver{padding:.04rem .5rem;}
+    .strip .venue{display:none;}
+    .hero-cta{margin-top:1.7rem;padding:.8rem 1.4rem;font-size:.9rem;text-align:center;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .strip .pulse{animation:none;}
+  }
+
+  /* ===================== LAYOUT COMPARTIDO ===================== */
+  .wrap{max-width:1140px;margin:0 auto;padding:0 1.5rem;}
+  .section{position:relative;z-index:1;padding:clamp(4.5rem,9vw,8.5rem) 0;}
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-size:.72rem;
+    font-weight:600;
+    color:var(--accent);
+    margin-bottom:1.15rem;
+  }
+  .s-title{
+    font-family:'Radley',Georgia,serif;
+    font-weight:400;
+    color:var(--offwhite);
+    font-size:clamp(1.85rem,1.2rem + 2.6vw,3rem);
+    line-height:1.14;
+    letter-spacing:-.01em;
+    max-width:24ch;
+  }
+  .lead{
+    font-family:'Radley',Georgia,serif;
+    color:rgba(244,244,244,0.78);
+    font-size:clamp(1.05rem,.95rem + .55vw,1.3rem);
+    line-height:1.62;
+    max-width:62ch;
+  }
+  .muted{color:rgba(244,244,244,0.5);}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ===================== STATS (3) ===================== */
+  .stats-band{
+    border-top:1px solid rgba(67,211,178,0.12);
+    border-bottom:1px solid rgba(67,211,178,0.12);
+    background:linear-gradient(180deg, rgba(67,211,178,0.03), rgba(2,15,22,0));
+  }
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.5rem;
+    padding:clamp(2.6rem,5vw,3.8rem) 0;
+  }
+  .stat{text-align:center;}
+  .stat .num{
+    font-family:'Radley',Georgia,serif;
+    font-size:clamp(2.1rem,1.4rem + 2.4vw,3.3rem);
+    line-height:1;
+    color:var(--offwhite);
+  }
+  .stat .num span{color:var(--accent);}
+  .stat .lab{
+    margin-top:.6rem;
+    font-family:'Inter',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.7rem;
+    font-weight:500;
+    color:rgba(244,244,244,0.5);
+  }
+  @media (max-width:520px){
+    .stats{gap:.7rem;}
+    .stat .lab{letter-spacing:.06em;font-size:.62rem;}
+  }
+
+  /* ===================== ABOUT / MANIFIESTO ===================== */
+  .about .manifesto{
+    font-family:'Radley',Georgia,serif;
+    font-size:clamp(2rem,1.3rem + 3vw,3.5rem);
+    line-height:1.12;
+    letter-spacing:-.015em;
+    color:var(--offwhite);
+    max-width:18ch;
+    margin-bottom:2rem;
+  }
+  .about .manifesto em{font-style:italic;color:var(--accent);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:clamp(2rem,5vw,5rem);
+    align-items:start;
+  }
+  .about .copy p + p{margin-top:1.1rem;}
+  .yhat-note{
+    margin-top:2rem;
+    font-family:'Inter',sans-serif;
+    font-size:.82rem;
+    line-height:1.6;
+    color:rgba(244,244,244,0.42);
+    border-left:2px solid rgba(67,211,178,0.35);
+    padding-left:1rem;
+    max-width:42ch;
+  }
+  .pillars{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:rgba(67,211,178,0.12);
+    border:1px solid rgba(67,211,178,0.12);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .pillar{
+    background:var(--bg);
+    padding:1.6rem 1.5rem;
+  }
+  .pillar h4{
+    font-family:'Radley',Georgia,serif;
+    font-weight:400;
+    font-size:1.2rem;
+    color:var(--offwhite);
+    margin-bottom:.5rem;
+  }
+  .pillar p{
+    font-family:'Inter',sans-serif;
+    font-size:.86rem;
+    line-height:1.55;
+    color:rgba(244,244,244,0.5);
+  }
+  @media (max-width:820px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .pillars{grid-template-columns:1fr;}
+  }
+
+  /* ===================== TRACK RECORD ===================== */
+  .track .head{margin-bottom:clamp(2.5rem,5vw,4rem);max-width:62ch;}
+  .track .head .lead{margin-top:1.2rem;}
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.4rem;
+  }
+  .card{
+    background:rgba(255,255,255,0.018);
+    border:1px solid rgba(67,211,178,0.12);
+    border-radius:18px;
+    overflow:hidden;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .card:hover{border-color:rgba(67,211,178,0.4);transform:translateY(-4px);}
+  .card .ph{
+    position:relative;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:var(--legacy);
+  }
+  .card .ph img{
+    width:100%;height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    filter:saturate(.92) contrast(1.02);
+  }
+  .card .ph::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(2,15,22,0) 55%, rgba(2,15,22,0.55) 100%);
+  }
+  .card .num-badge{
+    position:absolute;left:1rem;top:1rem;z-index:2;
+    font-family:'Inter',sans-serif;
+    font-size:.72rem;font-weight:600;
+    letter-spacing:.03em;
+    color:var(--bg);
+    background:var(--accent);
+    padding:.25rem .6rem;
+    border-radius:999px;
+  }
+  .card .body{padding:1.4rem 1.5rem 1.6rem;}
+  .card .meta{
+    font-family:'Inter',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-size:.68rem;
+    color:var(--accent);
+    margin-bottom:.55rem;
+  }
+  .card h3{
+    font-family:'Radley',Georgia,serif;
+    font-weight:400;
+    font-size:1.5rem;
+    color:var(--offwhite);
+    margin-bottom:.6rem;
+  }
+  .card p{
+    font-family:'Inter',sans-serif;
+    font-size:.88rem;
+    line-height:1.6;
+    color:rgba(244,244,244,0.55);
+  }
+  @media (max-width:860px){
+    .cards{grid-template-columns:1fr;max-width:420px;margin:0 auto;}
+  }
+
+  /* ===================== MARQUEES (logos + fotos) ===================== */
+  .marquee{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  }
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* fotos cíclicas */
+  .photo-marquee .p-track{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    width:max-content;
+    animation:marquee 70s linear infinite;
+  }
+  .photo-marquee:hover .p-track{animation-play-state:paused;}
+  .p-track figure{
+    flex:0 0 auto;
+    height:340px;
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--legacy);
+  }
+  .p-track img{
+    height:100%;width:auto;display:block;
+    object-fit:cover;
+    filter:saturate(.95) brightness(.95);
+  }
+  @media (max-width:600px){
+    .p-track figure{height:240px;}
+  }
+
+  /* logos */
+  .eco{padding-bottom:clamp(4.5rem,9vw,8rem);}
+  .eco .head{text-align:center;margin-bottom:clamp(2.4rem,5vw,3.4rem);}
+  .eco .head .s-title{margin:0 auto;}
+  .m-track{
+    display:flex;
+    align-items:center;
+    gap:clamp(.9rem,2vw,1.5rem);
+    width:max-content;
+    animation:marquee 50s linear infinite;
+  }
+  .marquee:hover .m-track{animation-play-state:paused;}
+  .m-track .chip{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;justify-content:center;
+    height:60px;padding:0 1.45rem;
+    background:#F4F4F4;
+    border-radius:12px;
+  }
+  .m-track .chip.dark{background:#0b2330;}
+  .m-track .chip img{
+    height:26px;width:auto;max-width:155px;
+    object-fit:contain;display:block;
+  }
+
+  /* ===================== CTA ===================== */
+  .cta{text-align:center;}
+  .cta .s-title{margin:0 auto 1.1rem;}
+  .cta .lead{margin:0 auto 2.2rem;}
+  .btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:'Inter',sans-serif;
+    font-size:.95rem;font-weight:600;
+    text-decoration:none;
+    padding:.85rem 1.6rem;
+    border-radius:999px;
+    transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn.primary{background:var(--accent);color:#04221b;}
+  .btn.primary:hover{transform:translateY(-2px);background:#5ee0c1;}
+  .btn.ghost{border:1px solid rgba(67,211,178,0.35);color:var(--offwhite);}
+  .btn.ghost:hover{border-color:var(--accent);background:rgba(67,211,178,0.1);}
+
+  /* ===================== FOOTER ===================== */
+  footer{
+    border-top:1px solid rgba(67,211,178,0.12);
+    padding:clamp(2.8rem,5vw,3.6rem) 0;
+  }
+  .foot{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1.5rem;flex-wrap:wrap;
+  }
+  .foot .brand{display:flex;align-items:center;gap:.85rem;}
+  .foot .brand .mark{
+    font-family:'Radley',Georgia,serif;
+    font-size:1.8rem;color:var(--offwhite);
+    text-shadow:0 0 18px rgba(67,211,178,0.4);
+  }
+  .foot .brand .txt{
+    font-family:'Inter',sans-serif;font-size:.8rem;line-height:1.5;
+    color:rgba(244,244,244,0.5);
+  }
+  .foot .links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+  .foot .links a{
+    font-family:'Inter',sans-serif;font-size:.85rem;
+    color:rgba(244,244,244,0.6);text-decoration:none;
+    transition:color .2s ease;
+  }
+  .foot .links a:hover{color:var(--accent);}
+  .foot .copy{
+    width:100%;
+    font-family:'Inter',sans-serif;font-size:.72rem;
+    color:rgba(244,244,244,0.32);
+    padding-top:1.4rem;margin-top:.4rem;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .m-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;}
+    .photo-marquee .p-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;}
+    .marquee{-webkit-mask-image:none;mask-image:none;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== STRIP STICKY ===================== -->
+  <div class="strip">
+    <span class="pulse" aria-hidden="true"></span>
+    <span class="label"><b>Hackathón de Negocios</b> <span class="sep">·</span> 5 al 7 de junio<span class="venue"> <span class="sep">·</span> 0+Infinito, Exactas UBA</span></span>
+    <a class="ver" href="https://somosyhat.com/hackathon">Ver <span class="arrow" aria-hidden="true">&rarr;</span></a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <canvas id="net" aria-hidden="true"></canvas>
+    <div class="content">
+      <div class="yhat" aria-hidden="true">Ŷ</div>
+      <h1 class="headline">El punto de encuentro entre la comunidad estudiantil y el ecosistema de innovación.</h1>
+      <p class="subhead">Comunidad de innovación y emprendimiento de Exactas, UBA.</p>
+      <a class="hero-cta" href="https://somosyhat.com/hackathon">Hackathón de Negocios, 5 al 7 de junio <span class="ar" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="stats-band reveal">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><div class="num"><span>+</span>750</div><div class="lab">Estudiantes alcanzados</div></div>
+        <div class="stat"><div class="num"><span>+</span>5</div><div class="lab">Eventos realizados</div></div>
+        <div class="stat"><div class="num"><span>+</span>40</div><div class="lab">Partners del ecosistema</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT / MANIFIESTO ===================== -->
+  <section class="section about" id="comunidad">
+    <div class="wrap">
+      <div class="eyebrow reveal">Quiénes somos</div>
+      <div class="about-grid">
+        <div class="copy reveal">
+          <h2 class="manifesto">Porque el futuro no se adivina, <em>se modela.</em></h2>
+          <div class="lead">
+            <p>Ŷ-Hat es una comunidad creada por estudiantes y para estudiantes de Exactas, UBA. Acompañamos a que las ideas se conviertan en proyectos reales, conectando a futuros profesionales con referentes de la tecnología y la investigación en Argentina.</p>
+            <p class="muted">Creemos que en Exactas sobra talento y formación. Lo que falta son las herramientas para dar el siguiente paso.</p>
+          </div>
+          <p class="yhat-note">El sombrero sobre la Y (ŷ) denota, en estadística, el valor que un modelo predice. Nosotros lo construimos.</p>
+        </div>
+        <div class="pillars reveal">
+          <div class="pillar"><h4>Investigación aplicada</h4><p>Llevar la ciencia de Exactas del paper al proyecto real.</p></div>
+          <div class="pillar"><h4>Emprendimiento</h4><p>Las herramientas para dar el siguiente paso y construir.</p></div>
+          <div class="pillar"><h4>Comunidad</h4><p>Un espacio de estudiantes, para estudiantes.</p></div>
+          <div class="pillar"><h4>Aprender haciendo</h4><p>El conocimiento se transforma en acción, no se mira.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRACK RECORD ===================== -->
+  <section class="section track" id="eventos">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="eyebrow">Lo que hicimos</div>
+        <h2 class="s-title">Eventos que construimos</h2>
+        <p class="lead">En menos de un año llevamos a la comunidad de Exactas del aula al proyecto real. Y entre cada evento, el ciclo mensual Y-Talks: un invitado del ecosistema, una charla y networking.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="ph"><span class="num-badge">200 inscriptos</span><img src="assets/photos/genesis-2025-audiencia.jpg" alt="Génesis 2025, auditorio de la FCEN-UBA lleno" loading="lazy"></div>
+          <div class="body">
+            <div class="meta">Julio 2025 · Auditorio FCEN-UBA</div>
+            <h3>Génesis</h3>
+            <p>El evento fundacional de Ŷ-Hat. Charlas con referentes del ecosistema científico-tecnológico, debate y networking.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="ph"><span class="num-badge">120 inscriptos</span><img src="assets/photos/vibecoding-2025-lab-wide.jpg" alt="Taller de Vibe Coding, laboratorio lleno de estudiantes" loading="lazy"></div>
+          <div class="body">
+            <div class="meta">Septiembre 2025 · Laboratorio FCEN-UBA</div>
+            <h3>Taller de Vibe Coding</h3>
+            <p>Aprender a programar con agentes de IA para acelerar proyectos de punta a punta.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <div class="ph"><span class="num-badge">237 inscriptos</span><img src="assets/photos/investigathon-2025-cohorte.jpg" alt="Investigathón 2025, foto grupal de la cohorte" loading="lazy"></div>
+          <div class="body">
+            <div class="meta">Noviembre 2025 · 0+Infinito, FCEN-UBA</div>
+            <h3>Investigathón</h3>
+            <p>Competencia de investigación en computación, ciencia de datos e IA. Dos semanas, tres jornadas presenciales.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERÍA CÍCLICA ===================== -->
+  <section class="section gallery-section">
+    <div class="wrap">
+      <div class="eyebrow reveal">La comunidad</div>
+      <h2 class="s-title reveal" style="margin-bottom:clamp(2rem,4vw,3rem);">Momentos que ya pasaron</h2>
+    </div>
+    <div class="marquee photo-marquee reveal">
+      <div class="p-track" id="ptrack">
+        <figure><img src="assets/photos/investigathon-2025-cohorte.jpg" alt="Cohorte de la Investigathón" loading="lazy"></figure>
+        <figure><img src="assets/photos/genesis-2025-charla.jpg" alt="Charla en Génesis" loading="lazy"></figure>
+        <figure><img src="assets/photos/vibecoding-2025-lab.jpg" alt="Estudiantes programando en el taller" loading="lazy"></figure>
+        <figure><img src="assets/photos/investigathon-2025-pitch.jpg" alt="Pitch en la Investigathón" loading="lazy"></figure>
+        <figure><img src="assets/photos/genesis-2025-audiencia.jpg" alt="Auditorio en Génesis" loading="lazy"></figure>
+        <figure><img src="assets/photos/investigathon-2025-posters.jpg" alt="Sesión de pósters" loading="lazy"></figure>
+        <figure><img src="assets/photos/vibecoding-2025-cowork.jpg" alt="Cowork en el taller de Vibe Coding" loading="lazy"></figure>
+        <figure><img src="assets/photos/image5.jpg" alt="Comunidad Ŷ-Hat" loading="lazy"></figure>
+        <figure><img src="assets/photos/investigathon-2025-jurado.jpg" alt="Jurado de la Investigathón" loading="lazy"></figure>
+        <figure><img src="assets/photos/genesis-2025-presentacion.jpg" alt="Presentación en Génesis" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ECOSISTEMA / SPONSORS ===================== -->
+  <section class="section eco">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="eyebrow">El ecosistema</div>
+        <h2 class="s-title">Quienes nos acompañan</h2>
+      </div>
+    </div>
+    <div class="marquee reveal">
+      <div class="m-track" id="mtrack">
+        <span class="chip"><img src="assets/logos/rappi.png" alt="Rappi"></span>
+        <span class="chip"><img src="assets/logos/aws.png" alt="AWS"></span>
+        <span class="chip"><img src="assets/logos/belo.png" alt="Belo"></span>
+        <span class="chip"><img src="assets/logos/sociovirtual.png" alt="Socio Virtual"></span>
+        <span class="chip"><img src="assets/logos/complif.png" alt="Complif"></span>
+        <span class="chip"><img src="assets/logos/picante.png" alt="Picante"></span>
+        <span class="chip dark"><img src="assets/logos/fardo.png" alt="Fardo"></span>
+        <span class="chip"><img src="assets/logos/lovelytics.png" alt="Lovelytics"></span>
+        <span class="chip"><img src="assets/logos/iol.png" alt="IOL Invertir Online"></span>
+        <span class="chip"><img src="assets/logos/ministerio.png" alt="Ministerio de Desarrollo Económico"></span>
+        <span class="chip"><img src="assets/logos/lucai.svg" alt="LUCAI"></span>
+        <span class="chip dark"><img src="assets/logos/redbull.svg" alt="Red Bull"></span>
+        <span class="chip"><img src="assets/logos/pluszero.png" alt="PlusZero"></span>
+        <span class="chip"><img src="assets/logos/geonosis.png" alt="Geonosis"></span>
+        <span class="chip"><img src="assets/logos/polo-exactas.png" alt="Polo Exactas"></span>
+        <span class="chip"><img src="assets/logos/cid.png" alt="CID"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section cta">
+    <div class="wrap">
+      <div class="eyebrow reveal" style="text-align:center;">Sumate</div>
+      <h2 class="s-title reveal">Construí el futuro con nosotros</h2>
+      <p class="lead reveal">Seguí a la comunidad y enterate del próximo evento.</p>
+      <div class="btns reveal">
+        <a class="btn primary" href="https://www.instagram.com/somos.yhat" target="_blank" rel="noopener">Seguinos en Instagram</a>
+        <a class="btn ghost" href="https://www.linkedin.com/company/y-hat-exactas/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div class="brand">
+          <span class="mark" aria-hidden="true">Ŷ</span>
+          <span class="txt">Ŷ-Hat · Comunidad de innovación y emprendimiento<br>Facultad de Ciencias Exactas y Naturales, UBA</span>
+        </div>
+        <div class="links">
+          <a href="https://www.instagram.com/somos.yhat" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/y-hat-exactas/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://somosyhat.com/hackathon">Hackathón</a>
+        </div>
+        <div class="copy">© 2026 Ŷ-Hat. Ciudad Universitaria, Buenos Aires.</div>
+      </div>
+    </div>
+  </footer>
+
+<script>
+/* ===================== HERO PARTICLE NETWORK (bloqueado, no tocar) ===================== */
+(function(){
+  "use strict";
+  var canvas = document.getElementById('net');
+  var ctx = canvas.getContext('2d');
+  var hero = document.getElementById('hero');
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var W = 0, H = 0, DPR = 1;
+  var particles = [];
+  var raf = null;
+
+  var mouse = { x: null, y: null, ex: null, ey: null, active: false };
+
+  var ACCENT = { r:67, g:211, b:178 };
+
+  function rand(a, b){ return a + Math.random() * (b - a); }
+
+  function particleCount(){
+    var w = window.innerWidth;
+    if (w < 600) return 35;
+    if (w < 1000) return 60;
+    return 90;
+  }
+
+  function linkDist(){
+    return Math.min(170, Math.max(120, W * 0.14));
+  }
+
+  function setup(){
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = hero.getBoundingClientRect();
+    W = rect.width;
+    H = rect.height;
+    canvas.width = Math.round(W * DPR);
+    canvas.height = Math.round(H * DPR);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    var n = particleCount();
+    particles = [];
+    for (var i = 0; i < n; i++){
+      particles.push({
+        x: rand(0, W),
+        y: rand(0, H),
+        vx: rand(-0.18, 0.18),
+        vy: rand(-0.18, 0.18),
+        r: rand(1.1, 2.4),
+        depth: rand(0.2, 1)
+      });
+    }
+  }
+
+  function drawStatic(){
+    ctx.clearRect(0, 0, W, H);
+    drawLinks();
+    drawDots(0.85);
+  }
+
+  function drawLinks(){
+    var maxD = linkDist();
+    var maxD2 = maxD * maxD;
+    ctx.lineWidth = 1;
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+      for (var j = i + 1; j < particles.length; j++){
+        var q = particles[j];
+        var dx = p.x - q.x;
+        var dy = p.y - q.y;
+        var d2 = dx*dx + dy*dy;
+        if (d2 < maxD2){
+          var t = 1 - Math.sqrt(d2) / maxD;
+          var a = t * t * 0.5;
+          ctx.strokeStyle = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',' + a + ')';
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function drawDots(globalAlpha){
+    ctx.save();
+    ctx.shadowColor = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',0.9)';
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+      ctx.shadowBlur = 10 + p.r * 4;
+      ctx.fillStyle = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',' + (0.85 * globalAlpha) + ')';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function step(){
+    ctx.clearRect(0, 0, W, H);
+
+    if (mouse.active && mouse.x !== null){
+      if (mouse.ex === null){ mouse.ex = mouse.x; mouse.ey = mouse.y; }
+      mouse.ex += (mouse.x - mouse.ex) * 0.06;
+      mouse.ey += (mouse.y - mouse.ey) * 0.06;
+    }
+
+    var cx = W / 2, cy = H / 2;
+
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < -20) p.x = W + 20;
+      else if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20;
+      else if (p.y > H + 20) p.y = -20;
+    }
+
+    drawLinks();
+
+    ctx.save();
+    ctx.shadowColor = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',0.9)';
+    var ox = 0, oy = 0;
+    if (mouse.active && mouse.ex !== null){
+      ox = (mouse.ex - cx) * 0.02;
+      oy = (mouse.ey - cy) * 0.02;
+    }
+    for (var k = 0; k < particles.length; k++){
+      var d = particles[k];
+      var px = d.x + ox * d.depth * 3;
+      var py = d.y + oy * d.depth * 3;
+      ctx.shadowBlur = 10 + d.r * 4;
+      ctx.fillStyle = 'rgba(' + ACCENT.r + ',' + ACCENT.g + ',' + ACCENT.b + ',0.85)';
+      ctx.beginPath();
+      ctx.arc(px, py, d.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+
+    raf = requestAnimationFrame(step);
+  }
+
+  function start(){
+    setup();
+    if (reduceMotion){ drawStatic(); return; }
+    if (raf) cancelAnimationFrame(raf);
+    step();
+  }
+
+  if (!reduceMotion){
+    window.addEventListener('mousemove', function(e){
+      var rect = hero.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    }, { passive: true });
+    window.addEventListener('mouseleave', function(){ mouse.active = false; });
+  }
+
+  var rt = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){
+      if (raf){ cancelAnimationFrame(raf); raf = null; }
+      start();
+    }, 180);
+  });
+
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){
+      if (raf){ cancelAnimationFrame(raf); raf = null; }
+    } else if (!reduceMotion && !raf){
+      step();
+    }
+  });
+
+  start();
+})();
+
+/* ===================== reveal + marquees seamless ===================== */
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reduceMotion){
+    var mt = document.getElementById('mtrack');
+    if (mt) mt.innerHTML += mt.innerHTML;
+    var pt = document.getElementById('ptrack');
+    if (pt) pt.innerHTML += pt.innerHTML;
+  }
+
+  var revs = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reduceMotion || !('IntersectionObserver' in window)){
+    revs.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  revs.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
