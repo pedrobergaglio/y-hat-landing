@@ -6,7 +6,9 @@
     "dev": "next dev -p 3018",
     "build": "next build",
     "start": "serve out -l 3018",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test 'app/**/*.test.ts'",
+    "ics": "node scripts/build-ics.mts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
@@ -18,13 +20,15 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vgpu": "^0.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@webgpu/types": "^0.1.72",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "serve": "^14.2.6",

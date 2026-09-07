@@ -1,0 +1,68 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Y-Hat//Investigathon//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Investigathon 2026
+X-WR-TIMEZONE:America/Argentina/Buenos_Aires
+BEGIN:VEVENT
+UID:20261012-escuela-0@somosyhat.com
+DTSTAMP:20260906T225804Z
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261016
+SUMMARY:Investigathon 2026 · Escuela Investigathón
+LOCATION:0+Infinito\, Exactas\, UBA · Ciudad Universitaria
+DESCRIPTION:https://somosyhat.com/investigathon
+URL:https://somosyhat.com/investigathon
+END:VEVENT
+BEGIN:VEVENT
+UID:20261016-hito-4@somosyhat.com
+DTSTAMP:20260906T225804Z
+DTSTART:20261016T123000Z
+DTEND:20261016T171500Z
+SUMMARY:Investigathon 2026 · Apertura
+LOCATION:0+Infinito\, Exactas\, UBA · Ciudad Universitaria
+DESCRIPTION:https://somosyhat.com/investigathon
+URL:https://somosyhat.com/investigathon
+END:VEVENT
+BEGIN:VEVENT
+UID:20261019-checkpoint-0@somosyhat.com
+DTSTAMP:20260906T225804Z
+DTSTART:20261019T180000Z
+DTEND:20261019T200000Z
+SUMMARY:Investigathon 2026 · 1er checkpoint
+LOCATION:0+Infinito\, Exactas\, UBA · Ciudad Universitaria
+DESCRIPTION:https://somosyhat.com/investigathon
+URL:https://somosyhat.com/investigathon
+END:VEVENT
+BEGIN:VEVENT
+UID:20261026-checkpoint-0@somosyhat.com
+DTSTAMP:20260906T225804Z
+DTSTART:20261026T180000Z
+DTEND:20261026T200000Z
+SUMMARY:Investigathon 2026 · 2do checkpoint
+LOCATION:0+Infinito\, Exactas\, UBA · Ciudad Universitaria
+DESCRIPTION:https://somosyhat.com/investigathon
+URL:https://somosyhat.com/investigathon
+END:VEVENT
+BEGIN:VEVENT
+UID:20261029-hito-3@somosyhat.com
+DTSTAMP:20260906T225804Z
+DTSTART:20261029T210000Z
+DTEND:20261029T230000Z
+SUMMARY:Investigathon 2026 · Simulacro de pósters
+LOCATION:0+Infinito\, Exactas\, UBA · Ciudad Universitaria
+DESCRIPTION:https://somosyhat.com/investigathon
+URL:https://somosyhat.com/investigathon
+END:VEVENT
+BEGIN:VEVENT
+UID:20261030-final-4@somosyhat.com
+DTSTAMP:20260906T225804Z
+DTSTART:20261030T170000Z
+DTEND:20261031T000000Z
+SUMMARY:Investigathon 2026 · Gran final
+LOCATION:0+Infinito\, Exactas\, UBA · Ciudad Universitaria
+DESCRIPTION:https://somosyhat.com/investigathon
+URL:https://somosyhat.com/investigathon
+END:VEVENT
+END:VCALENDAR

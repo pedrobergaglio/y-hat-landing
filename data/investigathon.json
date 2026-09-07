@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "title": "Investigathon 2026",
+    "edition": "Segunda edición",
+    "subtitle": "Pensar",
+    "lede": "Competencia de investigación en la que equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.",
+    "contactEmail": "yhat.arg@gmail.com",
+    "dates": {
+      "start": "2026-10-16",
+      "end": "2026-10-30",
+      "display": "16 al 30 de octubre · 2026",
+      "short": "16 al 30 · OCTUBRE"
+    },
+    "venue": {
+      "name": "0+Infinito",
+      "campus": "Exactas, UBA · Ciudad Universitaria"
+    },
+    "teamSize": "3 o 4 personas",
+    "host": "Y-Hat",
+    "ctas": {
+      "primary": {
+        "label": "Inscribir a mi grupo",
+        "href": "https://forms.gle/5ziDMkM1tcrCobrd7"
+      }
+    }
+  },
+  "facts": [
+    {
+      "label": "Cuándo",
+      "value": "16 al 30 de octubre",
+      "hint": "Escuela desde el lunes 12 · Gran final el viernes 30"
+    },
+    {
+      "label": "Dónde",
+      "value": "0+Infinito",
+      "hint": "Exactas, UBA · Ciudad Universitaria"
+    },
+    {
+      "label": "Equipos",
+      "value": "3 o 4 personas",
+      "hint": "Una inscripción por grupo"
+    },
+    {
+      "label": "Tracks",
+      "value": "4 laboratorios",
+      "hint": "Cada laboratorio es jurado de su track"
+    }
+  ],
+  "phases": [
+    {
+      "title": "Escuela Investigathón",
+      "range": "Lunes 12 a jueves 15",
+      "desc": "Cuatro días de preparación: cómo se investiga, cómo se lee un paper y qué espera cada laboratorio.",
+      "items": [
+        "Talleres de método",
+        "Presentación de los laboratorios",
+        "Armado de equipos"
+      ]
+    },
+    {
+      "title": "Fase 1",
+      "range": "Viernes 16 a domingo 18",
+      "desc": "Apertura el viernes a la mañana con los cuatro problemas; cada equipo arranca con el suyo junto al laboratorio.",
+      "items": [
+        "Apertura, viernes 09:30 a 14:15",
+        "Primer fin de semana de trabajo"
+      ]
+    },
+    {
+      "title": "Fase 2",
+      "range": "Lunes 19 a domingo 25",
+      "desc": "Semana de trabajo acompañado. Arranca el lunes con el primer checkpoint frente al laboratorio.",
+      "items": [
+        "1er checkpoint, lunes 15:00 a 17:00",
+        "Mentorías con investigadorxs"
+      ]
+    },
+    {
+      "title": "Fase 3",
+      "range": "Lunes 26 a viernes 30",
+      "desc": "Segundo checkpoint, simulacro de pósters el jueves y Gran final el viernes frente a los jurados.",
+      "items": [
+        "2do checkpoint, lunes 15:00 a 17:00",
+        "Simulacro de pósters, jueves 18:00 a 20:00",
+        "Gran final, viernes 14:00 a 21:00"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "key": "ai-safety",
+      "title": "AI Safety",
+      "labs": [
+        "LIAA",
+        "BAISH"
+      ],
+      "desc": "El reward hacking en aprendizaje automático es la maximización de una métrica de recompensa de formas inesperadas, incumpliendo los objetivos de la tarea. La pregunta del track: <strong>¿qué motiva a agentes de IA a hacer reward hacking en entornos de evaluación?</strong> Se trabaja con enfoques como interpretabilidad mecanística o evaluación black box."
+    },
+    {
+      "key": "biotech",
+      "title": "Biotech",
+      "labs": [
+        "Epilab"
+      ],
+      "desc": "Dado un patosistema (par planta-patógeno), <strong>identificar qué genes son candidatos a silenciar mediante la tecnología de RNAi</strong>. Se evalúan los entregables en orden de preferibilidad: genes, secuencias de genes, secuencias de regiones y, si llegan, un ARN quimera. También suma el análisis de off-target."
+    },
+    {
+      "key": "social-physics",
+      "title": "Social Physics",
+      "labs": [
+        "SoPhyLab"
+      ],
+      "desc": "A partir de documentos públicos del gobierno de Estados Unidos, <strong>identificar y rankear las empresas con las capacidades necesarias para satisfacer una necesidad, requerimiento o programa</strong> descripto en esos documentos. El problema consiste en relacionar de manera directa un documento oficial con los potenciales adjudicatarios y traducir eso a un score o probabilidad."
+    },
+    {
+      "key": "contextual-bandits",
+      "title": "Contextual Bandits",
+      "labs": [
+        "ModEsto"
+      ],
+      "desc": "El laboratorio está terminando de definir el problema. Lo publicamos acá en los próximos días.",
+      "pending": true
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Quiénes pueden participar?",
+      "a": "¡Cualquier estudiante universitario! El Investigathon está abierto a estudiantes de cualquier facultad o universidad. La FCEN, UBA es nuestra casa, así que muchos vienen de ahí, pero queremos equipos diversos: si estudiás algo afín (o no tanto) y te dan ganas de sumarte, te esperamos. Se participa en equipos de 3 o 4 personas, y al inscribirte elegís el track."
+    },
+    {
+      "q": "¿Cómo nos inscribimos?",
+      "a": "Completando <a href=\"https://forms.gle/5ziDMkM1tcrCobrd7\" target=\"_blank\" rel=\"noopener noreferrer\">este formulario</a> <strong>una sola vez por grupo</strong>. Tiene dos secciones: en la primera se indican las preferencias de track de todo el equipo; en la segunda, la información personal de cada participante que necesitamos para organizar el evento."
+    },
+    {
+      "q": "¿Puedo participar si no sé nada de los temas de los tracks?",
+      "a": "¡Obvio! Nos parece la oportunidad perfecta para conocer temas nuevos y, además, aprender a investigar desde cero acompañado por el laboratorio."
+    },
+    {
+      "q": "¿Cuánto cuesta participar?",
+      "a": "Es gratis. El Investigathon es posible gracias al trabajo de los laboratorios y al financiamiento de nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
+    }
+  ],
+  "schedule": {
+    "weeks": [
+      {
+        "start": "2026-10-12",
+        "blocks": [
+          {
+            "from": 0,
+            "to": 3,
+            "kind": "escuela",
+            "label": "Escuela Investigathón"
+          },
+          {
+            "from": 4,
+            "to": 4,
+            "kind": "hito",
+            "label": "Apertura",
+            "time": "09:30 a 14:15"
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "kind": "trabajo",
+            "label": "Trabajo · Fase 1"
+          }
+        ]
+      },
+      {
+        "start": "2026-10-19",
+        "blocks": [
+          {
+            "from": 0,
+            "to": 0,
+            "kind": "checkpoint",
+            "label": "1er checkpoint",
+            "time": "15:00 a 17:00"
+          },
+          {
+            "from": 1,
+            "to": 6,
+            "kind": "trabajo",
+            "label": "Trabajo · Fase 2"
+          }
+        ]
+      },
+      {
+        "start": "2026-10-26",
+        "blocks": [
+          {
+            "from": 0,
+            "to": 0,
+            "kind": "checkpoint",
+            "label": "2do checkpoint",
+            "time": "15:00 a 17:00"
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "kind": "trabajo",
+            "label": "Trabajo · Fase 3"
+          },
+          {
+            "from": 3,
+            "to": 3,
+            "kind": "hito",
+            "label": "Simulacro de pósters",
+            "time": "18:00 a 20:00"
+          },
+          {
+            "from": 4,
+            "to": 4,
+            "kind": "final",
+            "label": "Gran final",
+            "time": "14:00 a 21:00"
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "kind": "off"
+          }
+        ]
+      }
+    ]
+  },
+  "labLinks": {
+    "LIAA": "https://www.liaa.dc.uba.ar/",
+    "BAISH": "https://www.baish.com.ar/",
+    "SoPhyLab": "https://sophy.df.uba.ar/",
+    "Epilab": "https://ifibyne.exactas.uba.ar/grupo-ariel/",
+    "ModEsto": "https://mate.dm.uba.ar/~modesto/"
+  }
+}
