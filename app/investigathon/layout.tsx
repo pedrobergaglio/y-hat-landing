@@ -17,15 +17,36 @@ const text = IBM_Plex_Sans({
   display: "swap",
 });
 
+const SITE = "https://somosyhat.com";
+const DESCRIPTION =
+  "Del 16 al 30 de octubre en 0+Infinito · Exactas, UBA. Competencia de investigación: equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.";
+const OG_IMAGE = {
+  url: "/investigathon/og.png",
+  width: 1200,
+  height: 630,
+  alt: "Investigathon 2026 · Pensar · 16 al 30 de octubre · 0+Infinito, Exactas, UBA",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE),
   title: "Investigathon 2026 · Y-Hat",
-  description:
-    "Del 16 al 30 de octubre en 0+Infinito · Exactas, UBA. Competencia de investigación: equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.",
+  description: DESCRIPTION,
   openGraph: {
     title: "Investigathon 2026 · Y-Hat",
     description:
       "Segunda edición · 16 al 30 de octubre · 0+Infinito · Exactas, UBA",
     type: "website",
+    url: "/investigathon",
+    siteName: "Y-Hat",
+    locale: "es_AR",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Investigathon 2026 · Y-Hat",
+    description:
+      "Segunda edición · 16 al 30 de octubre · 0+Infinito · Exactas, UBA",
+    images: [OG_IMAGE.url],
   },
 };
 
