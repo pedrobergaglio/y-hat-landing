@@ -156,11 +156,15 @@ export default function InvestigathonPage() {
     ): "consumed" | "boundary" | "none" {
       const section = sections[currentIndexRef.current];
       if (!section) return "none";
-      const inner = section.querySelector<HTMLElement>(
-        ".sec-body, .tracks, .faq"
-      );
+      // First container in the section that actually scrolls (the section
+      // wrapper usually does not; the FAQ list or the tracks list might).
+      const inner = Array.from(
+        section.querySelectorAll<HTMLElement>(".sec-body, .tracks, .faq")
+      ).find((el) => {
+        const oy = getComputedStyle(el).overflowY;
+        return (oy === "auto" || oy === "scroll") && el.scrollHeight > el.clientHeight + 1;
+      });
       if (!inner) return "none";
-      if (inner.scrollHeight <= inner.clientHeight + 1) return "none";
       const atTop = inner.scrollTop <= 0;
       const atBottom =
         inner.scrollTop + inner.clientHeight >= inner.scrollHeight - 1;
@@ -579,6 +583,7 @@ export default function InvestigathonPage() {
 
         {/* 04 — CLOSING + FOOTER (one panel) */}
         <section className="closing" id="cta">
+          <HeroField />
           <div className="closing-body">
             <h2>
               El futuro no se adivina, <em>se modela</em>.
