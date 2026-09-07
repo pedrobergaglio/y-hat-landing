@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --test 'app/**/*.test.ts'",
-    "ics": "node scripts/build-ics.mts",
-    "prebuild": "npm run ics"
+    "ics": "node scripts/build-ics.mts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
