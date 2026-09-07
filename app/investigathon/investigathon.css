@@ -499,8 +499,9 @@
   opacity: .06; pointer-events: none;
 }
 .investigathon-root .closing > * { position: relative; z-index: 1; }
-/* The fitted curve returns in the closing panel, large screens only */
-.investigathon-root .closing .hero-field { display: none; }
+/* The fitted curve returns in the closing panel, large screens only.
+   Re-assert absolute: the `.closing > *` rule above would put it in flow. */
+.investigathon-root .closing .hero-field { display: none; position: absolute; }
 @media (min-width: 1200px) { .investigathon-root .closing .hero-field { display: block; } }
 .investigathon-root .closing-body { padding-bottom: 96px; max-width: 900px; }
 .investigathon-root .closing h2 {
