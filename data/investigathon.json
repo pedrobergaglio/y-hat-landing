@@ -222,5 +222,11 @@
         ]
       }
     ]
+  },
+  "labLinks": {
+    "LIAA": "https://www.liaa.dc.uba.ar/",
+    "BAISH": "https://www.baish.com.ar/",
+    "SoPhyLab": "https://sophy.df.uba.ar/",
+    "Epilab": "https://ifibyne.exactas.uba.ar/grupo-ariel/"
   }
 }

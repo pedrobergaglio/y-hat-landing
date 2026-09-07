@@ -96,6 +96,7 @@ export default function InvestigathonPage() {
   const tracks = data.tracks as Track[];
   const phases = data.phases as Phase[];
   const weeks = data.schedule.weeks as Week[];
+  const labLinks = data.labLinks as Record<string, string>;
   const eventMeta = {
     title: meta.title,
     location: `${meta.venue.name}, ${meta.venue.campus}`,
@@ -348,7 +349,7 @@ export default function InvestigathonPage() {
           <div className="grid">
             <div>
               <h1>Investigathon</h1>
-              <p className="word">{meta.subtitle}.</p>
+              <p className="word">{meta.subtitle}</p>
 
               <p className="lede">
                 <strong>Competencia de investigación</strong> en la que equipos
@@ -522,7 +523,22 @@ export default function InvestigathonPage() {
                 <div>
                   <h3>{t.title}</h3>
                   <div className="lab">
-                    {t.labs.join(" y ")} <span>· jurado del track</span>
+                    {t.labs.map((lab, li) => {
+                      const href = labLinks[lab];
+                      return (
+                        <span key={lab}>
+                          {li > 0 && " y "}
+                          {href ? (
+                            <a href={href} target="_blank" rel="noopener noreferrer">
+                              {lab}
+                            </a>
+                          ) : (
+                            lab
+                          )}
+                        </span>
+                      );
+                    })}{" "}
+                    <span>· jurado del track</span>
                   </div>
                 </div>
                 <p
@@ -565,7 +581,7 @@ export default function InvestigathonPage() {
         <section className="closing" id="cta">
           <div className="closing-body">
             <h2>
-              El futuro no se <em>adivina</em>, se modela.
+              El futuro no se adivina, <em>se modela</em>.
             </h2>
             <p>
               Las inscripciones están abiertas.

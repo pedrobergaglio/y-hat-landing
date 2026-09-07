@@ -12,7 +12,7 @@
   --iv-bg-deep: #04151e;
   --iv-cream: #fafafa;
   --iv-cream-soft: rgba(250, 250, 250, 0.82);
-  --iv-cream-dim: rgba(250, 250, 250, 0.6);
+  --iv-cream-dim: rgba(250, 250, 250, 0.68);
   --iv-cream-line: rgba(250, 250, 250, 0.2);
   --iv-fill: rgba(250, 250, 250, 0.035);
   --iv-accent: #e0b574;
@@ -303,7 +303,14 @@
 .investigathon-root .week .block .when { display: none; }
 .investigathon-root .week .block .t { font-size: 13px; color: var(--iv-cream-dim); white-space: nowrap; }
 .investigathon-root .week .block.escuela { background: rgba(250,250,250,.06); color: var(--iv-cream); }
-.investigathon-root .week .block.trabajo { color: var(--iv-cream-dim); }
+.investigathon-root .week .block.trabajo {
+  color: var(--iv-cream-dim);
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(250,250,250,.045) 0 1px,
+    transparent 1px 9px
+  );
+}
 .investigathon-root .week .block.hito,
 .investigathon-root .week .block.checkpoint {
   background: rgba(var(--iv-accent-rgb), .12);
@@ -428,6 +435,12 @@
 .investigathon-root .track h3 { font-size: 32px; line-height: 1.05; }
 .investigathon-root .track .lab { margin-top: 8px; font-size: 16px; color: var(--iv-cream-soft); }
 .investigathon-root .track .lab span { color: var(--iv-cream-dim); }
+.investigathon-root .track .lab a {
+  color: var(--iv-cream-soft);
+  border-bottom: 1px solid var(--iv-cream-line);
+  transition: color .2s, border-color .2s;
+}
+.investigathon-root .track .lab a:hover { color: var(--iv-cream); border-color: var(--iv-accent); }
 .investigathon-root .track .desc {
   font-size: 17px; line-height: 1.55;
   color: var(--iv-cream-soft);
@@ -601,14 +614,6 @@
   .investigathon-root .closing .actions { margin-top: 24px; }
   .investigathon-root footer { padding: 18px 0 20px; }
   .investigathon-root section.sec#fechas .sec-head p { display: none; }
-  /* Tracks: four rows must fit without inner scroll */
-  .investigathon-root section.sec#tracks .sec-head { margin-bottom: 1.2rem; }
-  .investigathon-root section.sec#tracks .sec-head p { display: none; }
-  .investigathon-root section.sec#tracks .track { grid-template-columns: 60px 250px 1fr; padding: 15px 14px 15px 0; gap: 8px 28px; }
-  .investigathon-root section.sec#tracks .track h3 { font-size: 26px; }
-  .investigathon-root section.sec#tracks .track .lab { margin-top: 4px; font-size: 15px; }
-  .investigathon-root section.sec#tracks .track .ord { font-size: 30px; padding-top: 4px; }
-  .investigathon-root section.sec#tracks .track .desc { font-size: 15.5px; line-height: 1.5; max-width: none; }
   .investigathon-root section.sec#fechas .sec-head { margin-bottom: 24px; }
   .investigathon-root section.sec#fechas .phase { padding: 11px 0; }
   .investigathon-root section.sec#fechas .phase > p { font-size: 15px; margin-top: 4px; }
@@ -617,4 +622,19 @@
 
 @media (max-width: 1199px) {
   .investigathon-root .snap-nav { display: none !important; }
+}
+@media (min-width: 1200px) and (max-height: 880px) and (prefers-reduced-motion: no-preference) {
+  /* Tracks: four rows must fit without inner scroll */
+  .investigathon-root section.sec#tracks .sec-head { margin-bottom: 1.2rem; }
+  .investigathon-root section.sec#tracks .sec-head p { display: none; }
+  .investigathon-root section.sec#tracks .track { grid-template-columns: 60px 250px 1fr; padding: 15px 14px 15px 0; gap: 8px 28px; }
+  .investigathon-root section.sec#tracks .track h3 { font-size: 26px; }
+  .investigathon-root section.sec#tracks .track .lab { margin-top: 4px; font-size: 15px; }
+  .investigathon-root section.sec#tracks .track .ord { font-size: 30px; padding-top: 4px; }
+  .investigathon-root section.sec#tracks .track .desc { font-size: 15.5px; line-height: 1.5; max-width: none; }
+}
+/* Between 1200 and 1439px the grid reaches the viewport edge: keep the
+   side dots off the content */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .investigathon-root .wrap { padding-right: 72px; }
 }
