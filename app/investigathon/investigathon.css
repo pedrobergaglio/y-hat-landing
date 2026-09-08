@@ -4,12 +4,10 @@
    .investigathon-root so the main landing is untouched. */
 
 .investigathon-root {
-  /* Placeholder palette: Y-Hat navy from the brand file. Swap here once the
-     comms team sends the Investigathon palette. */
-  --iv-bg: #071e2a;
-  --iv-bg-top: #0c2b3c;
-  --iv-bg-bottom: #04141d;
-  --iv-bg-deep: #04151e;
+  --iv-bg: #2e3f2c;
+  --iv-bg-top: #384f36;
+  --iv-bg-bottom: #263424;
+  --iv-bg-deep: #263425;
   --iv-cream: #fafafa;
   --iv-cream-soft: rgba(250, 250, 250, 0.82);
   --iv-cream-dim: rgba(250, 250, 250, 0.68);
@@ -193,6 +191,11 @@
 .investigathon-root .hero .actions {
   margin-top: 40px;
   display: flex; gap: 28px; flex-wrap: wrap; align-items: center;
+}
+.investigathon-root .hero .deadline {
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--iv-accent);
 }
 
 /* Metadata column */

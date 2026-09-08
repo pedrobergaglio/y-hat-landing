@@ -17,9 +17,10 @@
     },
     "teamSize": "3 o 4 personas",
     "host": "Y-Hat",
+    "registrationDeadline": "Las inscripciones cierran el 28 de septiembre",
     "ctas": {
       "primary": {
-        "label": "Inscribir a mi grupo",
+        "label": "Pre-inscribir a mi grupo",
         "href": "https://forms.gle/5ziDMkM1tcrCobrd7"
       }
     }
@@ -58,8 +59,8 @@
       ]
     },
     {
-      "title": "Fase 1",
-      "range": "Viernes 16 a domingo 18",
+      "title": "Apertura",
+      "range": "Viernes 16",
       "desc": "Apertura el viernes a la mañana con los cuatro problemas; cada equipo arranca con el suyo junto al laboratorio.",
       "items": [
         "Apertura, viernes 09:30 a 14:15",
@@ -67,8 +68,8 @@
       ]
     },
     {
-      "title": "Fase 2",
-      "range": "Lunes 19 a domingo 25",
+      "title": "Checkpoints",
+      "range": "Lunes 19 y Lunes 26",
       "desc": "Semana de trabajo acompañado. Arranca el lunes con el primer checkpoint frente al laboratorio.",
       "items": [
         "1er checkpoint, lunes 15:00 a 17:00",
@@ -76,8 +77,8 @@
       ]
     },
     {
-      "title": "Fase 3",
-      "range": "Lunes 26 a viernes 30",
+      "title": "Gran Final",
+      "range": "Viernes 30",
       "desc": "Segundo checkpoint, simulacro de pósters el jueves y Gran final el viernes frente a los jurados.",
       "items": [
         "2do checkpoint, lunes 15:00 a 17:00",
@@ -89,46 +90,45 @@
   "tracks": [
     {
       "key": "ai-safety",
-      "title": "AI Safety",
+      "title": "Seguridad en IA",
       "labs": [
         "LIAA",
         "BAISH"
       ],
-      "desc": "El reward hacking en aprendizaje automático es la maximización de una métrica de recompensa de formas inesperadas, incumpliendo los objetivos de la tarea. La pregunta del track: <strong>¿qué motiva a agentes de IA a hacer reward hacking en entornos de evaluación?</strong> Se trabaja con enfoques como interpretabilidad mecanística o evaluación black box."
+      "desc": "El reward hacking en aprendizaje automático es la maximización de una métrica de recompensa de formas inesperadas, incumpliendo los objetivos de la tarea. La pregunta que abordará el track es <strong>¿qué motiva a agentes de IA a hacer reward hacking en entornos de evaluación?</strong>"
     },
     {
       "key": "biotech",
-      "title": "Biotech",
+      "title": "Biotecnología",
       "labs": [
         "Epilab"
       ],
-      "desc": "Dado un patosistema (par planta-patógeno), <strong>identificar qué genes son candidatos a silenciar mediante la tecnología de RNAi</strong>. Se evalúan los entregables en orden de preferibilidad: genes, secuencias de genes, secuencias de regiones y, si llegan, un ARN quimera. También suma el análisis de off-target."
+      "desc": "En el tratamiento de cultivos agronómicos existe una necesidad por alternativas a pesticidas de origen químico que no sean dañinas para el medio ambiente. Dado un patosistema (una planta y un patógeno), la pregunta que abordará este track es <strong>¿cómo identificar qué genes del patógeno son candidatos a ser silenciados para inhibir su actividad?</strong>"
     },
     {
       "key": "social-physics",
-      "title": "Social Physics",
+      "title": "Física Social",
       "labs": [
         "SoPhyLab"
       ],
-      "desc": "A partir de documentos públicos del gobierno de Estados Unidos, <strong>identificar y rankear las empresas con las capacidades necesarias para satisfacer una necesidad, requerimiento o programa</strong> descripto en esos documentos. El problema consiste en relacionar de manera directa un documento oficial con los potenciales adjudicatarios y traducir eso a un score o probabilidad."
+      "desc": "En el análisis de redes complejas, un problema crucial es relacionar entidades mediante su historial de descripciones basadas en texto. Sobre datos públicos de industrias, la pregunta que abordará este track es <strong>¿cómo modelar esa red para predecir relaciones futuras entre entidades?</strong>"
     },
     {
       "key": "contextual-bandits",
-      "title": "Contextual Bandits",
+      "title": "Teoría de Optimización",
       "labs": [
         "ModEsto"
       ],
-      "desc": "El laboratorio está terminando de definir el problema. Lo publicamos acá en los próximos días.",
-      "pending": true
+      "desc": "Muchos problemas de decisión requieren elegir qué acción realizar y cuándo, habiendo información incompleta. La pregunta que abordará este track es: <strong>¿cómo diseñar políticas de decisión que maximicen una recompensa esperada cuando no conocemos de antemano el resultado de cada acción y tenemos finitos intentos?</strong>"
     }
   ],
   "faq": [
     {
       "q": "¿Quiénes pueden participar?",
-      "a": "¡Cualquier estudiante universitario! El Investigathon está abierto a estudiantes de cualquier facultad o universidad. La FCEN, UBA es nuestra casa, así que muchos vienen de ahí, pero queremos equipos diversos: si estudiás algo afín (o no tanto) y te dan ganas de sumarte, te esperamos. Se participa en equipos de 3 o 4 personas, y al inscribirte elegís el track."
+      "a": "¡Cualquier estudiante universitario! El Investigathon está abierto a estudiantes de cualquier facultad o universidad. La FCEN, UBA es nuestra casa, así que muchos vienen de ahí, pero queremos equipos diversos: si estudiás algo afín (o no tanto) y te dan ganas de sumarte, te esperamos. Se participa en equipos de 3 o 4 personas, y al pre-inscribirte elegís el track."
     },
     {
-      "q": "¿Cómo nos inscribimos?",
+      "q": "¿Cómo nos pre-inscribimos?",
       "a": "Completando <a href=\"https://forms.gle/5ziDMkM1tcrCobrd7\" target=\"_blank\" rel=\"noopener noreferrer\">este formulario</a> <strong>una sola vez por grupo</strong>. Tiene dos secciones: en la primera se indican las preferencias de track de todo el equipo; en la segunda, la información personal de cada participante que necesitamos para organizar el evento."
     },
     {
@@ -138,6 +138,10 @@
     {
       "q": "¿Cuánto cuesta participar?",
       "a": "Es gratis. El Investigathon es posible gracias al trabajo de los laboratorios y al financiamiento de nuestros sponsors. Incluye comidas, café, mentorías, charlas y acceso a todos los talleres."
+    },
+    {
+      "q": "¿Por qué es una pre-inscripción?",
+      "a": "Porque los cupos son limitados. Si se llenan, hacemos una selección de grupos para que el evento sea ameno para todos. El <strong>5 de octubre</strong> anunciamos los equipos seleccionados."
     }
   ],
   "schedule": {
@@ -162,7 +166,7 @@
             "from": 5,
             "to": 6,
             "kind": "trabajo",
-            "label": "Trabajo · Fase 1"
+            "label": "Trabajo"
           }
         ]
       },
@@ -180,7 +184,7 @@
             "from": 1,
             "to": 6,
             "kind": "trabajo",
-            "label": "Trabajo · Fase 2"
+            "label": "Trabajo"
           }
         ]
       },
@@ -198,7 +202,7 @@
             "from": 1,
             "to": 2,
             "kind": "trabajo",
-            "label": "Trabajo · Fase 3"
+            "label": "Trabajo"
           },
           {
             "from": 3,

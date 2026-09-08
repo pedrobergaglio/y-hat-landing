@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import data from "@/data/investigathon.json";
 import HeroField from "./hero-field";
-import { buildEvents, googleCalendarUrl, googleSubscribeUrl } from "./calendar-export";
 
 /* ---------- constants ---------- */
 
@@ -84,10 +83,6 @@ type Phase = { title: string; range: string; desc: string; items: string[] };
 type Block = { from: number; to: number; kind: string; label?: string; time?: string };
 type Week = { start: string; blocks: Block[] };
 
-const SITE_URL = "https://somosyhat.com/investigathon";
-const ICS_PATH = "/investigathon/investigathon-2026.ics";
-const ICS_URL = `https://somosyhat.com${ICS_PATH}`;
-
 /* ---------- page ---------- */
 
 export default function InvestigathonPage() {
@@ -97,15 +92,6 @@ export default function InvestigathonPage() {
   const phases = data.phases as Phase[];
   const weeks = data.schedule.weeks as Week[];
   const labLinks = data.labLinks as Record<string, string>;
-  const eventMeta = {
-    title: meta.title,
-    location: `${meta.venue.name}, ${meta.venue.campus}`,
-    url: SITE_URL,
-  };
-  const googleUrlFor = (w: Week, bk: Block) => {
-    const [ev] = buildEvents([{ start: w.start, blocks: [bk] }], eventMeta);
-    return ev ? googleCalendarUrl(ev) : undefined;
-  };
 
   const [activeIdx, setActiveIdx] = useState(0);
   const currentIndexRef = useRef(0);
@@ -341,7 +327,7 @@ export default function InvestigathonPage() {
             rel="noopener noreferrer"
             className="cta"
           >
-            Inscribirme
+            Pre-inscribirme
           </a>
         </div>
       </header>
@@ -375,6 +361,8 @@ export default function InvestigathonPage() {
                   Ver los cuatro problemas
                 </a>
               </div>
+
+              <p className="deadline">{meta.registrationDeadline}</p>
             </div>
 
             <dl className="meta">
@@ -451,51 +439,19 @@ export default function InvestigathonPage() {
                       {w.blocks.map((bk) => {
                         const cls = `block ${bk.kind}${bk.from === 0 ? " first" : ""}`;
                         const style = { gridColumn: `${bk.from + 1} / ${bk.to + 2}` };
-                        const href = bk.time ? googleUrlFor(w, bk) : undefined;
-                        const inner = (
-                          <>
+                        return (
+                          <div key={`${w.start}-${bk.from}`} className={cls} style={style}>
                             <span className="when">{when(bk)}</span>
                             <span className="what">
                               {bk.label && <span>{bk.label}</span>}
                               {bk.time && <span className="t">{bk.time}</span>}
                             </span>
-                          </>
-                        );
-                        return href ? (
-                          <a
-                            key={`${w.start}-${bk.from}`}
-                            className={`${cls} link`}
-                            style={style}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title={`Agregar "${bk.label}" a Google Calendar`}
-                          >
-                            {inner}
-                          </a>
-                        ) : (
-                          <div key={`${w.start}-${bk.from}`} className={cls} style={style}>
-                            {inner}
                           </div>
                         );
                       })}
                     </div>
                   );
                 })}
-              </div>
-
-              <div className="cal-actions">
-                <a
-                  href={googleSubscribeUrl(ICS_URL)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary small"
-                >
-                  Agregar a Google Calendar
-                </a>
-                <a href={ICS_PATH} download className="btn-secondary small">
-                  Apple Calendar / Outlook
-                </a>
               </div>
             </div>
           </div>
@@ -541,8 +497,7 @@ export default function InvestigathonPage() {
                           )}
                         </span>
                       );
-                    })}{" "}
-                    <span>· jurado del track</span>
+                    })}
                   </div>
                 </div>
                 <p
@@ -591,7 +546,7 @@ export default function InvestigathonPage() {
             <p>
               Las inscripciones están abiertas.
               <br />
-              Se inscribe una sola vez por grupo y elegís el track en el
+              Se pre-inscribe una sola vez por grupo y elegís el track en el
               formulario.
             </p>
             <div className="actions">
