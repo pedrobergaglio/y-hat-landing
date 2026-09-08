@@ -402,11 +402,6 @@ export default function InvestigathonPage() {
                       <span className="range">{p.range}</span>
                     </div>
                     <p>{p.desc}</p>
-                    <ul>
-                      {p.items.map((it) => (
-                        <li key={it}>{it}</li>
-                      ))}
-                    </ul>
                   </article>
                 ))}
               </div>

@@ -388,14 +388,6 @@
   font-size: 16px; line-height: 1.5;
   color: var(--iv-cream-soft);
 }
-.investigathon-root .phase ul {
-  margin: 12px 0 0; padding: 0 0 0 18px;
-  list-style: disc;
-  display: flex; flex-direction: column; gap: 5px;
-  font-size: 15px; line-height: 1.45; color: var(--iv-cream-soft);
-}
-.investigathon-root .phase ul li::marker { color: var(--iv-accent); }
-
 /* Fechas split: text left, calendar right (wide screens) */
 .investigathon-root .split { display: grid; grid-template-columns: 1fr; gap: 40px; }
 .investigathon-root .split-right { order: -1; }
@@ -592,7 +584,6 @@
   .investigathon-root .closing-body { margin: auto 0; padding: 24px 0; }
 
   .investigathon-root .sec-head p { max-width: 70ch; }
-  .investigathon-root section.sec#fechas .phase ul { display: none; }
   .investigathon-root section.sec#fechas .phase { padding: 14px 0; }
   .investigathon-root section.sec#tracks .sec-head { margin-bottom: 1.8rem; }
 
