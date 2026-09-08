@@ -29,7 +29,7 @@
     {
       "label": "Cuándo",
       "value": "16 al 30 de octubre",
-      "hint": "Escuela desde el lunes 12 · Gran final el viernes 30"
+      "hint": "Escuela desde el martes 13 · Gran final el viernes 30"
     },
     {
       "label": "Dónde",
@@ -50,8 +50,8 @@
   "phases": [
     {
       "title": "Escuela Investigathón",
-      "range": "Lunes 12 a jueves 15",
-      "desc": "Cuatro días de preparación: cómo se investiga, cómo se lee un paper y qué espera cada laboratorio.",
+      "range": "Martes 13 a jueves 15",
+      "desc": "Tres días de preparación: cómo se investiga, cómo se lee un paper y qué espera cada laboratorio.",
       "items": [
         "Talleres de método",
         "Presentación de los laboratorios",
@@ -70,7 +70,7 @@
     {
       "title": "Checkpoints",
       "range": "Lunes 19 y Lunes 26",
-      "desc": "Semana de trabajo acompañado. Arranca el lunes con el primer checkpoint frente al laboratorio.",
+      "desc": "Dos semanas de trabajo intercaladas con dos checkpoints para que los equipos muestren avances y reciban feedback de los laboratorios.",
       "items": [
         "1er checkpoint, lunes 15:00 a 17:00",
         "Mentorías con investigadorxs"
@@ -79,7 +79,7 @@
     {
       "title": "Gran Final",
       "range": "Viernes 30",
-      "desc": "Segundo checkpoint, simulacro de pósters el jueves y Gran final el viernes frente a los jurados.",
+      "desc": "Congreso de estudiantes, ceremonia de premiación y cierre del Investigathon. Cada equipo presenta su póster y los laboratorios eligen a los ganadores.",
       "items": [
         "2do checkpoint, lunes 15:00 a 17:00",
         "Simulacro de pósters, jueves 18:00 a 20:00",
@@ -151,6 +151,11 @@
         "blocks": [
           {
             "from": 0,
+            "to": 0,
+            "kind": "off"
+          },
+          {
+            "from": 1,
             "to": 3,
             "kind": "escuela",
             "label": "Escuela Investigathón"

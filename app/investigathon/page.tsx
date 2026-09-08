@@ -384,9 +384,7 @@ export default function InvestigathonPage() {
           <div className="sec-head">
             <div className="roman">I</div>
             <div>
-              <h2>
-                Una escuela, tres fases, <em>una final</em>.
-              </h2>
+              <h2>Cronograma</h2>
               <p>
                 Una semana de escuela, tres fases de trabajo con un checkpoint
                 por semana, y la Gran final el viernes 30 en 0+Infinito.
@@ -462,9 +460,7 @@ export default function InvestigathonPage() {
           <div className="sec-head">
             <div className="roman">II</div>
             <div>
-              <h2>
-                Cuatro <em>tracks</em>, cuatro laboratorios.
-              </h2>
+              <h2>Problemas y Laboratorios</h2>
               <p>
                 Cada laboratorio propone un problema y ellos mismos son el
                 jurado. Vos y tu grupo eligen uno para competir.
