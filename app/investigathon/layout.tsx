@@ -22,6 +22,8 @@ const DESCRIPTION =
   "Del 16 al 30 de octubre en 0+Infinito · Exactas, UBA. Competencia de investigación: equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.";
 const OG_IMAGE = {
   url: "/investigathon/og-2026-10.png",
+  secureUrl: "https://somosyhat.com/investigathon/og-2026-10.png",
+  type: "image/png",
   width: 1200,
   height: 630,
   alt: "Investigathon 2026 · ¿Por qué esperar para hacer ciencia? · 16 al 30 de octubre · 0+Infinito, Exactas, UBA",
