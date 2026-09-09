@@ -478,7 +478,7 @@ export default function InvestigathonPage() {
                       const href = labLinks[lab];
                       return (
                         <span key={lab}>
-                          {li > 0 && " y "}
+                          {li > 0 && " en conjunto con la comunidad "}
                           {href ? (
                             <a href={href} target="_blank" rel="noopener noreferrer">
                               {lab}
