@@ -342,10 +342,7 @@ export default function InvestigathonPage() {
               <p className="word">{meta.subtitle}</p>
 
               <p className="lede">
-                <strong>Competencia de investigación</strong> en la que equipos
-                de estudiantes abordan problemas científicos reales propuestos
-                por laboratorios de la FCEN, acompañados por sus
-                investigadorxs.
+                <strong>Competencia de investigación</strong> en la que equipos de estudiantes abordan problemas científicos reales acompañados por investigadores de la FCEN.
               </p>
 
               <div className="actions">
@@ -478,7 +475,7 @@ export default function InvestigathonPage() {
                       const href = labLinks[lab];
                       return (
                         <span key={lab}>
-                          {li > 0 && " en conjunto con la comunidad "}
+                          {li > 0 && " acompañado por "}
                           {href ? (
                             <a href={href} target="_blank" rel="noopener noreferrer">
                               {lab}

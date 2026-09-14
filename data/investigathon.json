@@ -3,7 +3,7 @@
     "title": "Investigathon 2026",
     "edition": "Segunda edición",
     "subtitle": "¿Por qué esperar para hacer ciencia?",
-    "lede": "Competencia de investigación en la que equipos de estudiantes abordan problemas científicos reales propuestos por laboratorios de la FCEN, acompañados por sus investigadorxs.",
+    "lede": "Competencia de investigación en la que equipos de estudiantes abordan problemas científicos reales acompañados por investigadores de la FCEN.",
     "contactEmail": "yhat.arg@gmail.com",
     "dates": {
       "start": "2026-10-16",
@@ -92,7 +92,7 @@
       "key": "ai-safety",
       "title": "Seguridad en IA",
       "labs": [
-        "LIAA",
+        "Bruno Bianchi (LIAA, ICC UBA-CONICET)",
         "BAISH"
       ],
       "desc": "El reward hacking en aprendizaje automático es la maximización de una métrica de recompensa de formas inesperadas, incumpliendo los objetivos de la tarea. La pregunta que abordará el track es <strong>¿qué motiva a agentes de IA a hacer reward hacking en entornos de evaluación?</strong>"
@@ -101,7 +101,7 @@
       "key": "biotech",
       "title": "Biotecnología",
       "labs": [
-        "Epilab"
+        "Federico Ariel (Epilab, IFIBYNE UBA-CONICET)"
       ],
       "desc": "En el tratamiento de cultivos agronómicos existe una necesidad por alternativas a pesticidas de origen químico que no sean dañinas para el medio ambiente. Dado un patosistema (una planta y un patógeno), la pregunta que abordará este track es <strong>¿cómo identificar qué genes del patógeno son candidatos a ser silenciados para inhibir su actividad?</strong>"
     },
@@ -109,7 +109,7 @@
       "key": "social-physics",
       "title": "Física Social",
       "labs": [
-        "SoPhyLab"
+        "Pablo Valenzuela (SoPhyLab, DF-UBA)"
       ],
       "desc": "En el análisis de redes complejas, un problema crucial es relacionar entidades mediante su historial de descripciones basadas en texto. Sobre datos públicos de industrias, la pregunta que abordará este track es <strong>¿cómo modelar esa red para predecir relaciones futuras entre entidades?</strong>"
     },
@@ -117,7 +117,7 @@
       "key": "contextual-bandits",
       "title": "Teoría de Optimización",
       "labs": [
-        "ModEsto"
+        "Patu Groisman (ModEsto, DM-UBA)"
       ],
       "desc": "Muchos problemas de decisión requieren elegir qué acción realizar y cuándo, habiendo información incompleta. La pregunta que abordará este track es: <strong>¿cómo diseñar políticas de decisión que maximicen una recompensa esperada cuando no conocemos de antemano el resultado de cada acción y tenemos finitos intentos?</strong>"
     }
@@ -125,7 +125,7 @@
   "faq": [
     {
       "q": "¿Quiénes pueden participar?",
-      "a": "¡Cualquier estudiante universitario! El Investigathon está abierto a estudiantes de cualquier facultad o universidad. La FCEN, UBA es nuestra casa, así que muchos vienen de ahí, pero queremos equipos diversos: si estudiás algo afín (o no tanto) y te dan ganas de sumarte, te esperamos. Se participa en equipos de 3 o 4 personas, y al pre-inscribirte elegís el track."
+      "a": "¡Cualquier estudiante de carrera científica! El Investigathon está abierto a estudiantes de cualquier facultad o universidad. Si bien tendrán prioridad equipos con estudiantes de FCEN-UBA, se recibirán postulaciones de equipos de otras universidades. Se participa en equipos de 3 o 4 personas, y al pre-inscribirte elegís el track. ¡Te esperamos!"
     },
     {
       "q": "¿Cómo nos pre-inscribimos?",
