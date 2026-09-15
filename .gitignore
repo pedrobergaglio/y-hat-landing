@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 out/
+
+# El proyecto va con npm: package-lock.json es el unico lockfile.
+# Un pnpm-lock.yaml generado al pasar se colo el 15-sep-2026 (f6c4956) con
+# seis dependencias faltantes, asi que a quien instalara con pnpm no le compilaba.
+pnpm-lock.yaml
+yarn.lock
