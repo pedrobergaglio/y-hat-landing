@@ -92,8 +92,7 @@
       "key": "ai-safety",
       "title": "Seguridad en IA",
       "labs": [
-        "Bruno Bianchi (LIAA, ICC UBA-CONICET)",
-        "BAISH"
+        "Bruno Bianchi (LIAA, ICC UBA-CONICET) y Nico Martorell (LIAA, ICC UBA-CONICET)"
       ],
       "desc": "El reward hacking en aprendizaje automático es la maximización de una métrica de recompensa de formas inesperadas, incumpliendo los objetivos de la tarea. La pregunta que abordará el track es <strong>¿qué motiva a agentes de IA a hacer reward hacking en entornos de evaluación?</strong>"
     },

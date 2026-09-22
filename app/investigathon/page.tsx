@@ -471,11 +471,10 @@ export default function InvestigathonPage() {
                 <div>
                   <h3>{t.title}</h3>
                   <div className="lab">
-                    {t.labs.map((lab, li) => {
+                    {t.labs.map((lab) => {
                       const href = labLinks[lab];
                       return (
                         <span key={lab}>
-                          {li > 0 && " acompañado por "}
                           {href ? (
                             <a href={href} target="_blank" rel="noopener noreferrer">
                               {lab}
