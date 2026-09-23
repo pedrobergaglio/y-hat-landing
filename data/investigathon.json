@@ -110,7 +110,7 @@
       "labs": [
         "Pablo Balenzuela (SoPhyLab, DF-UBA)"
       ],
-      "desc": "En el análisis de redes complejas, un problema crucial es relacionar entidades mediante su historial de descripciones basadas en texto. Sobre datos públicos de industrias, la pregunta que abordará este track es <strong>¿cómo modelar esa red para predecir relaciones futuras entre entidades?</strong>"
+      "desc": "En el análisis de redes complejas, un problema crucial es relacionar entidades mediante su historial de descripciones basadas en texto. Sobre datos públicos de industrias, la pregunta que abordará este track es <strong>¿Qué representaciones de información permiten caracterizar y predecir mejor la compatibilidad entre necesidades y capacidades?</strong>"
     },
     {
       "key": "contextual-bandits",
